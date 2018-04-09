@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="黄溜溜@PHP">
 <meta property="og:description" content="2017-01-05云服务器环境：CentOS 7.0 64位cat /etc/centos-release 安装完CentOS 7 后做的 #http://www.centoscn.com/CentosSecurity/CentosSafe/2015/0126/4558.html #更改 root 密码 #新增一个普通帐号adduser sshuserpasswd sshuser ！！！ 这地方">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T09:18:32.660Z">
+<meta property="og:updated_time" content="2018-04-09T03:16:06.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7 yum安装">
 <meta name="twitter:description" content="2017-01-05云服务器环境：CentOS 7.0 64位cat /etc/centos-release 安装完CentOS 7 后做的 #http://www.centoscn.com/CentosSecurity/CentosSafe/2015/0126/4558.html #更改 root 密码 #新增一个普通帐号adduser sshuserpasswd sshuser ！！！ 这地方">
@@ -112,6 +112,7 @@
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable memcached.service</span><br><span class="line">systemctl restart memcached.service</span><br></pre></td></tr></table></figure>
 <h2 id="————svn-and-rzsz——————–"><a href="#————svn-and-rzsz——————–" class="headerlink" title="————svn and rzsz——————–"></a>————svn and rzsz——————–</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install subversion.x86_64</span><br><span class="line">yum -y install lrzsz.x86_64</span><br></pre></td></tr></table></figure>
 <h2 id="————–php安装——————————"><a href="#————–php安装——————————" class="headerlink" title="————–php安装——————————-"></a>————–php安装——————————-</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y php71.x86_64 php71-php-cli.x86_64 php71-php-common.x86_64 php71-php-devel.x86_64 php71-php-fpm.x86_64 php71-php-json.x86_64 php71-php-mbstring.x86_64 php71-php-mcrypt.x86_64 php71-php-mysqlnd.x86_64 php71-php-opcache.x86_64 php71-php-pdo.x86_64 php71-php-pecl-apcu.x86_64 php71-php-pecl-event.x86_64 php71-php-pecl-igbinary.x86_64 php71-php-pecl-imagick.x86_64 php71-php-pecl-scrypt.x86_64  php71-php-pecl-memcached.x86_64 php71-php-process.x86_64 php71-php-pecl-gearman.x86_64 php71-php-pecl-swoole.x86_64 php71-php-xml.x86_64</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y php71w-fpm php71w-opcache php71w-cli php71w-gd php71w-imap php71w-mysqlnd php71w-mbstring php71w-mcrypt php71w-pdo php71w-pecl-apcu php71w-pecl-mongodb php71w-pecl-redis php71w-pgsql php71w-xml php71w-xmlrpc php71w-devel mod_php71w</span><br></pre></td></tr></table></figure>
 <h3 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable php71-php-fpm</span><br><span class="line">systemctl restart php71-php-fpm</span><br></pre></td></tr></table></figure>
 <h2 id="—————–gearman-服务器安装————————"><a href="#—————–gearman-服务器安装————————" class="headerlink" title="—————–gearman 服务器安装————————-"></a>—————–gearman 服务器安装————————-</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gearmand.x86_64</span><br></pre></td></tr></table></figure>
 <h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/\# OPTIONS.*$/OPTIONS=\&quot;-L 127.0.0.1 -p 4730 -t 100 -R\&quot;/g&apos; /etc/sysconfig/gearmand</span><br></pre></td></tr></table></figure>
@@ -146,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/CentOS-7-yum安装/" data-id="cjfqlj78y0001v0v56qucbnjc" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/CentOS-7-yum安装/" data-id="cjfro0ksj000100v5sqs8wxp5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -154,6 +155,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/04/09/git服务器搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git服务器搭建
+        
+      </div>
+    </a>
   
   
     <a href="/2018/04/08/first/" id="article-nav-older" class="article-nav-link-wrap">
@@ -193,6 +203,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/09/git服务器搭建/">git服务器搭建</a>
+          </li>
         
           <li>
             <a href="/2018/04/08/CentOS-7-yum安装/">CentOS 7 yum安装</a>
