@@ -70,6 +70,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-discuz-qq" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/18/discuz-qq/" class="article-date">
+  <time datetime="2018-04-18T14:54:59.000Z" itemprop="datePublished">2018-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/18/discuz-qq/">discuz_qq</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="今天在工作中领导交给我一个bug"><a href="#今天在工作中领导交给我一个bug" class="headerlink" title="今天在工作中领导交给我一个bug"></a>今天在工作中领导交给我一个bug</h2><h2 id="Discuz-X3-2QQ登录出现redirect-uri-is-illegal-100010-的解决办法"><a href="#Discuz-X3-2QQ登录出现redirect-uri-is-illegal-100010-的解决办法" class="headerlink" title="Discuz! X3.2QQ登录出现redirect uri is illegal(100010)的解决办法"></a>Discuz! X3.2QQ登录出现redirect uri is illegal(100010)的解决办法</h2><p>|详解: 如果同步站点信息时使用站点URL：bbs.xxx.com，那么在其他域名如：<a href="http://www.xxx.com登录，也就是同一主域名下的其它二级域名登录，那么就会出现：redirect" target="_blank" rel="noopener">www.xxx.com登录，也就是同一主域名下的其它二级域名登录，那么就会出现：redirect</a> uri is illegal(100010)。</p>
+<p>|原因是腾讯在4月末更改了QQ互联的规则，在不同的二级域名是无法通过QQ登录时的授权的。</p>
+<p>|用TX的话说“就是指你的回调地址不合法”</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ul>
+<li>打开：source\plugin\qqconnect\connect.class.php</li>
+<li>找到</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_G[&apos;siteurl&apos;]    //获取当前域名</span><br></pre></td></tr></table></figure>
+<p>修改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://你的网站/</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/18/discuz-qq/" data-id="cjg586nhd0003tgv5ys48by8s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-strlen" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/17/strlen/" class="article-date">
@@ -109,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/17/strlen/" data-id="cjg3tlxgm0005c0v5ssxwypfe" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/17/strlen/" data-id="cjg586nhh0006tgv5t2v3clck" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/16/ddos攻击防御/" data-id="cjg3tlxg80000c0v59yb0b40y" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/16/ddos攻击防御/" data-id="cjg586nhc0002tgv5k5basmnf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/09/git服务器搭建/" data-id="cjg3tlxgg0002c0v55ckj8ums" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/09/git服务器搭建/" data-id="cjg586nh90001tgv55widrwk5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -325,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/CentOS-7-yum安装/" data-id="cjg3tlxgj0003c0v5210m1e56" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/CentOS-7-yum安装/" data-id="cjg586nh10000tgv5fbb78uhd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -362,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/first/" data-id="cjg3tlxge0001c0v589s3z7sk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/first/" data-id="cjg586nhf0004tgv589yc0ycw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -407,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/hello-world/" data-id="cjg3tlxgl0004c0v5y8da19t5" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/08/hello-world/" data-id="cjg586nhg0005tgv5m9b4zpjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,6 +494,10 @@
       <ul>
         
           <li>
+            <a href="/2018/04/18/discuz-qq/">discuz_qq</a>
+          </li>
+        
+          <li>
             <a href="/2018/04/17/strlen/">strlen</a>
           </li>
         
@@ -461,10 +511,6 @@
         
           <li>
             <a href="/2018/04/08/CentOS-7-yum安装/">CentOS 7 yum安装</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/08/first/">test</a>
           </li>
         
       </ul>
