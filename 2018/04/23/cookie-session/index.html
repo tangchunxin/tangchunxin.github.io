@@ -7,18 +7,18 @@
   
   <title>cookie_session | 黄溜溜@PHP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cookie 和session 自我理解 开始 PHP Session在您把用户信息存储到 PHP session 中之前，首先必须启动会话。注释：session_start() 函数必须位于  标签之前：存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSION[">
+  <meta name="description" content="cookie 和session 自我理解 开始 PHP Session 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。 注释：session_start() 函数必须位于  标签之前： 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSI">
 <meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cookie_session">
 <meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session/index.html">
 <meta property="og:site_name" content="黄溜溜@PHP">
-<meta property="og:description" content="cookie 和session 自我理解 开始 PHP Session在您把用户信息存储到 PHP session 中之前，首先必须启动会话。注释：session_start() 函数必须位于  标签之前：存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSION[">
+<meta property="og:description" content="cookie 和session 自我理解 开始 PHP Session 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。 注释：session_start() 函数必须位于  标签之前： 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSI">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-23T14:29:56.474Z">
+<meta property="og:updated_time" content="2018-04-23T14:55:18.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cookie_session">
-<meta name="twitter:description" content="cookie 和session 自我理解 开始 PHP Session在您把用户信息存储到 PHP session 中之前，首先必须启动会话。注释：session_start() 函数必须位于  标签之前：存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSION[">
+<meta name="twitter:description" content="cookie 和session 自我理解 开始 PHP Session 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。 注释：session_start() 函数必须位于  标签之前： 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSI">
   
     <link rel="alternate" href="/atom.xml" title="黄溜溜@PHP" type="application/atom+xml">
   
@@ -91,9 +91,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="cookie-和session-自我理解"><a href="#cookie-和session-自我理解" class="headerlink" title="cookie 和session 自我理解"></a>cookie 和session 自我理解</h2><blockquote>
-<p>开始 PHP Session<br>在您把用户信息存储到 PHP session 中之前，首先必须启动会话。<br>注释：session_start() 函数必须位于 <html> 标签之前：<br>存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">// 存储 session 数据</span><br><span class="line">$_SESSION[&apos;views&apos;]=1;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></html></p>
-</blockquote>
+        <h2 id="cookie-和session-自我理解"><a href="#cookie-和session-自我理解" class="headerlink" title="cookie 和session 自我理解"></a>cookie 和session 自我理解</h2><p> 开始 PHP Session<br> 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。<br> 注释：session_start() 函数必须位于 <html> 标签之前：<br> 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">// 存储 session 数据</span><br><span class="line">$_SESSION[&apos;views&apos;]=1;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></html></p>
 <h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><ul>
 <li><p>浏览器请求服务器上一个test.php文件</p>
 </li>
@@ -102,17 +100,32 @@
 <li><p>这个时候服务器给浏览器的 返回头信息中  包含着一句Set_Cookie,这句表示告诉浏览器 写一个名为PHPSESSID的cookie,并在服务器上生成一个文件,存放这个session文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Response Header</span><br><span class="line">Access-Control-Allow-Headers: DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type</span><br><span class="line">Access-Control-Allow-Methods: GET,POST,OPTIONS</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Cache-Control: must-revalidate, no-store</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line">Content-Type: image/png</span><br><span class="line">Date: Mon, 23 Apr 2018 13:00:35 GMT</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: nginx/1.10.2</span><br><span class="line">Set-Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie; path=/==</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">X-Daa-Tunnel: hop_count=1</span><br><span class="line">X-NWS-LOG-UUID: c460b76b-08e6-4a6c-8fc0-4ffd7c0a2a8f af9b19c3b29c523d7d5bf5e81938f9cd</span><br><span class="line">X-Powered-By: PHP/7.1.4</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>此时Cookies中便存在cookie<br>Name|Value|<br>—|:—:|<br>PHPSESSID|uorfbpp8m2prv9olfpa6vmelie</p>
+<li><p>此时Cookies中便存在cookie</p>
 </li>
-<li><p>这个是浏览器每次访问服务器的时候在请求头信息中带有Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request Header</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie</span><br><span class="line">Host: test.linfiy.com</span><br><span class="line">Referer: http://test.linfiy.com/mahjong/client/backstage-cangzhou/</span><br><span class="line">User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Mobile Safari/537.36</span><br></pre></td></tr></table></figure>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align:center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PHPSESSID</td>
+<td style="text-align:center">uorfbpp8m2prv9olfpa6vmelie</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>这个是浏览器每次访问服务器的时候在请求头信息中带有Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request Header</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie</span><br><span class="line">Host: test.linfiy.com</span><br><span class="line">Referer: http://test.linfiy.com/mahjong/client/backstage-cangzhou/</span><br><span class="line">User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Mobile Safari/537.36</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session/" data-id="cjgccq3g30001mcv5tk336kwh" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session/" data-id="cjgcd5piz0001jov5jt41n4ab" class="article-share-link">Share</a>
       
       
     </footer>
