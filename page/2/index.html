@@ -70,6 +70,217 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Discuz开发之主题表pre-forum-thread的displayorder字段含义" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" class="article-date">
+  <time datetime="2018-05-09T13:54:58.000Z" itemprop="datePublished">2018-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/">Discuz开发之主题表pre_forum_thread的displayorder字段含义</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Discuz开发之主题表pre-forum-thread的displayorder字段含义"><a href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义" class="headerlink" title="Discuz开发之主题表pre_forum_thread的displayorder字段含义"></a>Discuz开发之主题表pre_forum_thread的displayorder字段含义</h2><h4 id="Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><a href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义：" class="headerlink" title="Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义："></a>Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</h4><p>displayorder取值范围为：4,3,2,1,0，-1，-2，-3，-4，他们的含义如下：</p>
+<ul>
+<li><p>displayorder=4 ：多版块置顶功能可让一个主题在任意多个版块 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">只在指定的板块显示主题</span><br><span class="line"></span><br><span class="line">需要在后台-内容-主题-板块/群组指定来进行操作</span><br><span class="line"></span><br><span class="line">以下三种置顶可以在版主管理的浮动窗口操作</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>displayorder=3 ：全局置顶 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全部专区，每个板块都可已看的到</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>displayorder=2 ：分类置顶  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本专区的所有板块都可以看到该帖</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dispalyorder=1 ：本版置顶  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只有本板块在置顶区看得到，该板块子版块和其他都看不到</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>displayorder=0 ：普通贴</p>
+</li>
+</ul>
+<h4 id="在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><a href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；" class="headerlink" title="在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"></a>在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">版块开启回收站：后台-论坛-版块管理-帖子选项</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>displayorder=-1 ：回收站</p>
+</li>
+<li><p>displayorder=-2 ：审核中</p>
+</li>
+<li><p>displayorder=-3 ：审核忽略</p>
+</li>
+<li><p>displayorder=-4 ：草稿</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-id="cjkxs55l00001osd650peowca" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-Nginx-URL重写（rewrite）介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" class="article-date">
+  <time datetime="2018-04-28T13:36:29.000Z" itemprop="datePublished">2018-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/">linux Nginx URL重写（rewrite）介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Nginx-URL重写（rewrite）介绍"><a href="#Nginx-URL重写（rewrite）介绍" class="headerlink" title="Nginx URL重写（rewrite）介绍"></a>Nginx URL重写（rewrite）介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite ^([^\.]*)/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9]+)\.(gif|jpg|jpeg)$  https://www.baidu.com last;</span><br></pre></td></tr></table></figure>
+<p> 注意这里要用‘’单引号引起来，避免{}<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite &apos;^/images/([a-z]&#123;2&#125;)/([a-z0-9]&#123;5&#125;)/(.*)\.(png|jpg|gif)$&apos; /data?file=$3.$4;</span><br></pre></td></tr></table></figure></p>
+<pre><code>和apache等web服务软件一样，rewrite的组要功能是实现RUL地址的重定向。Nginx的rewrite功能需要PCRE软件的支持，即通过perl兼容正则表达式语句进行规则匹配的。默认参数编译nginx就会支持rewrite的模块，但是也必须要PCRE的支持
+</code></pre><ul>
+<li>rewrite是实现URL重写的关键指令，根据regex（正则表达式）部分内容，重定向到replacement，结尾是flag标记。</li>
+</ul>
+<ul>
+<li><p>rewrite语法格式及参数语法说明如下:</p>
+<p>  rewrite|<regex>|<replacement>|[flag]|<br>  —|:—:|:—:|:—:|<br>  |关键字|正则|替代内容|flag标记</replacement></regex></p>
+</li>
+</ul>
+<pre><code>关键字：其中关键字error_log不能改变
+
+正则：perl兼容正则表达式语句进行规则匹配
+
+替代内容：将正则匹配的内容替换成replacement
+
+flag标记：rewrite支持的flag标记
+</code></pre><p>flag标记说明：</p>
+<p>last  #本条规则匹配完成后，继续向下匹配新的location URI规则</p>
+<p>break  #本条规则匹配完成即终止，不再匹配后面的任何规则</p>
+<p>redirect  #返回302临时重定向，浏览器地址会显示跳转后的URL地址</p>
+<p>permanent  #返回301永久重定向，浏览器地址栏会显示跳转后的URL地址</p>
+<p>rewrite参数的标签段位置：<br>server,location,if</p>
+<p>例子：<br>rewrite ^/(.*) <a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> permanent;</p>
+<p>说明：                                        </p>
+<p>rewrite为固定关键字，表示开始进行rewrite匹配规则</p>
+<p>regex部分是 ^/(.*) ，这是一个正则表达式，匹配完整的域名和后面的路径地址</p>
+<p>replacement部分是<a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> $1，是取自regex部分()里的内容。匹配成功后跳转到的URL。</p>
+<p>flag部分 permanent表示永久301重定向标记，即跳转到新的 <a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> 地址上</p>
+<p>regex 常用正则表达式说明<br>字符</p>
+<p>描述</p>
+<p>\</p>
+<p>将后面接着的字符标记为一个特殊字符或一个原义字符或一个向后引用。如“\n”匹配一个换行符，而“\$”则匹配“$”</p>
+<p>^</p>
+<p>匹配输入字符串的起始位置</p>
+<p>$</p>
+<p>匹配输入字符串的结束位置</p>
+<p>*</p>
+<p>匹配前面的字符零次或多次。如“ol*”能匹配“o”及“ol”、“oll”</p>
+<p>+</p>
+<p>匹配前面的字符一次或多次。如“ol+”能匹配“ol”及“oll”、“oll”，但不能匹配“o”</p>
+<p>?</p>
+<p>匹配前面的字符零次或一次，例如“do(es)?”能匹配“do”或者“does”，”?”等效于”{0,1}”</p>
+<p>.</p>
+<p>匹配除“\n”之外的任何单个字符，若要匹配包括“\n”在内的任意字符，请使用诸如“[.\n]”之类的模式。</p>
+<p>(pattern)</p>
+<p>匹配括号内pattern并可以在后面获取对应的匹配，常用$0…$9属性获取小括号中的匹配内容，要匹配圆括号字符需要(Content)</p>
+<p>rewrite 企业应用场景<br>Nginx的rewrite功能在企业里应用非常广泛：</p>
+<p>u 可以调整用户浏览的URL，看起来更规范，合乎开发及产品人员的需求。</p>
+<p>u 为了让搜索引擎搜录网站内容及用户体验更好，企业会将动态URL地址伪装成静态地址提供服务。</p>
+<p>u 网址换新域名后，让旧的访问跳转到新的域名上。例如，访问京东的360buy.com会跳转到jd.com</p>
+<p>u 根据特殊变量、目录、客户端的信息进行URL调整等</p>
+<p>Nginx配置rewrite过程介绍<br>（1）创建rewrite语句<br>vi conf/vhost/<a href="http://www.abc.com.conf" target="_blank" rel="noopener">www.abc.com.conf</a></p>
+<p>#vi编辑虚拟主机配置文件</p>
+<p>文件内容</p>
+<p>server {</p>
+<pre><code>listen 80;
+
+server_name abc.com;
+
+rewrite ^/(.*) http://www.abc.com/$1 permanent;
+</code></pre><p>}</p>
+<p>server {</p>
+<pre><code>listen 80;
+
+server_name www.abc.com;
+
+location / {
+
+        root /data/www/www;
+
+        index index.html index.htm;
+
+}
+
+error_log    logs/error_www.abc.com.log error;
+
+access_log    logs/access_www.abc.com.log    main;
+</code></pre><p>}</p>
+<p>或者</p>
+<p>server {</p>
+<pre><code>listen 80;
+
+server_name abc.com www.abc.com;
+
+if ( $host != &apos;www.abc.com&apos;  ) {
+
+        rewrite ^/(.*) http://www.abc.com/$1 permanent;
+
+}
+
+location / {
+
+        root /data/www/www;
+
+        index index.html index.htm;
+
+}
+
+error_log    logs/error_www.abc.com.log error;
+
+access_log    logs/access_www.abc.com.log    main;
+</code></pre><p>}</p>
+<p>（2）重启服务<br>确认无误便可重启，操作如下：</p>
+<p>nginx -t</p>
+<p>#结果显示ok和success没问题便可重启</p>
+<p>nginx -s reload</p>
+<p>（3）查看跳转效果<br>打开浏览器访问abc.com</p>
+<p>页面打开后，URL地址栏的abc.com变成了<a href="http://www.abc.com说明URL重写成功。" target="_blank" rel="noopener">www.abc.com说明URL重写成功。</a></p>
+<h2 id="nginx-location-rewrite匹配顺序"><a href="#nginx-location-rewrite匹配顺序" class="headerlink" title="nginx location rewrite匹配顺序"></a>nginx location rewrite匹配顺序</h2><p> Rewrite（ URL 重写）指令可以出现在 server{} 下，也可以出现在 location{} 下，它们之间是有区别的！对于出现在 server{} 下的 rewrite 指令，它的执行会在 location 匹配之前；对于出现在 location{} 下的 rewrite 指令，它的执行当然是在 location 匹配之后，但是由于 rewrite 导致 HTTP 请求的 URI 发生了变化，所以 location{} 下的 rewrite 后的 URI 又需要重新匹配 location ，就好比一个新的 HTTP 请求一样（注意由 location{} 内的 rewrite 导致的这样的循环匹配最多不超过 10 次，否则 nginx 会报 500 错误）。总的来说，如果 server{} 和 location{} 下都有 rewrite ，依然是先执行 server{} ，然后进行 location 匹配，如果被匹配的 location{} 之内还有 rewrite 指令，那么继续执行 rewrite ，同时因为 location{} 内的 rewrite 改变了 URI ，那么重写后的结果 URI 需要当做一个新的请求，重新匹配 location （应该也包括重新执行 server{} 下的 rewrite 吧）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" data-id="cjkxs55lq000gosd61gsk81jx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-linux-nginx设置禁止通过ip访问服务器" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" class="article-date">
@@ -106,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" data-id="cjkxlf61v000hlsd60uap5z76" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" data-id="cjkxs55lu000josd66wepek1b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-header/" data-id="cjkxlf61x000jlsd6oupt1nw5" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-header/" data-id="cjkxs55lw000kosd6hpda0v7u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -190,7 +401,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-var-export/" data-id="cjkxlf621000mlsd69mjs1eyh" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-var-export/" data-id="cjkxs55m1000nosd6zbvwb9e8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/sql通配符/" data-id="cjkxlf623000olsd61klum04v" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/sql通配符/" data-id="cjkxs55m8000qosd6tl9y4brz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/defined安全判断，放于被包含脚本中/" data-id="cjkxlf61b0006lsd6dkhh1vjg" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/defined安全判断，放于被包含脚本中/" data-id="cjkxs55lb0007osd6kmo406n0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -351,7 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/node-js安装/" data-id="cjkxlf61w000ilsd6y8fd10fk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/node-js安装/" data-id="cjkxs55lr000hosd62icoq07n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -388,7 +599,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/hexo搭建/" data-id="cjkxlf61r000elsd6gwgna2va" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/hexo搭建/" data-id="cjkxs55lo000fosd62i9usspi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -489,7 +700,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session自我理解/" data-id="cjkxlf61f0008lsd6s2lmvuon" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session自我理解/" data-id="cjkxs55l60004osd6jkgk30um" class="article-share-link">Share</a>
       
       
     </footer>
@@ -545,7 +756,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/php-iconv/" data-id="cjkxlf61z000klsd6pnvveclz" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/php-iconv/" data-id="cjkxs55m0000mosd6r7i1aru2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -591,96 +802,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/18/discuz-qq-bug/" data-id="cjkxlf61a0005lsd6s82t6ab9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-php-strlen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/17/php-strlen/" class="article-date">
-  <time datetime="2018-04-17T14:52:55.000Z" itemprop="datePublished">2018-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/17/php-strlen/">PHP-strlen</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="strlen-与-mb-strlen区别-面试经常被问到"><a href="#strlen-与-mb-strlen区别-面试经常被问到" class="headerlink" title="strlen 与 mb_strlen区别  面试经常被问到"></a>strlen 与 mb_strlen区别  面试经常被问到</h2><h4 id="在PHP里有两个计算字符串个数的函数"><a href="#在PHP里有两个计算字符串个数的函数" class="headerlink" title="在PHP里有两个计算字符串个数的函数"></a>在PHP里有两个计算字符串个数的函数</h4><p>一个是 strlen,一个是mb_strlen;<br>先来看看手册中的定义</p>
-<ul>
-<li>strlen</li>
-<li>strlen — 获取字符串长度</li>
-<li>int strlen ( string $string )<br>返回给定的字符串 string 的长度。</li>
-<li>mb_strlen</li>
-<li>int mb_strlen ( string $str [, string $encoding ] )</li>
-<li>返回给定的字符串 string 的长度。</li>
-</ul>
-<p>encoding参数为字符编码。如果省略，则使用内部字符编码。<br>这么看除了mb_strlen可以传递一个字符编码好像没有其他区别，下面通过例子，讲解这两者之间的区别。<br>先看例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php    //测试时文件的编码方式要是UTF8    </span><br><span class="line">$str=&apos;中文a字1符&apos;;    </span><br><span class="line">echo strlen($str).&apos;&lt;br&gt;&apos;;//14    字节 中文*3</span><br><span class="line">echo mb_strlen($str,&apos;utf8&apos;).&apos;&lt;br&gt;&apos;;//6 字符个数,中文也算1</span><br><span class="line">echo mb_strlen($str,&apos;gbk&apos;).&apos;&lt;br&gt;&apos;;//8  一个中文1.5个字符</span><br><span class="line">echo mb_strlen($str,&apos;gb2312&apos;).&apos;&lt;br&gt;&apos;;//10 一个中文2个字符??待却定</span><br></pre></td></tr></table></figure></p>
-<p>结果分析：在strlen计算时，对待一个UTF8的中文字符是3个长度，所以“中文a字1符”长度是3*4+2=14,在mb_strlen计算时，选定内码为UTF8，则会将一个中文字符当作长度1来计算，所以“中文a字1符”长度是6 </p>
-<hr>
-<p>ps:</p>
-<h4 id="采用mb-strlen函数可以较好地解决这个问题。mb-strlen的用法和-strlen类似，只不过它有第二个可选参数用于指定字符编码。例如得到UTF-8的字符串-str长度，可以用-mb-strlen-str-’UTF-8’-。如果省略第二个参数，则会使用PHP的内部编码。内部编码可以通过-mb-internal-encoding-函数得到。"><a href="#采用mb-strlen函数可以较好地解决这个问题。mb-strlen的用法和-strlen类似，只不过它有第二个可选参数用于指定字符编码。例如得到UTF-8的字符串-str长度，可以用-mb-strlen-str-’UTF-8’-。如果省略第二个参数，则会使用PHP的内部编码。内部编码可以通过-mb-internal-encoding-函数得到。" class="headerlink" title="采用mb_strlen函数可以较好地解决这个问题。mb_strlen的用法和 strlen类似，只不过它有第二个可选参数用于指定字符编码。例如得到UTF-8的字符串$str长度，可以用 mb_strlen($str,’UTF-8’)。如果省略第二个参数，则会使用PHP的内部编码。内部编码可以通过 mb_internal_encoding()函数得到。"></a>采用mb_strlen函数可以较好地解决这个问题。mb_strlen的用法和 strlen类似，只不过它有第二个可选参数用于指定字符编码。例如得到UTF-8的字符串$str长度，可以用 mb_strlen($str,’UTF-8’)。如果省略第二个参数，则会使用PHP的内部编码。内部编码可以通过 mb_internal_encoding()函数得到。</h4><h4 id="需要注意的是，mb-strlen并不是PHP核心函数，Windows-下使用前需要确保在php-ini中加载了php-mbstring-dll，即确保“extension-php-mbstring-dll”这一行存在并且没有被注释掉，否则会出现未定义函数的问题。Linux-下需要编译这个扩展。"><a href="#需要注意的是，mb-strlen并不是PHP核心函数，Windows-下使用前需要确保在php-ini中加载了php-mbstring-dll，即确保“extension-php-mbstring-dll”这一行存在并且没有被注释掉，否则会出现未定义函数的问题。Linux-下需要编译这个扩展。" class="headerlink" title="需要注意的是，mb_strlen并不是PHP核心函数，Windows 下使用前需要确保在php.ini中加载了php_mbstring.dll，即确保“extension=php_mbstring.dll”这一行存在并且没有被注释掉，否则会出现未定义函数的问题。Linux 下需要编译这个扩展。"></a>需要注意的是，mb_strlen并不是PHP核心函数，Windows 下使用前需要确保在php.ini中加载了php_mbstring.dll，即确保“extension=php_mbstring.dll”这一行存在并且没有被注释掉，否则会出现未定义函数的问题。Linux 下需要编译这个扩展。</h4>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/17/php-strlen/" data-id="cjkxlf620000llsd6bvrs7s72" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ddos攻击防御" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/16/ddos攻击防御/" class="article-date">
-  <time datetime="2018-04-16T14:29:45.000Z" itemprop="datePublished">2018-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/16/ddos攻击防御/">ddos攻击防御</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、安装DDoS-deflate"><a href="#1、安装DDoS-deflate" class="headerlink" title="1、安装DDoS deflate"></a>1、安装DDoS deflate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br><span class="line">wget http://www.inetbase.com/scripts/ddos/install.sh   //下载DDoS deflate</span><br><span class="line">chmod 0700 install.sh      //添加权限</span><br><span class="line">sh install.sh        //执行</span><br></pre></td></tr></table></figure>
-<h2 id="2、配置DDoS-deflate下面是DDoS-deflate的默认配置位于-usr-local-ddos-ddos-conf-，内容如下："><a href="#2、配置DDoS-deflate下面是DDoS-deflate的默认配置位于-usr-local-ddos-ddos-conf-，内容如下：" class="headerlink" title="2、配置DDoS deflate下面是DDoS deflate的默认配置位于/usr/local/ddos/ddos.conf ，内容如下："></a>2、配置DDoS deflate下面是DDoS deflate的默认配置位于/usr/local/ddos/ddos.conf ，内容如下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  /usr/local/ddos</span><br><span class="line">vim ddos.conf</span><br></pre></td></tr></table></figure>
-<h2 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h2><h5 id="Paths-of-the-script-and-other-files"><a href="#Paths-of-the-script-and-other-files" class="headerlink" title="Paths of the script and other files"></a>Paths of the script and other files</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">PROGDIR=&quot;/usr/local/ddos&quot;</span><br><span class="line">PROG=&quot;/usr/local/ddos/ddos.sh&quot;</span><br><span class="line">IGNORE_IP_LIST=&quot;/usr/local/ddos/ignore.ip.list&quot;  //IP地址白名单 </span><br><span class="line">CRON=&quot;/etc/cron.d/ddos.cron&quot;    //定时执行程序 </span><br><span class="line">APF=&quot;/etc/apf/apf&quot;</span><br><span class="line">IPT=&quot;/sbin/iptables&quot; </span><br><span class="line">##### frequency in minutes for running the script</span><br><span class="line">##### Caution: Every time this setting is changed, run the script with --cron</span><br><span class="line">#####            option so that the new frequency takes effect</span><br><span class="line">FREQ=1   //检查时间间隔，默认1分钟 </span><br><span class="line">##### How many connections define a bad IP? Indicate that below.</span><br><span class="line">NO_OF_CONNECTIONS=50     //最大连接数，超过这个数IP就会被屏蔽，一般默认即可 </span><br><span class="line">##### APF_BAN=1 (Make sure your APF version is atleast 0.96)</span><br><span class="line">##### APF_BAN=0 (Uses iptables for banning ips instead of APF)</span><br><span class="line">APF_BAN=0        //使用APF还是iptables。推荐使用iptables,将APF_BAN的值改为0即可。 </span><br><span class="line">##### KILL=0 (Bad IPs are&apos;nt banned, good for interactive execution of script)</span><br><span class="line">##### KILL=1 (Recommended setting)</span><br><span class="line">KILL=1   //是否屏蔽IP，默认即可 </span><br><span class="line">##### An email is sent to the following address when an IP is banned.</span><br><span class="line">##### Blank would suppress sending of mails</span><br><span class="line">EMAIL_TO=&quot;root&quot;   //当IP被屏蔽时给指定邮箱发送邮件，推荐使用，换成自己的邮箱即可 </span><br><span class="line">##### Number of seconds the banned ip should remain in blacklist.</span><br><span class="line">BAN_PERIOD=6000    //禁用IP时间，默认6000秒，可根据情况调整</span><br></pre></td></tr></table></figure>
-<h2 id="3-修改配置-问题"><a href="#3-修改配置-问题" class="headerlink" title="3 修改配置 问题"></a>3 修改配置 问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim ddos.sh </span><br><span class="line">1，ip地址过滤的不够细致</span><br><span class="line">在117行，更还此段代码为：</span><br><span class="line">netstat -ntu | awk &apos;&#123;print $5&#125;&apos; | egrep -o &quot;[0-9]&#123;1,3&#125;.[0-9]&#123;1,3&#125;.[0-9]&#123;1,3&#125;.[0-9]&#123;1,3&#125;&quot; | sort | uniq -c | sort -nr &gt; $BAD_IP_LIST</span><br><span class="line"></span><br><span class="line">2，注释掉134行：</span><br><span class="line">echo $CURR_LINE_IP &gt;&gt; $IGNORE_IP_LIST</span><br></pre></td></tr></table></figure>
-<h2 id="4-按照配置文件创建一个执行计划"><a href="#4-按照配置文件创建一个执行计划" class="headerlink" title="4 按照配置文件创建一个执行计划"></a>4 按照配置文件创建一个执行计划</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/ddos/ddos.sh -c    //按照配置文件创建一个执行计划</span><br><span class="line">http://blog.chinaunix.net/uid-10449864-id-3300661.html</span><br><span class="line">http://czmmiao.iteye.com/blog/1616837</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/16/ddos攻击防御/" data-id="cjkxlf6190004lsd6ouxygz6m" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/18/discuz-qq-bug/" data-id="cjkxs55l90006osd6fugp4yar" class="article-share-link">Share</a>
       
       
     </footer>
@@ -726,6 +848,14 @@
       <ul>
         
           <li>
+            <a href="/2018/08/17/sql关闭-query-cache/">sql关闭 query_cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/fiddle-https配置/">fiddle https配置</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/17/git常用命令/">git常用命令</a>
           </li>
         
@@ -735,14 +865,6 @@
         
           <li>
             <a href="/2018/08/17/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/16/git-start/">git start</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
           </li>
         
       </ul>

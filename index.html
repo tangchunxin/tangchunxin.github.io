@@ -70,6 +70,117 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sql关闭-query-cache" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/17/sql关闭-query-cache/" class="article-date">
+  <time datetime="2018-08-17T09:12:59.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/sql关闭-query-cache/">sql关闭 query_cache</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL-query-cache-type-详解"><a href="#MySQL-query-cache-type-详解" class="headerlink" title="MySQL query_cache_type 详解"></a>MySQL query_cache_type 详解</h2><ul>
+<li>set global query_cache_size=0;</li>
+<li>set global query_cache_type=0;</li>
+</ul>
+<hr>
+<h4 id="MySQL设置查询缓存的用意："><a href="#MySQL设置查询缓存的用意：" class="headerlink" title="MySQL设置查询缓存的用意："></a>MySQL设置查询缓存的用意：</h4><p>　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍要快的多。</p>
+<p>查询缓存的最终结果是事与愿违：</p>
+<p>　　之所以查询缓存并没有能起到提升性能的做用，客观上有如下两点原因</p>
+<p>　　1、把SQL语句的hash值作为键，SQL语句的结果集作为值；这样就引起了一个问题如 select user from mysql.user 和 SELECT user FROM mysql.user </p>
+<p>　　这两个将会被当成不同的SQL语句，这个时候就算结果集已经有了，但是一然用不到。</p>
+<p>　　2、当查询所基于的低层表有改动时与这个表有关的查询缓存都会作废、如果对于并发度比较大的系统这个开销是可观的；对于作废结果集这个操作也是要用并发</p>
+<p>　　访问控制的，就是说也会有锁。并发大的时候就会有Waiting for query cache lock 产生。</p>
+<p>　　3、至于用不用还是要看业务模型的。</p>
+<p>如果何配置查询缓存：</p>
+<p>　　query_cache_type 这个系统变量控制着查询缓存工能的开启的关闭。</p>
+<p>　　query_cache_type=0时表示关闭，1时表示打开，2表示只要select 中明确指定SQL_CACHE才缓存。</p>
+<p>　　这个参数的设置有点奇怪，1、如果事先查询缓存是关闭的然而用 set @@global.query_cache_type=1; 会报错</p>
+<p>　　ERROR 1651 (HY000): Query cache is disabled; restart the server with query_cache_type=1 to enable it</p>
+<p>　　2、如果事先是打开着的尝试去闭关它，那么这个关闭也是不完全的，这种情况下查询还是会去尝试查找缓存。</p>
+<p>　　最好的关闭查询缓存的办法就是把my.cnf 中的query_cache_type=0然后再重启mysql。</p>
+<p>查询缓存相关的系统变量：</p>
+<p>　　have_query_cache　　表示这个mysql版本是否支持查询缓存。</p>
+<p>　　query_cache_limit　　 表示单个结果集所被允许缓存的最大值。</p>
+<p>　　query_cache_min_res_unit　　每个被缓存的结果集要占用的最小内存。</p>
+<p>　　query_cache_size　　用于查询缓存的内存大小。</p>
+<p>如何监控查询缓存的命中率： </p>
+<p>　　Qcache_free_memory　　查询缓存目前剩余空间大小。</p>
+<p>　　Qcache_hits　　　　　     查询缓存的命中次数。</p>
+<p>　　Qcache_inserts　　　　　 查询缓存插入的次数。</p>
+<p>　　也就是说缓存的命中率为 Qcache_hits/(Qcache_hits+Qcache_inserts)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/sql关闭-query-cache/" data-id="cjkxs55m6000posd6bin8g2sx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fiddle-https配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/17/fiddle-https配置/" class="article-date">
+  <time datetime="2018-08-17T09:11:36.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/fiddle-https配置/">fiddle https配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原blog地址"><a href="#原blog地址" class="headerlink" title="原blog地址"></a>原blog地址</h2><ul>
+<li><a href="https://blog.csdn.net/laofashi2015/article/details/78476499" target="_blank" rel="noopener">https://blog.csdn.net/laofashi2015/article/details/78476499</a></li>
+</ul>
+<h2 id="安装之后-app还是抓取不了https包-具体问题是因为"><a href="#安装之后-app还是抓取不了https包-具体问题是因为" class="headerlink" title="安装之后 app还是抓取不了https包  具体问题是因为"></a>安装之后 app还是抓取不了https包  具体问题是因为</h2><ul>
+<li><p>IOS 10.3升级之后，安装的证书默认是不启用的，需要手动去开启。</p>
+</li>
+<li><p>设置 –&gt; 通用 –&gt; 关于本机 –&gt; 证书信息设置; 将Fiddler的证书开关打开就行了</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/fiddle-https配置/" data-id="cjkxs55le0009osd6h4jwn9ro" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/17/git常用命令/" class="article-date">
@@ -153,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/git常用命令/" data-id="cjkxlf61k000blsd6fij0gs4b" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/git常用命令/" data-id="cjkxs55lk000cosd6xcpoegcw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -197,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/es搜索-must-should联合查询/" data-id="cjkxlf61e0007lsd6o1o1uo8x" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/es搜索-must-should联合查询/" data-id="cjkxs55ld0008osd63mlh6gws" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/hello-world/" data-id="cjkxlf61q000dlsd6j5znzypu" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/hello-world/" data-id="cjkxs55ll000dosd60cpg4yvr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/16/git-start/" data-id="cjkxlf61i000alsd65j6k3d73" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/16/git-start/" data-id="cjkxs55li000bosd6l2kqzhmr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/正则-手机号中间4位变成/" data-id="cjkxlf624000plsd6ghno2pw1" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/正则-手机号中间4位变成/" data-id="cjkxs55m9000rosd6conf5mw0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/PHP-curl-远程抓取图片/" data-id="cjkxlf6120001lsd6misq20fk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/PHP-curl-远程抓取图片/" data-id="cjkxs55l50003osd6fmlwym81" class="article-share-link">Share</a>
       
       
     </footer>
@@ -397,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/php-导出-excel-简单方式/" data-id="cjkxlf622000nlsd6e07ek2il" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/php-导出-excel-简单方式/" data-id="cjkxs55m4000oosd6ftwcvb2r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/hostory-go-1/" data-id="cjkxlf61s000flsd6wlpqbgwv" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/hostory-go-1/" data-id="cjkxs55lt000iosd6hdgirsrx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -484,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/PHP中跳转js/" data-id="cjkxlf6170003lsd62zme9z8i" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/PHP中跳转js/" data-id="cjkxs55l30002osd6buy7tj72" class="article-share-link">Share</a>
       
       
     </footer>
@@ -520,218 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/正则获取主域名/" data-id="cjkxlf625000qlsd6whbctqpb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Discuz开发之主题表pre-forum-thread的displayorder字段含义" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" class="article-date">
-  <time datetime="2018-05-09T13:54:58.000Z" itemprop="datePublished">2018-05-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/">Discuz开发之主题表pre_forum_thread的displayorder字段含义</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Discuz开发之主题表pre-forum-thread的displayorder字段含义"><a href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义" class="headerlink" title="Discuz开发之主题表pre_forum_thread的displayorder字段含义"></a>Discuz开发之主题表pre_forum_thread的displayorder字段含义</h2><h4 id="Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><a href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义：" class="headerlink" title="Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义："></a>Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</h4><p>displayorder取值范围为：4,3,2,1,0，-1，-2，-3，-4，他们的含义如下：</p>
-<ul>
-<li><p>displayorder=4 ：多版块置顶功能可让一个主题在任意多个版块 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">只在指定的板块显示主题</span><br><span class="line"></span><br><span class="line">需要在后台-内容-主题-板块/群组指定来进行操作</span><br><span class="line"></span><br><span class="line">以下三种置顶可以在版主管理的浮动窗口操作</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>displayorder=3 ：全局置顶 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全部专区，每个板块都可已看的到</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>displayorder=2 ：分类置顶  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本专区的所有板块都可以看到该帖</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>dispalyorder=1 ：本版置顶  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只有本板块在置顶区看得到，该板块子版块和其他都看不到</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>displayorder=0 ：普通贴</p>
-</li>
-</ul>
-<h4 id="在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><a href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；" class="headerlink" title="在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"></a>在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">版块开启回收站：后台-论坛-版块管理-帖子选项</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>displayorder=-1 ：回收站</p>
-</li>
-<li><p>displayorder=-2 ：审核中</p>
-</li>
-<li><p>displayorder=-3 ：审核忽略</p>
-</li>
-<li><p>displayorder=-4 ：草稿</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-id="cjkxlf6150002lsd6pqn2fika" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux-Nginx-URL重写（rewrite）介绍" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" class="article-date">
-  <time datetime="2018-04-28T13:36:29.000Z" itemprop="datePublished">2018-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/">linux Nginx URL重写（rewrite）介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Nginx-URL重写（rewrite）介绍"><a href="#Nginx-URL重写（rewrite）介绍" class="headerlink" title="Nginx URL重写（rewrite）介绍"></a>Nginx URL重写（rewrite）介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite ^([^\.]*)/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9]+)\.(gif|jpg|jpeg)$  https://www.baidu.com last;</span><br></pre></td></tr></table></figure>
-<p> 注意这里要用‘’单引号引起来，避免{}<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite &apos;^/images/([a-z]&#123;2&#125;)/([a-z0-9]&#123;5&#125;)/(.*)\.(png|jpg|gif)$&apos; /data?file=$3.$4;</span><br></pre></td></tr></table></figure></p>
-<pre><code>和apache等web服务软件一样，rewrite的组要功能是实现RUL地址的重定向。Nginx的rewrite功能需要PCRE软件的支持，即通过perl兼容正则表达式语句进行规则匹配的。默认参数编译nginx就会支持rewrite的模块，但是也必须要PCRE的支持
-</code></pre><ul>
-<li>rewrite是实现URL重写的关键指令，根据regex（正则表达式）部分内容，重定向到replacement，结尾是flag标记。</li>
-</ul>
-<ul>
-<li><p>rewrite语法格式及参数语法说明如下:</p>
-<p>  rewrite|<regex>|<replacement>|[flag]|<br>  —|:—:|:—:|:—:|<br>  |关键字|正则|替代内容|flag标记</replacement></regex></p>
-</li>
-</ul>
-<pre><code>关键字：其中关键字error_log不能改变
-
-正则：perl兼容正则表达式语句进行规则匹配
-
-替代内容：将正则匹配的内容替换成replacement
-
-flag标记：rewrite支持的flag标记
-</code></pre><p>flag标记说明：</p>
-<p>last  #本条规则匹配完成后，继续向下匹配新的location URI规则</p>
-<p>break  #本条规则匹配完成即终止，不再匹配后面的任何规则</p>
-<p>redirect  #返回302临时重定向，浏览器地址会显示跳转后的URL地址</p>
-<p>permanent  #返回301永久重定向，浏览器地址栏会显示跳转后的URL地址</p>
-<p>rewrite参数的标签段位置：<br>server,location,if</p>
-<p>例子：<br>rewrite ^/(.*) <a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> permanent;</p>
-<p>说明：                                        </p>
-<p>rewrite为固定关键字，表示开始进行rewrite匹配规则</p>
-<p>regex部分是 ^/(.*) ，这是一个正则表达式，匹配完整的域名和后面的路径地址</p>
-<p>replacement部分是<a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> $1，是取自regex部分()里的内容。匹配成功后跳转到的URL。</p>
-<p>flag部分 permanent表示永久301重定向标记，即跳转到新的 <a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> 地址上</p>
-<p>regex 常用正则表达式说明<br>字符</p>
-<p>描述</p>
-<p>\</p>
-<p>将后面接着的字符标记为一个特殊字符或一个原义字符或一个向后引用。如“\n”匹配一个换行符，而“\$”则匹配“$”</p>
-<p>^</p>
-<p>匹配输入字符串的起始位置</p>
-<p>$</p>
-<p>匹配输入字符串的结束位置</p>
-<p>*</p>
-<p>匹配前面的字符零次或多次。如“ol*”能匹配“o”及“ol”、“oll”</p>
-<p>+</p>
-<p>匹配前面的字符一次或多次。如“ol+”能匹配“ol”及“oll”、“oll”，但不能匹配“o”</p>
-<p>?</p>
-<p>匹配前面的字符零次或一次，例如“do(es)?”能匹配“do”或者“does”，”?”等效于”{0,1}”</p>
-<p>.</p>
-<p>匹配除“\n”之外的任何单个字符，若要匹配包括“\n”在内的任意字符，请使用诸如“[.\n]”之类的模式。</p>
-<p>(pattern)</p>
-<p>匹配括号内pattern并可以在后面获取对应的匹配，常用$0…$9属性获取小括号中的匹配内容，要匹配圆括号字符需要(Content)</p>
-<p>rewrite 企业应用场景<br>Nginx的rewrite功能在企业里应用非常广泛：</p>
-<p>u 可以调整用户浏览的URL，看起来更规范，合乎开发及产品人员的需求。</p>
-<p>u 为了让搜索引擎搜录网站内容及用户体验更好，企业会将动态URL地址伪装成静态地址提供服务。</p>
-<p>u 网址换新域名后，让旧的访问跳转到新的域名上。例如，访问京东的360buy.com会跳转到jd.com</p>
-<p>u 根据特殊变量、目录、客户端的信息进行URL调整等</p>
-<p>Nginx配置rewrite过程介绍<br>（1）创建rewrite语句<br>vi conf/vhost/<a href="http://www.abc.com.conf" target="_blank" rel="noopener">www.abc.com.conf</a></p>
-<p>#vi编辑虚拟主机配置文件</p>
-<p>文件内容</p>
-<p>server {</p>
-<pre><code>listen 80;
-
-server_name abc.com;
-
-rewrite ^/(.*) http://www.abc.com/$1 permanent;
-</code></pre><p>}</p>
-<p>server {</p>
-<pre><code>listen 80;
-
-server_name www.abc.com;
-
-location / {
-
-        root /data/www/www;
-
-        index index.html index.htm;
-
-}
-
-error_log    logs/error_www.abc.com.log error;
-
-access_log    logs/access_www.abc.com.log    main;
-</code></pre><p>}</p>
-<p>或者</p>
-<p>server {</p>
-<pre><code>listen 80;
-
-server_name abc.com www.abc.com;
-
-if ( $host != &apos;www.abc.com&apos;  ) {
-
-        rewrite ^/(.*) http://www.abc.com/$1 permanent;
-
-}
-
-location / {
-
-        root /data/www/www;
-
-        index index.html index.htm;
-
-}
-
-error_log    logs/error_www.abc.com.log error;
-
-access_log    logs/access_www.abc.com.log    main;
-</code></pre><p>}</p>
-<p>（2）重启服务<br>确认无误便可重启，操作如下：</p>
-<p>nginx -t</p>
-<p>#结果显示ok和success没问题便可重启</p>
-<p>nginx -s reload</p>
-<p>（3）查看跳转效果<br>打开浏览器访问abc.com</p>
-<p>页面打开后，URL地址栏的abc.com变成了<a href="http://www.abc.com说明URL重写成功。" target="_blank" rel="noopener">www.abc.com说明URL重写成功。</a></p>
-<h2 id="nginx-location-rewrite匹配顺序"><a href="#nginx-location-rewrite匹配顺序" class="headerlink" title="nginx location rewrite匹配顺序"></a>nginx location rewrite匹配顺序</h2><p> Rewrite（ URL 重写）指令可以出现在 server{} 下，也可以出现在 location{} 下，它们之间是有区别的！对于出现在 server{} 下的 rewrite 指令，它的执行会在 location 匹配之前；对于出现在 location{} 下的 rewrite 指令，它的执行当然是在 location 匹配之后，但是由于 rewrite 导致 HTTP 请求的 URI 发生了变化，所以 location{} 下的 rewrite 后的 URI 又需要重新匹配 location ，就好比一个新的 HTTP 请求一样（注意由 location{} 内的 rewrite 导致的这样的循环匹配最多不超过 10 次，否则 nginx 会报 500 错误）。总的来说，如果 server{} 和 location{} 下都有 rewrite ，依然是先执行 server{} ，然后进行 location 匹配，如果被匹配的 location{} 之内还有 rewrite 指令，那么继续执行 rewrite ，同时因为 location{} 内的 rewrite 改变了 URI ，那么重写后的结果 URI 需要当做一个新的请求，重新匹配 location （应该也包括重新执行 server{} 下的 rewrite 吧）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" data-id="cjkxlf61t000glsd6pg8ds5ss" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/正则获取主域名/" data-id="cjkxs55mo000sosd6e0k6c7ef" class="article-share-link">Share</a>
       
       
     </footer>
@@ -777,6 +677,14 @@ access_log    logs/access_www.abc.com.log    main;
       <ul>
         
           <li>
+            <a href="/2018/08/17/sql关闭-query-cache/">sql关闭 query_cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/fiddle-https配置/">fiddle https配置</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/17/git常用命令/">git常用命令</a>
           </li>
         
@@ -786,14 +694,6 @@ access_log    logs/access_www.abc.com.log    main;
         
           <li>
             <a href="/2018/08/17/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/16/git-start/">git start</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
           </li>
         
       </ul>

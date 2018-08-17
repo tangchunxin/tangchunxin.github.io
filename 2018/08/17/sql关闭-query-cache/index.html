@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>sql关闭 query_cache | 黄溜溜@PHP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MySQL query_cache_type 详解 set global query_cache_size=0; set global query_cache_type=0;   MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍要快的多。 查询缓存的最终结果是事与愿违： 　　之所以查询缓存并没有能起到提升性能的做用，客观上有如">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql关闭 query_cache">
+<meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/sql关闭-query-cache/index.html">
+<meta property="og:site_name" content="黄溜溜@PHP">
+<meta property="og:description" content="MySQL query_cache_type 详解 set global query_cache_size=0; set global query_cache_type=0;   MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍要快的多。 查询缓存的最终结果是事与愿违： 　　之所以查询缓存并没有能起到提升性能的做用，客观上有如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-17T09:15:57.554Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sql关闭 query_cache">
+<meta name="twitter:description" content="MySQL query_cache_type 详解 set global query_cache_size=0; set global query_cache_type=0;   MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍要快的多。 查询缓存的最终结果是事与愿违： 　　之所以查询缓存并没有能起到提升性能的做用，客观上有如">
+  
+    <link rel="alternate" href="/atom.xml" title="黄溜溜@PHP" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">黄溜溜@PHP</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一个小小的PHP</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/tangchunxin/tangchunxin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sql关闭-query-cache" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/17/sql关闭-query-cache/" class="article-date">
+  <time datetime="2018-08-17T09:12:59.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sql关闭 query_cache
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL-query-cache-type-详解"><a href="#MySQL-query-cache-type-详解" class="headerlink" title="MySQL query_cache_type 详解"></a>MySQL query_cache_type 详解</h2><ul>
+<li>set global query_cache_size=0;</li>
+<li>set global query_cache_type=0;</li>
+</ul>
+<hr>
+<h4 id="MySQL设置查询缓存的用意："><a href="#MySQL设置查询缓存的用意：" class="headerlink" title="MySQL设置查询缓存的用意："></a>MySQL设置查询缓存的用意：</h4><p>　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍要快的多。</p>
+<p>查询缓存的最终结果是事与愿违：</p>
+<p>　　之所以查询缓存并没有能起到提升性能的做用，客观上有如下两点原因</p>
+<p>　　1、把SQL语句的hash值作为键，SQL语句的结果集作为值；这样就引起了一个问题如 select user from mysql.user 和 SELECT user FROM mysql.user </p>
+<p>　　这两个将会被当成不同的SQL语句，这个时候就算结果集已经有了，但是一然用不到。</p>
+<p>　　2、当查询所基于的低层表有改动时与这个表有关的查询缓存都会作废、如果对于并发度比较大的系统这个开销是可观的；对于作废结果集这个操作也是要用并发</p>
+<p>　　访问控制的，就是说也会有锁。并发大的时候就会有Waiting for query cache lock 产生。</p>
+<p>　　3、至于用不用还是要看业务模型的。</p>
+<p>如果何配置查询缓存：</p>
+<p>　　query_cache_type 这个系统变量控制着查询缓存工能的开启的关闭。</p>
+<p>　　query_cache_type=0时表示关闭，1时表示打开，2表示只要select 中明确指定SQL_CACHE才缓存。</p>
+<p>　　这个参数的设置有点奇怪，1、如果事先查询缓存是关闭的然而用 set @@global.query_cache_type=1; 会报错</p>
+<p>　　ERROR 1651 (HY000): Query cache is disabled; restart the server with query_cache_type=1 to enable it</p>
+<p>　　2、如果事先是打开着的尝试去闭关它，那么这个关闭也是不完全的，这种情况下查询还是会去尝试查找缓存。</p>
+<p>　　最好的关闭查询缓存的办法就是把my.cnf 中的query_cache_type=0然后再重启mysql。</p>
+<p>查询缓存相关的系统变量：</p>
+<p>　　have_query_cache　　表示这个mysql版本是否支持查询缓存。</p>
+<p>　　query_cache_limit　　 表示单个结果集所被允许缓存的最大值。</p>
+<p>　　query_cache_min_res_unit　　每个被缓存的结果集要占用的最小内存。</p>
+<p>　　query_cache_size　　用于查询缓存的内存大小。</p>
+<p>如何监控查询缓存的命中率： </p>
+<p>　　Qcache_free_memory　　查询缓存目前剩余空间大小。</p>
+<p>　　Qcache_hits　　　　　     查询缓存的命中次数。</p>
+<p>　　Qcache_inserts　　　　　 查询缓存插入的次数。</p>
+<p>　　也就是说缓存的命中率为 Qcache_hits/(Qcache_hits+Qcache_inserts)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/sql关闭-query-cache/" data-id="cjkxs55m6000posd6bin8g2sx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/17/fiddle-https配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">fiddle https配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/17/sql关闭-query-cache/">sql关闭 query_cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/fiddle-https配置/">fiddle https配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/git常用命令/">git常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/es搜索-must-should联合查询/">es搜索 must should联合查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Tangchunxin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
