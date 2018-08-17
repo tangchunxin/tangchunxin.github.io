@@ -70,10 +70,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-es搜索-must-should联合查询" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/17/es搜索-must-should联合查询/" class="article-date">
+  <time datetime="2018-08-17T04:53:44.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/es搜索-must-should联合查询/">es搜索 must should联合查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.cnblogs.com/pilihaotian/p/5830754.html" target="_blank" rel="noopener">https://www.cnblogs.com/pilihaotian/p/5830754.html</a></p>
+<ul>
+<li>我要查询的组合条件是b=82 || （b=0 &amp;&amp; a = 0） || （b=0 &amp;&amp; a=100） ，es5.0这个must和should的Java代码怎么写？</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;query&quot;: &#123;</span><br><span class="line">   &quot;bool&quot;: &#123;</span><br><span class="line">     &quot;should&quot;: [</span><br><span class="line">       &#123;&quot;bool&quot;: &#123;</span><br><span class="line">         &quot;must&quot;: [</span><br><span class="line">           &#123;&#125;</span><br><span class="line">         ]</span><br><span class="line">       &#125;</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;&quot;bool&quot;: &#123;</span><br><span class="line">         &quot;must&quot;: [</span><br><span class="line">           &#123;&#125;</span><br><span class="line">         ]</span><br><span class="line">       &#125;&#125;</span><br><span class="line">     ]</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>must和should查询的组合条件是is_black=2 &amp;&amp; （black_type= 10 ||  black_type = 9 || operating_state == 8)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">2018-08-15 18:20:59::[INFO]    array (</span><br><span class="line">  &apos;index&apos; =&gt; &apos;platform&apos;,</span><br><span class="line">  &apos;type&apos; =&gt; &apos;info&apos;,</span><br><span class="line">  &apos;sort&apos; =&gt; </span><br><span class="line">  array (</span><br><span class="line">    0 =&gt; &apos;black_time:desc&apos;,</span><br><span class="line">  ),</span><br><span class="line">  &apos;size&apos; =&gt; 30,</span><br><span class="line">  &apos;from&apos; =&gt; 0,</span><br><span class="line">  &apos;body&apos; =&gt; </span><br><span class="line">  array (</span><br><span class="line">    &apos;query&apos; =&gt; </span><br><span class="line">    array (</span><br><span class="line">      &apos;bool&apos; =&gt; </span><br><span class="line">      array (</span><br><span class="line">        &apos;must&apos; =&gt; </span><br><span class="line">        array (</span><br><span class="line">          0 =&gt; </span><br><span class="line">          array (</span><br><span class="line">            &apos;bool&apos; =&gt; </span><br><span class="line">            array (</span><br><span class="line">              &apos;should&apos; =&gt; </span><br><span class="line">              array (</span><br><span class="line">                0 =&gt; </span><br><span class="line">                array (</span><br><span class="line">                  &apos;match&apos; =&gt; </span><br><span class="line">                  array (</span><br><span class="line">                    &apos;black_type&apos; =&gt; 10,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">                1 =&gt; </span><br><span class="line">                array (</span><br><span class="line">                  &apos;match&apos; =&gt; </span><br><span class="line">                  array (</span><br><span class="line">                    &apos;black_type&apos; =&gt; 9,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">                2 =&gt; </span><br><span class="line">                array (</span><br><span class="line">                  &apos;match&apos; =&gt; </span><br><span class="line">                  array (</span><br><span class="line">                    &apos;operating_state&apos; =&gt; 8,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">          1 =&gt; </span><br><span class="line">          array (</span><br><span class="line">            0 =&gt; </span><br><span class="line">            array (</span><br><span class="line">              &apos;term&apos; =&gt; </span><br><span class="line">              array (</span><br><span class="line">                &apos;is_black&apos; =&gt; 2,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">)::</span><br><span class="line">2018-08-15 18:20:59::[INFO]    array (</span><br><span class="line">  &apos;index&apos; =&gt; &apos;platform&apos;,</span><br><span class="line">  &apos;type&apos; =&gt; &apos;info&apos;,</span><br><span class="line">  &apos;sort&apos; =&gt; </span><br><span class="line">  array (</span><br><span class="line">    0 =&gt; &apos;black_time:desc&apos;,</span><br><span class="line">  ),</span><br><span class="line">  &apos;size&apos; =&gt; 30,</span><br><span class="line">  &apos;from&apos; =&gt; 0,</span><br><span class="line">  &apos;body&apos; =&gt; </span><br><span class="line">  array (</span><br><span class="line">    &apos;query&apos; =&gt; </span><br><span class="line">    array (</span><br><span class="line">      &apos;bool&apos; =&gt; </span><br><span class="line">      array (</span><br><span class="line">        &apos;must&apos; =&gt; </span><br><span class="line">        array (</span><br><span class="line">          0 =&gt; </span><br><span class="line">          array (</span><br><span class="line">            &apos;term&apos; =&gt; </span><br><span class="line">            array (</span><br><span class="line">              &apos;is_black&apos; =&gt; 1,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">        &apos;must_not&apos; =&gt; </span><br><span class="line">        array (</span><br><span class="line">          0 =&gt; </span><br><span class="line">          array (</span><br><span class="line">            0 =&gt; </span><br><span class="line">            array (</span><br><span class="line">              &apos;term&apos; =&gt; </span><br><span class="line">              array (</span><br><span class="line">                &apos;operating_state_combination&apos; =&gt; 1,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">)::</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/es搜索-must-should联合查询/" data-id="cjkxireqc0008qwd6o9zrh505" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/17/hello-world/" class="article-date">
-  <time datetime="2018-08-17T02:07:29.088Z" itemprop="datePublished">2018-08-17</time>
+  <time datetime="2018-08-17T01:56:53.626Z" itemprop="datePublished">2018-08-17</time>
 </a>
     
   </div>
@@ -92,7 +136,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -105,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/hello-world/" data-id="cjkxctyn00000h0d6tqp77bo5" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/hello-world/" data-id="cjkxireqj000cqwd6yiunvqg5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/16/git-start/" data-id="cjkxcxjd500092sd6tad1tvsw" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/16/git-start/" data-id="cjkxireqf000aqwd6zlu5taq1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -180,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/正则-手机号中间4位变成/" data-id="cjkxcxjdl000m2sd60q41kp8i" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/正则-手机号中间4位变成/" data-id="cjkxirer6000oqwd6t4lsi8nt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/PHP-curl-远程抓取图片/" data-id="cjkxcxjcq00022sd65x9t3zaz" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/PHP-curl-远程抓取图片/" data-id="cjkxireq30002qwd669v5o5l2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -260,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/php-导出-excel-简单方式/" data-id="cjkxcxjdj000k2sd64toms0xx" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/php-导出-excel-简单方式/" data-id="cjkxirer3000mqwd6b9m5e3o9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/hostory-go-1/" data-id="cjkxcxjdb000c2sd6ur8s077w" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/hostory-go-1/" data-id="cjkxireqn000eqwd6yh8tx09r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -347,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/PHP中跳转js/" data-id="cjkxcxjcs00032sd62069omqd" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/PHP中跳转js/" data-id="cjkxireq40003qwd6tftrxe8z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -383,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/正则获取主域名/" data-id="cjkxcxjdm000n2sd67kerd83h" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/正则获取主域名/" data-id="cjkxirer8000pqwd6xi4nf6nd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -447,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-id="cjkxcxjcn00012sd65majdf5n" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-id="cjkxireq00001qwd67jjy4amv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -594,7 +638,7 @@ access_log    logs/access_www.abc.com.log    main;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" data-id="cjkxcxjdd000d2sd6p38re16i" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" data-id="cjkxireqo000fqwd6x7mci8d0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -640,49 +684,7 @@ access_log    logs/access_www.abc.com.log    main;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" data-id="cjkxcxjde000e2sd6ojsclaab" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-php-header" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/28/php-header/" class="article-date">
-  <time datetime="2018-04-28T13:30:57.000Z" itemprop="datePublished">2018-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/28/php-header/">php  header</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>header(“Location:/index.php”);//跳转到当前域名下的文件</li>
-<li>header(“Location:<a href="https://www.baidu.com&quot;);//跳转到其他域名" target="_blank" rel="noopener">https://www.baidu.com&quot;);//跳转到其他域名</a></li>
-<li>@header(“http/1.1 404 not found”); //跳转到404页面</li>
-<li>“http://“.$_SERVER[‘SERVER_NAME’].$_SERVER[‘REQUEST_URI’];//当前请求url,例如<a href="http://www.p2peye.com/test.php?a=1" target="_blank" rel="noopener">http://www.p2peye.com/test.php?a=1</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-header/" data-id="cjkxcxjdg000g2sd650lfzi3d" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" data-id="cjkxireqq000gqwd67hrzn6zb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -728,6 +730,10 @@ access_log    logs/access_www.abc.com.log    main;
       <ul>
         
           <li>
+            <a href="/2018/08/17/es搜索-must-should联合查询/">es搜索 must should联合查询</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/17/hello-world/">Hello World</a>
           </li>
         
@@ -741,10 +747,6 @@ access_log    logs/access_www.abc.com.log    main;
         
           <li>
             <a href="/2018/05/20/PHP-curl-远程抓取图片/">PHP_curl 远程抓取图片</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/09/php-导出-excel-简单方式/">php 导出 excel 简单方式</a>
           </li>
         
       </ul>
