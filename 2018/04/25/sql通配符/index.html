@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>sql通配符 | ������@PHP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在discuz_database类中的public static function query方法 self::checkquery($sql);在这后面加上 writelog(“sqllog”,$sql);即可看到所有SQL $logdir = DISCUZ_ROOT.’./data/log/sqllog’;  sql通配符 SELECT * FROM %t =&amp;gt;查询表t开头的 例如t_">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql通配符">
+<meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/sql通配符/index.html">
+<meta property="og:site_name" content="������@PHP">
+<meta property="og:description" content="在discuz_database类中的public static function query方法 self::checkquery($sql);在这后面加上 writelog(“sqllog”,$sql);即可看到所有SQL $logdir = DISCUZ_ROOT.’./data/log/sqllog’;  sql通配符 SELECT * FROM %t =&amp;gt;查询表t开头的 例如t_">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-17T01:56:53.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sql通配符">
+<meta name="twitter:description" content="在discuz_database类中的public static function query方法 self::checkquery($sql);在这后面加上 writelog(“sqllog”,$sql);即可看到所有SQL $logdir = DISCUZ_ROOT.’./data/log/sqllog’;  sql通配符 SELECT * FROM %t =&amp;gt;查询表t开头的 例如t_">
+  
+    <link rel="alternate" href="/atom.xml" title="������@PHP" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">������@PHP</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">һ��СС��PHP</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/tangchunxin/tangchunxin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sql通配符" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/25/sql通配符/" class="article-date">
+  <time datetime="2018-04-25T13:42:47.000Z" itemprop="datePublished">2018-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sql通配符
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>在discuz_database类中的public static function query方法</li>
+<li>self::checkquery($sql);在这后面加上 writelog(“sqllog”,$sql);即可看到所有SQL</li>
+<li>$logdir = DISCUZ_ROOT.’./data/log/sqllog’;</li>
+</ul>
+<h2 id="sql通配符"><a href="#sql通配符" class="headerlink" title="sql通配符"></a>sql通配符</h2><ul>
+<li>SELECT * FROM %t =&gt;查询表t开头的 例如t_common_friendlink 表</li>
+<li>$sql = ‘WHERE (<code>type</code> &amp; %s &gt; 0)’  =&gt;SELECT * FROM t_common_friendlink WHERE (<code>type</code> &amp; ‘8’ &gt; 0) ORDER BY displayorder<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">二进制</span><br><span class="line"></span><br><span class="line">他使用这一个 type  能存储多个类型</span><br><span class="line"></span><br><span class="line">比如 type 是  二进制 1111  </span><br><span class="line">它和  8  4  2  1  都能位与 &gt; 0</span><br><span class="line"></span><br><span class="line">它就同时属于  1  2  4  8   这四种类型</span><br><span class="line"></span><br><span class="line">就是用每个二进制位   置为1 表示一个类型</span><br><span class="line"></span><br><span class="line">但是这个在数据库 索引不起作用 数据庞大 这样做就是崩溃了</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>在discuz_database类中的public static function query方法</li>
+<li>self::checkquery($sql);在这后面加上 writelog(“sqllog”,$sql);即可看到所有SQL</li>
+<li>$logdir = DISCUZ_ROOT.’./data/log/sqllog’;</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/25/sql通配符/" data-id="cjkxcxjdk000l2sd6wljnahu1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/28/php-var-export/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          php  var_export
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/25/defined安全判断，放于被包含脚本中/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">defined安全判断，放于被包含脚本中</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/16/git-start/">git start</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/PHP-curl-远程抓取图片/">PHP_curl 远程抓取图片</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/09/php-导出-excel-简单方式/">php 导出 excel 简单方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Tangchunxin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

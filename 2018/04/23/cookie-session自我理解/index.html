@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>cookie_session自我理解 | ������@PHP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="cookie 和session 自我理解 开始 PHP Session 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。 注释：session_start() 函数必须位于  标签之前： 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSI">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie_session自我理解">
+<meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session自我理解/index.html">
+<meta property="og:site_name" content="������@PHP">
+<meta property="og:description" content="cookie 和session 自我理解 开始 PHP Session 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。 注释：session_start() 函数必须位于  标签之前： 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSI">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-17T01:56:53.624Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cookie_session自我理解">
+<meta name="twitter:description" content="cookie 和session 自我理解 开始 PHP Session 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。 注释：session_start() 函数必须位于  标签之前： 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：12345&amp;lt;?phpsession_start();// 存储 session 数据$_SESSI">
+  
+    <link rel="alternate" href="/atom.xml" title="������@PHP" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">������@PHP</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">һ��СС��PHP</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/tangchunxin/tangchunxin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cookie-session自我理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/23/cookie-session自我理解/" class="article-date">
+  <time datetime="2018-04-23T14:29:02.000Z" itemprop="datePublished">2018-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cookie_session自我理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="cookie-和session-自我理解"><a href="#cookie-和session-自我理解" class="headerlink" title="cookie 和session 自我理解"></a>cookie 和session 自我理解</h2><p> 开始 PHP Session<br> 在您把用户信息存储到 PHP session 中之前，首先必须启动会话。<br> 注释：session_start() 函数必须位于 <html> 标签之前：<br> 存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">// 存储 session 数据</span><br><span class="line">$_SESSION[&apos;views&apos;]=1;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></html></p>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><ul>
+<li><p>浏览器请求服务器上一个test.php文件</p>
+</li>
+<li><p>test.php执行开启session_start();</p>
+</li>
+<li><p>这个时候服务器给浏览器的 返回头信息中  包含着一句Set_Cookie,这句表示告诉浏览器 写一个名为PHPSESSID的cookie,并在服务器上生成一个文件,存放这个session文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Response Header</span><br><span class="line">Access-Control-Allow-Headers: DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type</span><br><span class="line">Access-Control-Allow-Methods: GET,POST,OPTIONS</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Cache-Control: must-revalidate, no-store</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line">Content-Type: image/png</span><br><span class="line">Date: Mon, 23 Apr 2018 13:00:35 GMT</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: nginx/1.10.2</span><br><span class="line">Set-Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie; path=/==</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">X-Daa-Tunnel: hop_count=1</span><br><span class="line">X-NWS-LOG-UUID: c460b76b-08e6-4a6c-8fc0-4ffd7c0a2a8f af9b19c3b29c523d7d5bf5e81938f9cd</span><br><span class="line">X-Powered-By: PHP/7.1.4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时Cookies中便存在cookie</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align:center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PHPSESSID</td>
+<td style="text-align:center">uorfbpp8m2prv9olfpa6vmelie</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>这个是浏览器每次访问服务器的时候在请求头信息中带有Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request Header</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: PHPSESSID=uorfbpp8m2prv9olfpa6vmelie</span><br><span class="line">Host: test.linfiy.com</span><br><span class="line">Referer: http://test.linfiy.com/mahjong/client/backstage-cangzhou/</span><br><span class="line">User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Mobile Safari/537.36</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cookie 如果设置了有效期 setcookie(“name”,”key”,time()+3600); 同时浏览器关不清除cookie则  关闭浏览器cookie在有效期内不失效;cookie写的是过去的时间戳,不是多少秒;setcookie设置到那个时间段过期</p>
+</li>
+<li>ini_set(‘session.gc_maxlifetime’, “3600”); // 默认1440秒 也就是24分钟 ,多少秒有效</li>
+<li>ini_set(“session.cookie_lifetime”,”3600”); // 秒</li>
+<li>今天想和大家分享一个关于Session的话题: 当浏览器关闭时，Session就被销毁了？</li>
+</ul>
+<p>我们知道Session是JSP的九大内置对象（也叫隐含对象）中的一个，它的作用是可以保</p>
+<p>存当前用户的状态信息，初学它的时候，认为Session的生命周期是从打开一个浏览器窗</p>
+<p>口发送请求到关闭浏览器窗口，但其实这种说法是不正确的！下面就具体的去解释：</p>
+<p>当用户第一次访问Web应用中支持Session的某个网页时，就会开始一个新的Session，</p>
+<p>那么接下来当用户浏览这个Web应用的不同网页时，始终处于一个Session中</p>
+<p>再详细些：</p>
+<p>当一个Session开始时，Servlet容器会创建一个HttpSession对象，那么在HttpSession对象中，可以存放用户状态的信息</p>
+<p>Servlet容器为HttpSession对象分配一个唯一标识符即Sessionid，Servlet容器把Sessionid作为一种Cookie保存在客户端的 <em>浏览器</em> 中</p>
+<p>用户每次发出Http请求时，Servlet容器会从HttpServletRequest对象中取出Sessionid,然后根据这个Sessionid找到相应的HttpSession对象，从而获取用户的状态信息<br>以上就是Session的运行机制，但是还没有提到Session的生命周期，再往下了解！</p>
+<p>其实让Session结束生命周期，有以下两种办法：</p>
+<p>一个是Session.invalidate()方法，不过这个方法在实际的开发中，并不推荐，可能在强制注销用户的时候会使用；<br>一个是当前用户和服务器的交互时间超过默认时间后，Session会失效<br>我们知道Session是存在于服务器端的，当把浏览器关闭时，浏览器并没有向服务器发送</p>
+<p>任何请求来关闭Session，自然Session也不会被销毁，但是可以做一点努力，在所有的</p>
+<p>客户端页面里使用js的window.onclose来监视浏览器的关闭动作，然后向服务器发送一</p>
+<p>个请求来关闭Session，但是这种做法在实际的开发中也是不推荐使用的，最正常的办法</p>
+<p>就是不去管它，让它等到默认的时间后，自动销毁</p>
+<p>那么为什么当我们关闭浏览器后，就再也访问不到之前的session了呢？</p>
+<p>其实之前的Session一直都在服务器端，而当我们关闭浏览器时，此时的Cookie是存在</p>
+<p>于浏览器的进程中的，当浏览器关闭时，Cookie也就不存在了。</p>
+<p>其实Cookie有两种:</p>
+<p>一种是存在于浏览器的进程中;<br>一种是存在于硬盘上<br>而session的Cookie是存在于浏览器的进程中，那么这种Cookie我们称为会话Cookie，</p>
+<p>当我们重新打开浏览器窗口时，之前的Cookie中存放的Sessionid已经不存在了，此时</p>
+<p>服务器从HttpServletRequest对象中没有检查到sessionid，服务器会再发送一个新的存</p>
+<p>有Sessionid的Cookie到客户端的浏览器中，此时对应的是一个新的会话，而服务器上</p>
+<p>原先的session等到它的默认时间到之后，便会自动销毁。</p>
+<p>ps:</p>
+<p>当在同一个浏览器中同时打开多个标签，发送同一个请求或不同的请求，仍是同一个session;</p>
+<p>当不在同一个窗口中打开相同的浏览器时，发送请求，仍是同一个session;</p>
+<p>当使用不同的浏览器时，发送请求，即使发送相同的请求，是不同的session;</p>
+<p>当把当前某个浏览器的窗口全关闭，再打开，发起相同的请求时，就是本文所阐述的，是不同的session,但是它和session的生命周期是没有关系的.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/23/cookie-session自我理解/" data-id="cjkxcxjct00042sd67hsht8xo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/23/hexo搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hexo搭建
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/23/php-iconv/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">php-iconv</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/16/git-start/">git start</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/PHP-curl-远程抓取图片/">PHP_curl 远程抓取图片</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/09/php-导出-excel-简单方式/">php 导出 excel 简单方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Tangchunxin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

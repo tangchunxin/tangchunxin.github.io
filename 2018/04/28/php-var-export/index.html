@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>php  var_export | ������@PHP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="var_export() 函数返回关于传递给该函数的变量的结构信息， 它和 var_dump() 类似， 不同的是其返回的表示是合法的 PHP代码var_export必须返回合法的php代码， 也就是说，var_export返回的代码，可以直接当作php代码赋值个一个变量。而这个变量就会取得和被var_export一样的类型的值。    for example:123$var=array(&amp;apo">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php  var_export">
+<meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-var-export/index.html">
+<meta property="og:site_name" content="������@PHP">
+<meta property="og:description" content="var_export() 函数返回关于传递给该函数的变量的结构信息， 它和 var_dump() 类似， 不同的是其返回的表示是合法的 PHP代码var_export必须返回合法的php代码， 也就是说，var_export返回的代码，可以直接当作php代码赋值个一个变量。而这个变量就会取得和被var_export一样的类型的值。    for example:123$var=array(&amp;apo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-17T01:56:53.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php  var_export">
+<meta name="twitter:description" content="var_export() 函数返回关于传递给该函数的变量的结构信息， 它和 var_dump() 类似， 不同的是其返回的表示是合法的 PHP代码var_export必须返回合法的php代码， 也就是说，var_export返回的代码，可以直接当作php代码赋值个一个变量。而这个变量就会取得和被var_export一样的类型的值。    for example:123$var=array(&amp;apo">
+  
+    <link rel="alternate" href="/atom.xml" title="������@PHP" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">������@PHP</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">һ��СС��PHP</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/tangchunxin/tangchunxin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-php-var-export" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/28/php-var-export/" class="article-date">
+  <time datetime="2018-04-28T13:25:13.000Z" itemprop="datePublished">2018-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      php  var_export
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>var_export() 函数返回关于传递给该函数的变量的结构信息，</p>
+<p>它和 var_dump() 类似，</p>
+<p>不同的是其返回的表示是合法的 PHP代码<br>var_export必须返回合法的php代码， 也就是说，<br>var_export返回的代码，可以直接当作php代码赋值个一个变量。<br>而这个变量就会取得和被var_export一样的类型的值。</p>
+<p>   for example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$var=array(&apos;1&apos;=&gt;&apos;A&apos;,&apos;2&apos;=&gt;&apos;B&apos;,&apos;3&apos;=&gt;&apos;C&apos;,&apos;4&apos;=&gt;&apos;D&apos;);</span><br><span class="line">var_export($var);</span><br><span class="line">var_dump($var);</span><br></pre></td></tr></table></figure></p>
+<p>   返回结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array ( 1 =&gt; &apos;A&apos;, 2 =&gt; &apos;B&apos;, 3 =&gt; &apos;C&apos;, 4 =&gt; &apos;D&apos;, )</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array (size=4)</span><br><span class="line"> 1 =&gt;  &apos;A&apos; (length=1)</span><br><span class="line"> 2 =&gt;  &apos;B&apos; (length=1)</span><br><span class="line"> 3 =&gt;  &apos;C&apos; (length=1)</span><br><span class="line"> 4 =&gt;  &apos;D&apos; (length=1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  $var =var_export(array(&apos;a&apos;,&apos;b&apos;,array(&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;)),TRUE)，加上TRUE后，不会再打印出来，而是给了一个变量，这样就可以直接输出; </span><br><span class="line">  </span><br><span class="line">  $arr=(array(&quot;a&quot;=&gt;1,&quot;b&quot;=&gt;2));</span><br><span class="line">  writelog(&quot;sqllog&quot;,var_export($arr,true));</span><br><span class="line">echo $var;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/php-var-export/" data-id="cjkxcxjdi000j2sd6fn55illn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/28/php-header/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          php  header
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/25/sql通配符/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sql通配符</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/16/git-start/">git start</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/PHP-curl-远程抓取图片/">PHP_curl 远程抓取图片</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/09/php-导出-excel-简单方式/">php 导出 excel 简单方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Tangchunxin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

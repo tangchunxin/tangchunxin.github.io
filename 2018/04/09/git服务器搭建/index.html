@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>git服务器搭建!!! | ������@PHP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在Linux下搭建 Git 服务器123 环境：服务器 CentOS6.6 + git（version 1.7.1）客户端 Windows10 + git（version 2.8.4.windows.1）  1.安装 Git Linux 做为服务器端系统 Windows 作为客户端系统，分别安装 Git  服务器端#yum install -y git安装完后，查看 Git 版本 12[root@">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git服务器搭建!!!">
+<meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/09/git服务器搭建/index.html">
+<meta property="og:site_name" content="������@PHP">
+<meta property="og:description" content="在Linux下搭建 Git 服务器123 环境：服务器 CentOS6.6 + git（version 1.7.1）客户端 Windows10 + git（version 2.8.4.windows.1）  1.安装 Git Linux 做为服务器端系统 Windows 作为客户端系统，分别安装 Git  服务器端#yum install -y git安装完后，查看 Git 版本 12[root@">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828225309533-1152112221.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828225436257-770631205.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828230957010-2048402011.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828232005724-1805448371.png">
+<meta property="og:image" content="https://github.com/public/imgs/534303-20160828232005724-1805448371.png">
+<meta property="og:updated_time" content="2018-08-17T01:56:53.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git服务器搭建!!!">
+<meta name="twitter:description" content="在Linux下搭建 Git 服务器123 环境：服务器 CentOS6.6 + git（version 1.7.1）客户端 Windows10 + git（version 2.8.4.windows.1）  1.安装 Git Linux 做为服务器端系统 Windows 作为客户端系统，分别安装 Git  服务器端#yum install -y git安装完后，查看 Git 版本 12[root@">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828225309533-1152112221.png">
+  
+    <link rel="alternate" href="/atom.xml" title="������@PHP" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">������@PHP</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">һ��СС��PHP</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/tangchunxin/tangchunxin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git服务器搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/09/git服务器搭建/" class="article-date">
+  <time datetime="2018-04-09T03:11:55.000Z" itemprop="datePublished">2018-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git服务器搭建!!!
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在Linux下搭建-Git-服务器"><a href="#在Linux下搭建-Git-服务器" class="headerlink" title="在Linux下搭建 Git 服务器"></a>在Linux下搭建 Git 服务器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 环境：</span><br><span class="line">服务器 CentOS6<span class="number">.6</span> + git（version <span class="number">1.7</span><span class="number">.1</span>）</span><br><span class="line">客户端 Windows10 + git（version <span class="number">2.8</span><span class="number">.4</span>.windows<span class="number">.1</span>）</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="1-安装-Git"><a href="#1-安装-Git" class="headerlink" title="1.安装 Git"></a>1.安装 Git</h3><ul>
+<li>Linux 做为服务器端系统</li>
+<li>Windows 作为客户端系统，分别安装 Git</li>
+</ul>
+<h4 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h4><p>#yum install -y git<br>安装完后，查看 Git 版本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># git --version</span></span><br><span class="line">git version <span class="number">1.7</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>下载 Git for Windows，地址：<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">https://git-for-windows.github.io/</a></p>
+<p>安装完之后，可以使用 Git Bash 作为命令行客户端。</p>
+<p>安装完之后，查看 Git 版本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$git --version</span><br><span class="line">git version <span class="number">2.8</span><span class="number">.4</span>.windows<span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-服务器端创建-git-用户，用来管理-Git-服务，并为-git-用户设置密码"><a href="#2-服务器端创建-git-用户，用来管理-Git-服务，并为-git-用户设置密码" class="headerlink" title="2.服务器端创建 git 用户，用来管理 Git 服务，并为 git 用户设置密码"></a>2.服务器端创建 git 用户，用来管理 Git 服务，并为 git 用户设置密码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># id git</span></span><br><span class="line">id: git：无此用户</span><br><span class="line">[root@localhost home]<span class="comment"># useradd git</span></span><br><span class="line">[root@localhost home]<span class="comment"># passwd git</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-服务器端创建-Git-仓库"><a href="#3-服务器端创建-Git-仓库" class="headerlink" title="3.服务器端创建 Git 仓库"></a>3.服务器端创建 Git 仓库</h3><p>设置 /home/data/git/gittest.git 为 Git 仓库<br>然后把 Git 仓库的 owner 修改为 git</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># mkdir -p data/git/gittest.git</span></span><br><span class="line">[root@localhost home]<span class="comment"># git init --bare data/git/gittest.git</span></span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /home/data/git/gittest.git/</span><br><span class="line">[root@localhost home]<span class="comment"># cd data/git/</span></span><br><span class="line">[root@localhost git]<span class="comment"># chown -R git:git gittest.git/</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-客户端-clone-远程仓库"><a href="#4-客户端-clone-远程仓库" class="headerlink" title="4.客户端 clone 远程仓库"></a>4.客户端 clone 远程仓库</h3><p>进入 Git Bash 命令行客户端，创建项目地址（设置在 d:/github）并进入:</p>
+<p>复制代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git@Lenovo-PC MINGW64 /d</span><br><span class="line">$ mkdir github</span><br><span class="line"></span><br><span class="line">git@Lenovo-PC MINGW64 /d</span><br><span class="line">$ cd github</span><br><span class="line"></span><br><span class="line">git@Lenovo-PC MINGW64 /d/github</span><br><span class="line">$ git clone git@<span class="number">123.57</span><span class="number">.249</span><span class="number">.75</span>:/home/data/git/gittest.git</span><br></pre></td></tr></table></figure>
+<p>如果服务器修改了默认端口22 ,则</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git@Lenovo-PC MINGW64 /d/github</span><br><span class="line">$ git clone ssh://git@<span class="number">123.57</span><span class="number">.249</span><span class="number">.75</span>:<span class="number">223</span>/home/data/git/gittest.git</span><br></pre></td></tr></table></figure>
+<p>当第一次连接到目标 Git 服务器时会得到一个提示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">'123.57.249.75 (123.57.249.75)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is SHA256:Ve6WV/SCA059EqoUOzbFoZdfmMh3B259nigfmvdadqQ.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
+<p>选择 yes：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Warning: Permanently added <span class="string">'123.57.249.75'</span> (RSA) to the list of known hosts.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![](http://images2015.cnblogs.com/blog/<span class="number">534303</span>/<span class="number">201608</span>/<span class="number">534303</span><span class="number">-20160828224409166</span><span class="number">-1327160680.</span>png)</span><br><span class="line"></span><br><span class="line">此时 C:\Users\用户名\.ssh 下会多出一个文件 known_hosts，以后在这台电脑上再次连接目标 Git 服务器时不会再提示上面的语句。</span><br><span class="line">![](http://images2015.cnblogs.com/blog/<span class="number">534303</span>/<span class="number">201608</span>/<span class="number">534303</span><span class="number">-20160828225138698</span><span class="number">-412131557.</span>png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">####  what  known_hosts ? who ?</span></span><br><span class="line">[ssh2基于口令的安全验证](http://os<span class="number">.51</span>cto.com/art/<span class="number">201209</span>/<span class="number">358478.</span>htm)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 5.客户端创建 SSH 公钥和私钥</span></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">"1277045182@qq.com"</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828225309533-1152112221.png" alt=""><br>此时 C:\Users\用户名.ssh 下会多出两个文件 id_rsa 和 id_rsa.pub</p>
+<p>id_rsa 是私钥</p>
+<p>id_rsa.pub 是公钥<br><img src="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828225436257-770631205.png" alt=""></p>
+<h3 id="6-服务器端-Git-打开-RSA-认证"><a href="#6-服务器端-Git-打开-RSA-认证" class="headerlink" title="6.服务器端 Git 打开 RSA 认证"></a>6.服务器端 Git 打开 RSA 认证</h3><p>进入 /etc/ssh 目录，编辑 sshd_config，打开以下三个配置的注释：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<p>保存并重启 sshd 服务：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ssh]<span class="comment"># /etc/rc.d/init.d/sshd restart</span></span><br><span class="line">或</span><br><span class="line">[root@localhost ssh]<span class="comment"># service sshd restart</span></span><br><span class="line">CentOS7使用</span><br><span class="line">[root@localhost ssh]<span class="comment"># systemctl restart sshd.service</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">由 AuthorizedKeysFile 得知公钥的存放路径是 .ssh/authorized_keys，实际上是 $Home/.ssh/authorized_keys，由于管理 Git 服务的用户是 git，所以实际存放公钥的路径是 /home/git/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line">在 /home/git/ 下创建目录 .ssh</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">[root@localhost git]<span class="comment"># pwd</span></span><br><span class="line">/home/git</span><br><span class="line">[root@localhost git]<span class="comment"># mkdir .ssh</span></span><br><span class="line">[root@localhost git]<span class="comment"># ls -a </span></span><br><span class="line">. .. .bash_logout .bash_profile .bashrc .gnome2 .mozilla .ssh</span><br></pre></td></tr></table></figure>
+<p>然后把 .ssh 文件夹的 owner 修改为 git</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># chown -R git:git .ssh</span></span><br><span class="line">[root@localhost git]<span class="comment"># ll -a</span></span><br><span class="line">总用量 <span class="number">32</span></span><br><span class="line">drwx------. <span class="number">5</span> git  git  <span class="number">4096</span> <span class="number">8</span>月  <span class="number">28</span> <span class="number">20</span>:<span class="number">04</span> .</span><br><span class="line">drwxr-xr-x. <span class="number">8</span> root root <span class="number">4096</span> <span class="number">8</span>月  <span class="number">28</span> <span class="number">19</span>:<span class="number">32</span> ..</span><br><span class="line">-rw-r--r--. <span class="number">1</span> git  git    <span class="number">18</span> <span class="number">10</span>月 <span class="number">16</span> <span class="number">2014</span> .bash_logout</span><br><span class="line">-rw-r--r--. <span class="number">1</span> git  git   <span class="number">176</span> <span class="number">10</span>月 <span class="number">16</span> <span class="number">2014</span> .bash_profile</span><br><span class="line">-rw-r--r--. <span class="number">1</span> git  git   <span class="number">124</span> <span class="number">10</span>月 <span class="number">16</span> <span class="number">2014</span> .bashrc</span><br><span class="line">drwxr-xr-x. <span class="number">2</span> git  git  <span class="number">4096</span> <span class="number">11</span>月 <span class="number">12</span> <span class="number">2010</span> .gnome2</span><br><span class="line">drwxr-xr-x. <span class="number">4</span> git  git  <span class="number">4096</span> <span class="number">5</span>月   <span class="number">8</span> <span class="number">12</span>:<span class="number">22</span> .mozilla</span><br><span class="line">drwxr-xr-x. <span class="number">2</span> git  git  <span class="number">4096</span> <span class="number">8</span>月  <span class="number">28</span> <span class="number">20</span>:<span class="number">08</span> .ssh</span><br></pre></td></tr></table></figure>
+<h3 id="7-将客户端公钥导入服务器端-home-git-ssh-authorized-keys-文件"><a href="#7-将客户端公钥导入服务器端-home-git-ssh-authorized-keys-文件" class="headerlink" title="7.将客户端公钥导入服务器端/home/git/.ssh/authorized_keys 文件"></a>7.将客户端公钥导入服务器端/home/git/.ssh/authorized_keys 文件</h3><p>回到 Git Bash 下，导入文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh git@<span class="number">192.168</span><span class="number">.56</span><span class="number">.101</span> <span class="string">'cat &gt;&gt; .ssh/authorized_keys'</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>需要输入服务器端 git 用户的密码<br><img src="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828230957010-2048402011.png" alt=""></p>
+<p>回到服务器端，查看 .ssh 下是否存在 authorized_keys 文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># cd .ssh</span></span><br><span class="line">[root@localhost .ssh]<span class="comment"># ll</span></span><br><span class="line"></span><br><span class="line">总用量 <span class="number">4</span></span><br><span class="line">-rw-rw-r--. <span class="number">1</span> git git <span class="number">398</span> <span class="number">8</span>月  <span class="number">28</span> <span class="number">20</span>:<span class="number">08</span> authorized_keys</span><br></pre></td></tr></table></figure>
+<p>可以查看一下是否是客户端生成的公钥。</p>
+<p>重要：</p>
+<p>修改 .ssh 目录的权限为 700</p>
+<p>修改 .ssh/authorized_keys 文件的权限为 600</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost git]<span class="comment"># chmod 700 .ssh</span></span><br><span class="line">[root@localhost git]<span class="comment"># cd .ssh</span></span><br><span class="line">[root@localhost .ssh]<span class="comment"># chmod 600 authorized_keys</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-客户端再次-clone-远程仓库"><a href="#8-客户端再次-clone-远程仓库" class="headerlink" title="8.客户端再次 clone 远程仓库"></a>8.客户端再次 clone 远程仓库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@<span class="number">192.168</span><span class="number">.56</span><span class="number">.101</span>:/home/data/git/gittest.git</span><br></pre></td></tr></table></figure>
+<p><img src="http://images2015.cnblogs.com/blog/534303/201608/534303-20160828232005724-1805448371.png" alt=""><br><img src="/public/imgs/534303-20160828232005724-1805448371.png" alt=""></p>
+<h3 id="9-禁止-git-用户-ssh-登录服务器"><a href="#9-禁止-git-用户-ssh-登录服务器" class="headerlink" title="9.禁止 git 用户 ssh 登录服务器"></a>9.禁止 git 用户 ssh 登录服务器</h3><p>之前在服务器端创建的 git 用户不允许 ssh 登录服务器</p>
+<p>编辑 /etc/passwd</p>
+<p>找到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git:x:<span class="number">501</span>:<span class="number">501</span>::/home/git:/bin/bash</span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git:x:<span class="number">501</span>:<span class="number">501</span>::/home/git:/usr/bin/git-shell</span><br></pre></td></tr></table></figure>
+<p>此时 git 用户可以正常通过 ssh 使用 git，但无法通过 ssh 登录系统。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/09/git服务器搭建/" data-id="cjkxcxjd7000a2sd6bmwy4q2i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/16/ddos攻击防御/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ddos攻击防御
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/08/CentOS-7-yum安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CentOS 7 yum安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/16/git-start/">git start</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/PHP-curl-远程抓取图片/">PHP_curl 远程抓取图片</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/09/php-导出-excel-简单方式/">php 导出 excel 简单方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Tangchunxin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
