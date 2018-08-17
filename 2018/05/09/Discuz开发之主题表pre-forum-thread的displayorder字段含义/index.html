@@ -1,6 +1,6 @@
 
  <!DOCTYPE HTML>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
@@ -36,7 +36,7 @@
 				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
 				<h2 class="blog-motto">一个小小的PHP</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -45,11 +45,13 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/">Test</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:github.com/tangchunxin/tangchunxin.github.io">
 					</form>
 					
@@ -73,7 +75,7 @@
     </p>
   <p class="article-time">
     <time datetime="2018-05-09T13:54:58.000Z" itemprop="datePublished">2018-05-09</time>
-    Updated:<time datetime="2018-08-17T01:56:53.623Z" itemprop="dateModified">2018-08-17</time>
+    更新日期:<time datetime="2018-08-17T01:56:53.623Z" itemprop="dateModified">2018-08-17</time>
     
   </p>
 </header>
@@ -81,7 +83,7 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义"><span class="toc-number">1.</span> <span class="toc-text">Discuz开发之主题表pre_forum_thread的displayorder字段含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><span class="toc-number">1.0.1.</span> <span class="toc-text">Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><span class="toc-number">1.0.2.</span> <span class="toc-text">在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
@@ -152,15 +154,15 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义"><span class="toc-number">1.</span> <span class="toc-text">Discuz开发之主题表pre_forum_thread的displayorder字段含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><span class="toc-number">1.0.1.</span> <span class="toc-text">Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><span class="toc-number">1.0.2.</span> <span class="toc-text">在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -168,7 +170,7 @@
   
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>

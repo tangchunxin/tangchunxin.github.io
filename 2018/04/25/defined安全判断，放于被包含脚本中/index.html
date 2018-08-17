@@ -1,6 +1,6 @@
 
  <!DOCTYPE HTML>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
@@ -42,7 +42,7 @@ a.php12345&amp;lt;?phpdefine(&amp;apos;IN_PISCES&amp;apos;,1);include &amp;apos;
 				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
 				<h2 class="blog-motto">一个小小的PHP</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -51,11 +51,13 @@ a.php12345&amp;lt;?phpdefine(&amp;apos;IN_PISCES&amp;apos;,1);include &amp;apos;
 					
 						<li><a href="/archives">Archives</a></li>
 					
+						<li><a href="/">Test</a></li>
+					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:github.com/tangchunxin/tangchunxin.github.io">
 					</form>
 					
@@ -79,7 +81,7 @@ a.php12345&amp;lt;?phpdefine(&amp;apos;IN_PISCES&amp;apos;,1);include &amp;apos;
     </p>
   <p class="article-time">
     <time datetime="2018-04-25T13:41:13.000Z" itemprop="datePublished">2018-04-25</time>
-    Updated:<time datetime="2018-08-17T01:56:53.625Z" itemprop="dateModified">2018-08-17</time>
+    更新日期:<time datetime="2018-08-17T01:56:53.625Z" itemprop="dateModified">2018-08-17</time>
     
   </p>
 </header>
@@ -87,7 +89,7 @@ a.php12345&amp;lt;?phpdefine(&amp;apos;IN_PISCES&amp;apos;,1);include &amp;apos;
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一般用于安全判断，放于被包含脚本中"><span class="toc-number">1.</span> <span class="toc-text">一般用于安全判断，放于被包含脚本中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-php"><span class="toc-number">1.0.1.</span> <span class="toc-text">a.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-php"><span class="toc-number">1.0.2.</span> <span class="toc-text">b.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#echo-‘b’"><span class="toc-number">1.0.3.</span> <span class="toc-text">echo ‘b’;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这时候，你直接访问b-php是会提示非法访问的，只有访问a-php才能输出”b”。"><span class="toc-number">1.0.4.</span> <span class="toc-text">这时候，你直接访问b.php是会提示非法访问的，只有访问a.php才能输出”b”。</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
@@ -138,15 +140,15 @@ a.php12345&amp;lt;?phpdefine(&amp;apos;IN_PISCES&amp;apos;,1);include &amp;apos;
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一般用于安全判断，放于被包含脚本中"><span class="toc-number">1.</span> <span class="toc-text">一般用于安全判断，放于被包含脚本中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-php"><span class="toc-number">1.0.1.</span> <span class="toc-text">a.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-php"><span class="toc-number">1.0.2.</span> <span class="toc-text">b.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#echo-‘b’"><span class="toc-number">1.0.3.</span> <span class="toc-text">echo ‘b’;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这时候，你直接访问b-php是会提示非法访问的，只有访问a-php才能输出”b”。"><span class="toc-number">1.0.4.</span> <span class="toc-text">这时候，你直接访问b.php是会提示非法访问的，只有访问a.php才能输出”b”。</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -154,7 +156,7 @@ a.php12345&amp;lt;?phpdefine(&amp;apos;IN_PISCES&amp;apos;,1);include &amp;apos;
   
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
