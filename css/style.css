@@ -1721,6 +1721,7 @@ footer {
 }
 #footer {
   width: 95%;
+  height: 100px;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -1740,7 +1741,6 @@ footer {
 #footer .line span {
   display: block;
   width: 0.5em;
-  height: 6.25em;
   border-right: 0.125em solid #fff;
   margin: 0 auto;
 }
@@ -1860,7 +1860,8 @@ footer {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "covered_by_your_graceregular";
-  width: 100%;
+  width: 80%;
+  padding-top: 1.6em;
   color: #fff;
   text-align: center;
 }
