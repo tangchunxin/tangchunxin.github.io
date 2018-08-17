@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>git常用命令 | 黄溜溜@PHP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="git 常用命令 git config –global user.name “tangchunxin” git config –global user.email “tangchunxin@p2peye.com“ git config –global credential.helper store  git强制覆盖： git fetch –all git reset –hard origin/ma">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git常用命令">
+<meta property="og:url" content="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/git常用命令/index.html">
+<meta property="og:site_name" content="黄溜溜@PHP">
+<meta property="og:description" content="git 常用命令 git config –global user.name “tangchunxin” git config –global user.email “tangchunxin@p2peye.com“ git config –global credential.helper store  git强制覆盖： git fetch –all git reset –hard origin/ma">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-17T06:08:32.809Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git常用命令">
+<meta name="twitter:description" content="git 常用命令 git config –global user.name “tangchunxin” git config –global user.email “tangchunxin@p2peye.com“ git config –global credential.helper store  git强制覆盖： git fetch –all git reset –hard origin/ma">
+  
+    <link rel="alternate" href="/atom.xml" title="黄溜溜@PHP" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">黄溜溜@PHP</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一个小小的PHP</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/tangchunxin/tangchunxin.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/17/git常用命令/" class="article-date">
+  <time datetime="2018-08-17T06:08:16.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git常用命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="git-常用命令"><a href="#git-常用命令" class="headerlink" title="git 常用命令"></a>git 常用命令</h2><ul>
+<li>git config –global user.name “tangchunxin”</li>
+<li>git config –global user.email “<a href="mailto:tangchunxin@p2peye.com" target="_blank" rel="noopener">tangchunxin@p2peye.com</a>“</li>
+<li>git config –global credential.helper store</li>
+</ul>
+<h4 id="git强制覆盖："><a href="#git强制覆盖：" class="headerlink" title="git强制覆盖："></a>git强制覆盖：</h4><ul>
+<li>git fetch –all</li>
+<li>git reset –hard origin/master</li>
+<li>git pull</li>
+</ul>
+<ul>
+<li>git stash  //将本地修改临时暂存起来</li>
+<li>git stash pop //从暂存区还原</li>
+<li>git stash list  //暂存区列表</li>
+<li><p>git stash pop stash@{0} //从暂存区还原</p>
+</li>
+<li><p>git status</p>
+</li>
+<li>git add a.php   //提交到本地暂存区</li>
+<li>git commit -m “提交a.php”  //提交到本地仓库</li>
+<li>git push origin   //推送到远程</li>
+<li>git branch -a  //查看远程分支状态</li>
+<li>git branch dev  //创建分支</li>
+<li>git checkout dev  //切分支</li>
+<li>git checkout -b  dev  //创建并切分支</li>
+<li></li>
+<li>git push origin dev  将本地新建的分支 推到远程</li>
+<li>git merge dev  把dev的代码 合并到当前分支</li>
+<li>git log –oneline</li>
+<li>git diff  //工作区 和暂存区</li>
+<li>git diff –cached  //暂存区和历史版本</li>
+<li>git diff master   //工作去和历史版本</li>
+<li></li>
+<li>git diff  946de  go.txt</li>
+<li></li>
+</ul>
+<ul>
+<li>git checkout – go.txt  撤销本地的修改</li>
+<li>git reset HEAD a.php   从暂存区撤回到 本地</li>
+</ul>
+<p>假设远端库名是 origin，你要比较的本地分支为 test，远端分支就是 xxx</p>
+<p>本地分支的话，直接git diff branchA branchB，而远程分支的话，git diff branchA remoteB/branchB，区别就是远程分支前面要加上remote名称。</p>
+<ul>
+<li>git reset –hard HEAD^  从本地库回退版本,本地修改都会被撤销</li>
+<li>git reset –mixed HEAD^  从本地仓库撤回代码 ,本地修改保存</li>
+<li>git reset –soft HEAD^  从本地仓库撤回代码,本地修改保存,暂存区也保存</li>
+</ul>
+<h4 id="问题1-在dev3分支-pull-master分支代码后-貌似dev3分支-失去了当前分支的追踪信息-因为重新找到追踪信息-git-branch-–set-upstream-to-origin-dev3"><a href="#问题1-在dev3分支-pull-master分支代码后-貌似dev3分支-失去了当前分支的追踪信息-因为重新找到追踪信息-git-branch-–set-upstream-to-origin-dev3" class="headerlink" title="问题1.在dev3分支  pull master分支代码后,貌似dev3分支,失去了当前分支的追踪信息,因为重新找到追踪信息 git branch –set-upstream-to origin dev3"></a>问题1.在dev3分支  pull master分支代码后,貌似dev3分支,失去了当前分支的追踪信息,因为重新找到追踪信息 git branch –set-upstream-to origin dev3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">There is no tracking information for the current branch.</span><br><span class="line">Please specify which branch you want to merge with.</span><br><span class="line">See git-pull(1) for details.</span><br><span class="line"></span><br><span class="line">    git pull &lt;remote&gt; &lt;branch&gt;</span><br><span class="line"></span><br><span class="line">If you wish to set tracking information for this branch you can do so with:</span><br><span class="line"></span><br><span class="line">    git branch --set-upstream-to=origin/&lt;branch&gt; dev3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>git push -u  加了参数-u后，以后即可直接用git push 代替git push origin master</li>
+<li>git push –set-upstream origin dev3</li>
+</ul>
+<ul>
+<li>git push origin dev3 –force</li>
+<li></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Unable to create &apos;.git/index.lock&apos;: File exists</span><br><span class="line">2014年03月03日 14:10:27</span><br><span class="line">阅读数：5159</span><br><span class="line">Git – fatal: Unable to create ‘/.git/index.lock’: File exists.</span><br><span class="line">fatal: Unable to create ‘/path/my_proj/.git/index.lock’: File exists.</span><br><span class="line">If no other git process is currently running, this probably means a</span><br><span class="line">git process crashed in this repository earlier. Make sure no other git</span><br><span class="line">process is running and remove the file manually to continue.</span><br><span class="line">可以试着删除 index.lock</span><br><span class="line">rm -f ./.git/index.lock</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/git常用命令/" data-id="cjkxlf61k000blsd6fij0gs4b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/17/es搜索-must-should联合查询/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">es搜索 must should联合查询</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/17/git常用命令/">git常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/es搜索-must-should联合查询/">es搜索 must should联合查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/16/git-start/">git start</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Tangchunxin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -70,6 +70,99 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/17/git常用命令/" class="article-date">
+  <time datetime="2018-08-17T06:08:16.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/17/git常用命令/">git常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="git-常用命令"><a href="#git-常用命令" class="headerlink" title="git 常用命令"></a>git 常用命令</h2><ul>
+<li>git config –global user.name “tangchunxin”</li>
+<li>git config –global user.email “<a href="mailto:tangchunxin@p2peye.com" target="_blank" rel="noopener">tangchunxin@p2peye.com</a>“</li>
+<li>git config –global credential.helper store</li>
+</ul>
+<h4 id="git强制覆盖："><a href="#git强制覆盖：" class="headerlink" title="git强制覆盖："></a>git强制覆盖：</h4><ul>
+<li>git fetch –all</li>
+<li>git reset –hard origin/master</li>
+<li>git pull</li>
+</ul>
+<ul>
+<li>git stash  //将本地修改临时暂存起来</li>
+<li>git stash pop //从暂存区还原</li>
+<li>git stash list  //暂存区列表</li>
+<li><p>git stash pop stash@{0} //从暂存区还原</p>
+</li>
+<li><p>git status</p>
+</li>
+<li>git add a.php   //提交到本地暂存区</li>
+<li>git commit -m “提交a.php”  //提交到本地仓库</li>
+<li>git push origin   //推送到远程</li>
+<li>git branch -a  //查看远程分支状态</li>
+<li>git branch dev  //创建分支</li>
+<li>git checkout dev  //切分支</li>
+<li>git checkout -b  dev  //创建并切分支</li>
+<li></li>
+<li>git push origin dev  将本地新建的分支 推到远程</li>
+<li>git merge dev  把dev的代码 合并到当前分支</li>
+<li>git log –oneline</li>
+<li>git diff  //工作区 和暂存区</li>
+<li>git diff –cached  //暂存区和历史版本</li>
+<li>git diff master   //工作去和历史版本</li>
+<li></li>
+<li>git diff  946de  go.txt</li>
+<li></li>
+</ul>
+<ul>
+<li>git checkout – go.txt  撤销本地的修改</li>
+<li>git reset HEAD a.php   从暂存区撤回到 本地</li>
+</ul>
+<p>假设远端库名是 origin，你要比较的本地分支为 test，远端分支就是 xxx</p>
+<p>本地分支的话，直接git diff branchA branchB，而远程分支的话，git diff branchA remoteB/branchB，区别就是远程分支前面要加上remote名称。</p>
+<ul>
+<li>git reset –hard HEAD^  从本地库回退版本,本地修改都会被撤销</li>
+<li>git reset –mixed HEAD^  从本地仓库撤回代码 ,本地修改保存</li>
+<li>git reset –soft HEAD^  从本地仓库撤回代码,本地修改保存,暂存区也保存</li>
+</ul>
+<h4 id="问题1-在dev3分支-pull-master分支代码后-貌似dev3分支-失去了当前分支的追踪信息-因为重新找到追踪信息-git-branch-–set-upstream-to-origin-dev3"><a href="#问题1-在dev3分支-pull-master分支代码后-貌似dev3分支-失去了当前分支的追踪信息-因为重新找到追踪信息-git-branch-–set-upstream-to-origin-dev3" class="headerlink" title="问题1.在dev3分支  pull master分支代码后,貌似dev3分支,失去了当前分支的追踪信息,因为重新找到追踪信息 git branch –set-upstream-to origin dev3"></a>问题1.在dev3分支  pull master分支代码后,貌似dev3分支,失去了当前分支的追踪信息,因为重新找到追踪信息 git branch –set-upstream-to origin dev3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">There is no tracking information for the current branch.</span><br><span class="line">Please specify which branch you want to merge with.</span><br><span class="line">See git-pull(1) for details.</span><br><span class="line"></span><br><span class="line">    git pull &lt;remote&gt; &lt;branch&gt;</span><br><span class="line"></span><br><span class="line">If you wish to set tracking information for this branch you can do so with:</span><br><span class="line"></span><br><span class="line">    git branch --set-upstream-to=origin/&lt;branch&gt; dev3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>git push -u  加了参数-u后，以后即可直接用git push 代替git push origin master</li>
+<li>git push –set-upstream origin dev3</li>
+</ul>
+<ul>
+<li>git push origin dev3 –force</li>
+<li></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Unable to create &apos;.git/index.lock&apos;: File exists</span><br><span class="line">2014年03月03日 14:10:27</span><br><span class="line">阅读数：5159</span><br><span class="line">Git – fatal: Unable to create ‘/.git/index.lock’: File exists.</span><br><span class="line">fatal: Unable to create ‘/path/my_proj/.git/index.lock’: File exists.</span><br><span class="line">If no other git process is currently running, this probably means a</span><br><span class="line">git process crashed in this repository earlier. Make sure no other git</span><br><span class="line">process is running and remove the file manually to continue.</span><br><span class="line">可以试着删除 index.lock</span><br><span class="line">rm -f ./.git/index.lock</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/git常用命令/" data-id="cjkxlf61k000blsd6fij0gs4b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-es搜索-must-should联合查询" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/17/es搜索-must-should联合查询/" class="article-date">
@@ -104,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/es搜索-must-should联合查询/" data-id="cjkxj0u140009dsd6nc6zrni9" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/es搜索-must-should联合查询/" data-id="cjkxlf61e0007lsd6o1o1uo8x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/hello-world/" data-id="cjkxj0u1g000ddsd619utilet" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/17/hello-world/" data-id="cjkxlf61q000dlsd6j5znzypu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/16/git-start/" data-id="cjkxj0u16000adsd69ns2notm" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/08/16/git-start/" data-id="cjkxlf61i000alsd65j6k3d73" class="article-share-link">Share</a>
       
       
     </footer>
@@ -224,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/正则-手机号中间4位变成/" data-id="cjkxj0u1t000pdsd694f7hfpk" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/正则-手机号中间4位变成/" data-id="cjkxlf624000plsd6ghno2pw1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -266,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/PHP-curl-远程抓取图片/" data-id="cjkxj0u0u0002dsd6azum55fr" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/20/PHP-curl-远程抓取图片/" data-id="cjkxlf6120001lsd6misq20fk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -304,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/php-导出-excel-简单方式/" data-id="cjkxj0u1r000ndsd64n1d5pb6" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/php-导出-excel-简单方式/" data-id="cjkxlf622000nlsd6e07ek2il" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/hostory-go-1/" data-id="cjkxj0u1h000edsd6q0uxxzl3" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/hostory-go-1/" data-id="cjkxlf61s000flsd6wlpqbgwv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/PHP中跳转js/" data-id="cjkxj0u0w0003dsd660hhu5h8" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/PHP中跳转js/" data-id="cjkxlf6170003lsd62zme9z8i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/正则获取主域名/" data-id="cjkxj0u1s000odsd608arlgoq" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/正则获取主域名/" data-id="cjkxlf625000qlsd6whbctqpb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -491,7 +584,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-id="cjkxj0u0r0001dsd6lq67jj8w" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-id="cjkxlf6150002lsd6pqn2fika" class="article-share-link">Share</a>
       
       
     </footer>
@@ -638,53 +731,7 @@ access_log    logs/access_www.abc.com.log    main;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" data-id="cjkxj0u1i000fdsd6qr28sqj9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux-nginx设置禁止通过ip访问服务器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" class="article-date">
-  <time datetime="2018-04-28T13:35:28.000Z" itemprop="datePublished">2018-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/28/linux-nginx设置禁止通过ip访问服务器/">linux nginx设置禁止通过ip访问服务器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。"><a href="#为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。" class="headerlink" title="为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。"></a>为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。</h4><ul>
-<li>最关键的一点是，在server的设置里面添加这么一行：  </li>
-<li>Listen 80 default;  </li>
-<li>后面的default参数表示这个是默认的虚拟主机。  </li>
-<li><p>例如：别人如果通过ip或者未知域名访问你的网站的时候，你希望禁止显示任何有效内容，可以给他返回404。具体如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">       listen 80 default;</span><br><span class="line">       listen [::]:80 default;</span><br><span class="line">       server_name _;  </span><br><span class="line">       return 404;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当然，按照上述设置，的确不能让别人通过ip访问服务器了，但是还应该开放一个或多个真实的希望被访问的域名配置，设置如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//增加一个server段</span><br><span class="line">server &#123;  </span><br><span class="line">       listen 80 default;</span><br><span class="line">       listen [::]:80 default;</span><br><span class="line">       server_name _;  </span><br><span class="line">       return 404;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//将原有的 修改为只允许某几个域名访问</span><br><span class="line">server &#123;  </span><br><span class="line">        linten 80; </span><br><span class="line">        listen [::]:80;</span><br><span class="line">        server_name www.941db.com www.aaa.com； （以世海夺宝网为例）  </span><br><span class="line">………..  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" data-id="cjkxj0u1j000gdsd631o5bw6b" class="article-share-link">Share</a>
+      <a data-url="https://github.com/tangchunxin/tangchunxin.github.io/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" data-id="cjkxlf61t000glsd6pg8ds5ss" class="article-share-link">Share</a>
       
       
     </footer>
@@ -730,6 +777,10 @@ access_log    logs/access_www.abc.com.log    main;
       <ul>
         
           <li>
+            <a href="/2018/08/17/git常用命令/">git常用命令</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/17/es搜索-must-should联合查询/">es搜索 must should联合查询</a>
           </li>
         
@@ -743,10 +794,6 @@ access_log    logs/access_www.abc.com.log    main;
         
           <li>
             <a href="/2018/05/20/正则-手机号中间4位变成/">正则 手机号中间4位变成*</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/20/PHP-curl-远程抓取图片/">PHP_curl 远程抓取图片</a>
           </li>
         
       </ul>
