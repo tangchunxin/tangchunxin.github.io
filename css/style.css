@@ -844,6 +844,7 @@ article header.article-info >p.article-time:before {
 }
 article .article-content {
   padding: 1.5em 4%;
+  overflow-x: auto;
 }
 article .article-content .kb {
   padding: 0.1em 0.6em;
