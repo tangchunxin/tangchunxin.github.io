@@ -1023,6 +1023,16 @@ article .article-content table td {
   border-bottom: 1px solid #dbdbdb;
   padding: 10px 0;
 }
+article .article-content table .gutter pre span {
+  display: none;
+}
+article .article-content table pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
 article .article-content .pullquote {
   text-align: left;
   width: 45%;
