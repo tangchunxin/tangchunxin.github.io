@@ -4,17 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>sql关闭 query_cache | 黄溜溜@PHP</title>
+    <title>Hexo LF 错误 | 黄溜溜@PHP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Tangchunxin">
     
-    <meta name="description" content="MySQL query_cache_type 详解
-set global query_cache_size=0;
-set global query_cache_type=0;
-
-
-MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍">
+    <meta name="description" content="Hexo 博客中出现关于 LF will be replaced by CRLF 问题出现的原因以及解决方式出现的原因
+windows中的换行符为 CRLF，而在Linux下的换行符为LF，所以在执行add . 时出现提示 
+CRLF和LF是两种不同的换行格式，git工作区默认为CRLF来作为换行符">
     
     
     
@@ -70,15 +67,15 @@ MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/17/sql关闭-query-cache/" title="sql关闭 query_cache" itemprop="url">sql关闭 query_cache</a>
+      <a href="/2018/08/20/Hexo-LF-错误/" title="Hexo LF 错误" itemprop="url">Hexo LF 错误</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-08-17T09:12:59.000Z" itemprop="datePublished">2018-08-17</time>
-    更新日期:<time datetime="2018-08-17T09:15:57.554Z" itemprop="dateModified">2018-08-17</time>
+    <time datetime="2018-08-20T06:53:49.000Z" itemprop="datePublished">2018-08-20</time>
+    更新日期:<time datetime="2018-08-20T06:54:05.901Z" itemprop="dateModified">2018-08-20</time>
     
   </p>
 </header>
@@ -87,39 +84,17 @@ MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-query-cache-type-详解"><span class="toc-number">1.</span> <span class="toc-text">MySQL query_cache_type 详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL设置查询缓存的用意："><span class="toc-number">1.0.1.</span> <span class="toc-text">MySQL设置查询缓存的用意：</span></a></li></ol></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-博客中出现关于-LF-will-be-replaced-by-CRLF-问题出现的原因以及解决方式"><span class="toc-number">1.</span> <span class="toc-text">Hexo 博客中出现关于 LF will be replaced by CRLF 问题出现的原因以及解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#出现的原因"><span class="toc-number">1.0.1.</span> <span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">解决方式</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
-		<h2 id="MySQL-query-cache-type-详解"><a href="#MySQL-query-cache-type-详解" class="headerlink" title="MySQL query_cache_type 详解"></a>MySQL query_cache_type 详解</h2><ul>
-<li>set global query_cache_size=0;</li>
-<li>set global query_cache_type=0;</li>
-</ul>
-<hr>
-<h4 id="MySQL设置查询缓存的用意："><a href="#MySQL设置查询缓存的用意：" class="headerlink" title="MySQL设置查询缓存的用意："></a>MySQL设置查询缓存的用意：</h4><p>　　把查询到的结果缓存起来，下次再执行相同查询时就可以直接从结果集中取；这样就比重新查一遍要快的多。</p>
-<p>查询缓存的最终结果是事与愿违：</p>
-<p>　　之所以查询缓存并没有能起到提升性能的做用，客观上有如下两点原因</p>
-<p>　　1、把SQL语句的hash值作为键，SQL语句的结果集作为值；这样就引起了一个问题如 select user from mysql.user 和 SELECT user FROM mysql.user </p>
-<p>　　这两个将会被当成不同的SQL语句，这个时候就算结果集已经有了，但是一然用不到。</p>
-<p>　　2、当查询所基于的低层表有改动时与这个表有关的查询缓存都会作废、如果对于并发度比较大的系统这个开销是可观的；对于作废结果集这个操作也是要用并发</p>
-<p>　　访问控制的，就是说也会有锁。并发大的时候就会有Waiting for query cache lock 产生。</p>
-<p>　　3、至于用不用还是要看业务模型的。</p>
-<p>如果何配置查询缓存：</p>
-<p>　　query_cache_type 这个系统变量控制着查询缓存工能的开启的关闭。</p>
-<p>　　query_cache_type=0时表示关闭，1时表示打开，2表示只要select 中明确指定SQL_CACHE才缓存。</p>
-<p>　　这个参数的设置有点奇怪，1、如果事先查询缓存是关闭的然而用 set @@global.query_cache_type=1; 会报错</p>
-<p>　　ERROR 1651 (HY000): Query cache is disabled; restart the server with query_cache_type=1 to enable it</p>
-<p>　　2、如果事先是打开着的尝试去闭关它，那么这个关闭也是不完全的，这种情况下查询还是会去尝试查找缓存。</p>
-<p>　　最好的关闭查询缓存的办法就是把my.cnf 中的query_cache_type=0然后再重启mysql。</p>
-<p>查询缓存相关的系统变量：</p>
-<p>　　have_query_cache　　表示这个mysql版本是否支持查询缓存。</p>
-<p>　　query_cache_limit　　 表示单个结果集所被允许缓存的最大值。</p>
-<p>　　query_cache_min_res_unit　　每个被缓存的结果集要占用的最小内存。</p>
-<p>　　query_cache_size　　用于查询缓存的内存大小。</p>
-<p>如何监控查询缓存的命中率： </p>
-<p>　　Qcache_free_memory　　查询缓存目前剩余空间大小。</p>
-<p>　　Qcache_hits　　　　　     查询缓存的命中次数。</p>
-<p>　　Qcache_inserts　　　　　 查询缓存插入的次数。</p>
-<p>　　也就是说缓存的命中率为 Qcache_hits/(Qcache_hits+Qcache_inserts)</p>
+		<h2 id="Hexo-博客中出现关于-LF-will-be-replaced-by-CRLF-问题出现的原因以及解决方式"><a href="#Hexo-博客中出现关于-LF-will-be-replaced-by-CRLF-问题出现的原因以及解决方式" class="headerlink" title="Hexo 博客中出现关于 LF will be replaced by CRLF 问题出现的原因以及解决方式"></a>Hexo 博客中出现关于 LF will be replaced by CRLF 问题出现的原因以及解决方式</h2><h4 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h4><ol>
+<li>windows中的换行符为 CRLF，而在Linux下的换行符为LF，所以在执行add . 时出现提示 </li>
+<li>CRLF和LF是两种不同的换行格式，git工作区默认为CRLF来作为换行符，<br> 所以当我们项目文件里有用的地方使用LF作为换行符，这个时候我们再继续git add<br> 或者git commit的时候就会弹出警告，<br> 当最终push到远程仓库的时候git会统一格式全部转化为用CRLF作为换行符 </li>
+</ol>
+<h4 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h4><ol>
+<li>这个只是一个警告，我们直接忽略就好。</li>
+<li>git config –global core.autocrlf false //禁用自动转换 </li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -129,7 +104,7 @@ MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下
 
 <div class="article-share" id="share">
 
-  <div data-url="http://tangchunxin.com/2018/08/17/sql关闭-query-cache/" data-title="sql关闭 query_cache | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  <div data-url="http://tangchunxin.com/2018/08/20/Hexo-LF-错误/" data-title="Hexo LF 错误 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -138,19 +113,11 @@ MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/08/20/Hexo-LF-错误/" title="Hexo LF 错误">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Hexo LF 错误</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/08/17/fiddle-https配置/"  title="fiddle https配置">
+<a href="/2018/08/17/sql关闭-query-cache/"  title="sql关闭 query_cache">
  <strong>NEXT:</strong><br/> 
- <span>fiddle https配置
+ <span>sql关闭 query_cache
 </span>
 </a>
 </div>
@@ -163,7 +130,7 @@ MySQL设置查询缓存的用意：　　把查询到的结果缓存起来，下
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-query-cache-type-详解"><span class="toc-number">1.</span> <span class="toc-text">MySQL query_cache_type 详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL设置查询缓存的用意："><span class="toc-number">1.0.1.</span> <span class="toc-text">MySQL设置查询缓存的用意：</span></a></li></ol></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-博客中出现关于-LF-will-be-replaced-by-CRLF-问题出现的原因以及解决方式"><span class="toc-number">1.</span> <span class="toc-text">Hexo 博客中出现关于 LF will be replaced by CRLF 问题出现的原因以及解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#出现的原因"><span class="toc-number">1.0.1.</span> <span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">解决方式</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
