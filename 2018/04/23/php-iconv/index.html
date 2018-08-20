@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2018-04-23T14:28:43.000Z" itemprop="datePublished">2018-04-23</time>
-    更新日期:<time datetime="2018-08-17T01:56:53.627Z" itemprop="dateModified">2018-08-17</time>
+    更新日期:<time datetime="2018-08-20T06:33:24.735Z" itemprop="dateModified">2018-08-20</time>
     
   </p>
 </header>
@@ -82,7 +82,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-mb-convert-encoding-函数-与-iconv"><span class="toc-number">1.</span> <span class="toc-text">PHP mb_convert_encoding()函数 与 iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#语法："><span class="toc-number">1.0.1.</span> <span class="toc-text">语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1、把-GBK-编码字串转换成-UTF-8-编码字串"><span class="toc-number">1.0.2.</span> <span class="toc-text">1、把 GBK 编码字串转换成 UTF-8 编码字串;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、把-UTF-8-编码字串转换成-GB2312-编码字串"><span class="toc-number">1.0.3.</span> <span class="toc-text">2、把 UTF-8 编码字串转换成 GB2312 编码字串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconv-—-字符串按要求的字符编码来转换"><span class="toc-number">2.</span> <span class="toc-text">iconv — 字符串按要求的字符编码来转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">2.0.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">2.0.2.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in-charset"><span class="toc-number">2.0.3.</span> <span class="toc-text">in_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#out-charset"><span class="toc-number">2.0.4.</span> <span class="toc-text">out_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#str"><span class="toc-number">2.0.5.</span> <span class="toc-text">str</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子"><span class="toc-number">2.0.6.</span> <span class="toc-text">例子</span></a></li></ol></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-mb-convert-encoding-函数-与-iconv"><span class="toc-number">1.</span> <span class="toc-text">PHP mb_convert_encoding()函数 与 iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#语法："><span class="toc-number">1.0.1.</span> <span class="toc-text">语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1、把-GBK-编码字串转换成-UTF-8-编码字串"><span class="toc-number">1.0.2.</span> <span class="toc-text">1、把 GBK 编码字串转换成 UTF-8 编码字串;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、把-UTF-8-编码字串转换成-GB2312-编码字串"><span class="toc-number">1.0.3.</span> <span class="toc-text">2、把 UTF-8 编码字串转换成 GB2312 编码字串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconv-—-字符串按要求的字符编码来转换"><span class="toc-number">2.</span> <span class="toc-text">iconv — 字符串按要求的字符编码来转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">2.0.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">2.0.2.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in-charset"><span class="toc-number">2.0.3.</span> <span class="toc-text">in_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#out-charset"><span class="toc-number">2.0.4.</span> <span class="toc-text">out_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#str"><span class="toc-number">2.0.5.</span> <span class="toc-text">str</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子"><span class="toc-number">2.0.6.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据转码"><span class="toc-number">2.0.7.</span> <span class="toc-text">数据转码</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
 		<h2 id="PHP-mb-convert-encoding-函数-与-iconv"><a href="#PHP-mb-convert-encoding-函数-与-iconv" class="headerlink" title="PHP mb_convert_encoding()函数 与 iconv"></a>PHP mb_convert_encoding()函数 与 iconv</h2><p>函数 为php内部多字节字符串编码转换函数，可以在有需要的场合进行编码转换，如：解决<br>在GB2312编码环境下使用Ajax产生的中文 字符乱码 问题。支持几乎所有编码，版本支持 PHP 4 &gt;= 4.0.6、PHP 5。<br>mb_开头的字符串函数需要PHP开启 对应的扩展mb_string =&gt; <a href="https://blog.csdn.net/yumenshizhongjingjie/article/details/50569889" target="_blank" rel="noopener">开启方法</a></p>
@@ -105,7 +105,26 @@
 <li>要转换的字符串。</li>
 </ul>
 <h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$text = &quot;This is the Euro symbol &apos;€&apos;.&quot;;</span><br><span class="line"></span><br><span class="line">echo &apos;Original : &apos;, $text, PHP_EOL;</span><br><span class="line">echo &apos;TRANSLIT : &apos;, iconv(&quot;UTF-8&quot;, &quot;ISO-8859-1//TRANSLIT&quot;, $text), PHP_EOL;</span><br><span class="line">echo &apos;IGNORE   : &apos;, iconv(&quot;UTF-8&quot;, &quot;ISO-8859-1//IGNORE&quot;, $text), PHP_EOL;</span><br><span class="line">echo &apos;Plain    : &apos;, iconv(&quot;UTF-8&quot;, &quot;ISO-8859-1&quot;, $text), PHP_EOL;</span><br></pre></td></tr></table></figure>
-  
+<h4 id="数据转码"><a href="#数据转码" class="headerlink" title="数据转码"></a>数据转码</h4><pre><code>/**
+ * 数据转码
+ * @param unknown $str
+ * @param unknown $code 目标编码
+ * @return unknown
+ */
+public function conversion_coding($str, $code){
+    $encode = mb_detect_encoding($str, array(&apos;UTF-8&apos;,&apos;GBK&apos;,&apos;GB2312&apos;,&apos;BIG5&apos;,&apos;ASCII&apos;));
+    if($encode == $code or !$encode){
+        return $str;
+    }
+    if(!is_string($str)){
+        return $str;
+    }
+    if($encode === &apos;GB2312&apos; or $encode === &apos;GBK&apos;){
+        $encode = $encode . &apos;//IGNORE&apos;;
+    }
+    return iconv($encode, $code, $str);
+}
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -148,7 +167,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-mb-convert-encoding-函数-与-iconv"><span class="toc-number">1.</span> <span class="toc-text">PHP mb_convert_encoding()函数 与 iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#语法："><span class="toc-number">1.0.1.</span> <span class="toc-text">语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1、把-GBK-编码字串转换成-UTF-8-编码字串"><span class="toc-number">1.0.2.</span> <span class="toc-text">1、把 GBK 编码字串转换成 UTF-8 编码字串;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、把-UTF-8-编码字串转换成-GB2312-编码字串"><span class="toc-number">1.0.3.</span> <span class="toc-text">2、把 UTF-8 编码字串转换成 GB2312 编码字串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconv-—-字符串按要求的字符编码来转换"><span class="toc-number">2.</span> <span class="toc-text">iconv — 字符串按要求的字符编码来转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">2.0.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">2.0.2.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in-charset"><span class="toc-number">2.0.3.</span> <span class="toc-text">in_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#out-charset"><span class="toc-number">2.0.4.</span> <span class="toc-text">out_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#str"><span class="toc-number">2.0.5.</span> <span class="toc-text">str</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子"><span class="toc-number">2.0.6.</span> <span class="toc-text">例子</span></a></li></ol></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-mb-convert-encoding-函数-与-iconv"><span class="toc-number">1.</span> <span class="toc-text">PHP mb_convert_encoding()函数 与 iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#语法："><span class="toc-number">1.0.1.</span> <span class="toc-text">语法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1、把-GBK-编码字串转换成-UTF-8-编码字串"><span class="toc-number">1.0.2.</span> <span class="toc-text">1、把 GBK 编码字串转换成 UTF-8 编码字串;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、把-UTF-8-编码字串转换成-GB2312-编码字串"><span class="toc-number">1.0.3.</span> <span class="toc-text">2、把 UTF-8 编码字串转换成 GB2312 编码字串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconv-—-字符串按要求的字符编码来转换"><span class="toc-number">2.</span> <span class="toc-text">iconv — 字符串按要求的字符编码来转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">2.0.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">2.0.2.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in-charset"><span class="toc-number">2.0.3.</span> <span class="toc-text">in_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#out-charset"><span class="toc-number">2.0.4.</span> <span class="toc-text">out_charset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#str"><span class="toc-number">2.0.5.</span> <span class="toc-text">str</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子"><span class="toc-number">2.0.6.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据转码"><span class="toc-number">2.0.7.</span> <span class="toc-text">数据转码</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
