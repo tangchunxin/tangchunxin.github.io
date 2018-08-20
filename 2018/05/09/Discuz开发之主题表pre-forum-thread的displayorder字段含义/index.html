@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Discuz开发之主题表pre_forum_thread的displayorder字段含义 | 黄溜溜@PHP</title>
+    <title>Dz forum_thread的displayorder | 黄溜溜@PHP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Tangchunxin">
     
-    <meta name="description" content="Discuz开发之主题表pre_forum_thread的displayorder字段含义Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：displayorder取值范围为：4,3,2,1,0，-1，-2，-">
+    <meta name="description" content="Discuz开发之主题表pre_forum_thread的displayorder字段含义Discuz!本文就介绍一下pre_forum_thread的displayorder字段含义：displayorder取值范围为：4,3,2,1,0，-1，-2，-3，-4，他们的含义如下：
+
+display">
     
     
     
@@ -65,7 +67,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" title="Discuz开发之主题表pre_forum_thread的displayorder字段含义" itemprop="url">Discuz开发之主题表pre_forum_thread的displayorder字段含义</a>
+      <a href="/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" title="Dz forum_thread的displayorder" itemprop="url">Dz forum_thread的displayorder</a>
   </h1>
   <p class="article-author">By
     
@@ -73,7 +75,7 @@
     </p>
   <p class="article-time">
     <time datetime="2018-05-09T13:54:58.000Z" itemprop="datePublished">2018-05-09</time>
-    更新日期:<time datetime="2018-08-17T01:56:53.623Z" itemprop="dateModified">2018-08-17</time>
+    更新日期:<time datetime="2018-08-20T06:13:25.441Z" itemprop="dateModified">2018-08-20</time>
     
   </p>
 </header>
@@ -82,10 +84,10 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义"><span class="toc-number">1.</span> <span class="toc-text">Discuz开发之主题表pre_forum_thread的displayorder字段含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><span class="toc-number">1.0.1.</span> <span class="toc-text">Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><span class="toc-number">1.0.2.</span> <span class="toc-text">在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</span></a></li></ol></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义"><span class="toc-number">1.</span> <span class="toc-text">Discuz开发之主题表pre_forum_thread的displayorder字段含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Discuz-本文就介绍一下pre-forum-thread的displayorder字段含义："><span class="toc-number">1.0.1.</span> <span class="toc-text">Discuz!本文就介绍一下pre_forum_thread的displayorder字段含义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><span class="toc-number">1.0.2.</span> <span class="toc-text">在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
-		<h2 id="Discuz开发之主题表pre-forum-thread的displayorder字段含义"><a href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义" class="headerlink" title="Discuz开发之主题表pre_forum_thread的displayorder字段含义"></a>Discuz开发之主题表pre_forum_thread的displayorder字段含义</h2><h4 id="Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><a href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义：" class="headerlink" title="Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义："></a>Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</h4><p>displayorder取值范围为：4,3,2,1,0，-1，-2，-3，-4，他们的含义如下：</p>
+		<h2 id="Discuz开发之主题表pre-forum-thread的displayorder字段含义"><a href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义" class="headerlink" title="Discuz开发之主题表pre_forum_thread的displayorder字段含义"></a>Discuz开发之主题表pre_forum_thread的displayorder字段含义</h2><h4 id="Discuz-本文就介绍一下pre-forum-thread的displayorder字段含义："><a href="#Discuz-本文就介绍一下pre-forum-thread的displayorder字段含义：" class="headerlink" title="Discuz!本文就介绍一下pre_forum_thread的displayorder字段含义："></a>Discuz!本文就介绍一下pre_forum_thread的displayorder字段含义：</h4><p>displayorder取值范围为：4,3,2,1,0，-1，-2，-3，-4，他们的含义如下：</p>
 <ul>
 <li><p>displayorder=4 ：多版块置顶功能可让一个主题在任意多个版块 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">只在指定的板块显示主题</span><br><span class="line"></span><br><span class="line">需要在后台-内容-主题-板块/群组指定来进行操作</span><br><span class="line"></span><br><span class="line">以下三种置顶可以在版主管理的浮动窗口操作</span><br></pre></td></tr></table></figure>
@@ -122,7 +124,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://tangchunxin.com/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-title="Discuz开发之主题表pre_forum_thread的displayorder字段含义 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  <div data-url="http://tangchunxin.com/2018/05/09/Discuz开发之主题表pre-forum-thread的displayorder字段含义/" data-title="Dz forum_thread的displayorder | 黄溜溜@PHP" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -156,7 +158,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义"><span class="toc-number">1.</span> <span class="toc-text">Discuz开发之主题表pre_forum_thread的displayorder字段含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Discuz-二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre-forum-thread的displayorder字段含义："><span class="toc-number">1.0.1.</span> <span class="toc-text">Discuz!二次开发和插件开发中经常涉及对主题表的操作，本文就介绍一下pre_forum_thread的displayorder字段含义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><span class="toc-number">1.0.2.</span> <span class="toc-text">在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</span></a></li></ol></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Discuz开发之主题表pre-forum-thread的displayorder字段含义"><span class="toc-number">1.</span> <span class="toc-text">Discuz开发之主题表pre_forum_thread的displayorder字段含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Discuz-本文就介绍一下pre-forum-thread的displayorder字段含义："><span class="toc-number">1.0.1.</span> <span class="toc-text">Discuz!本文就介绍一下pre_forum_thread的displayorder字段含义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；"><span class="toc-number">1.0.2.</span> <span class="toc-text">在前后台的版主管理操作中，可以进行删除主题的操作，如果此版块设置启用了回收站，那么主题被删除时被放入回收站，displayorder为-1，否则直接从数据库中删除；</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
