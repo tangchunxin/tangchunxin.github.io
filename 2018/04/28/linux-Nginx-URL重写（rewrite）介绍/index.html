@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2018-04-28T13:36:29.000Z" itemprop="datePublished">2018-04-28</time>
-    更新日期:<time datetime="2018-08-17T01:56:53.626Z" itemprop="dateModified">2018-08-17</time>
+    更新日期:<time datetime="2018-08-20T02:50:43.423Z" itemprop="dateModified">2018-08-20</time>
     
   </p>
 </header>
@@ -88,23 +88,19 @@
 		
 		<h2 id="Nginx-URL重写（rewrite）介绍"><a href="#Nginx-URL重写（rewrite）介绍" class="headerlink" title="Nginx URL重写（rewrite）介绍"></a>Nginx URL重写（rewrite）介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite ^([^\.]*)/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9]+)\.(gif|jpg|jpeg)$  https://www.baidu.com last;</span><br></pre></td></tr></table></figure>
 <p> 注意这里要用‘’单引号引起来，避免{}<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite &apos;^/images/([a-z]&#123;2&#125;)/([a-z0-9]&#123;5&#125;)/(.*)\.(png|jpg|gif)$&apos; /data?file=$3.$4;</span><br></pre></td></tr></table></figure></p>
-<pre><code>和apache等web服务软件一样，rewrite的组要功能是实现RUL地址的重定向。Nginx的rewrite功能需要PCRE软件的支持，即通过perl兼容正则表达式语句进行规则匹配的。默认参数编译nginx就会支持rewrite的模块，但是也必须要PCRE的支持
-</code></pre><ul>
-<li>rewrite是实现URL重写的关键指令，根据regex（正则表达式）部分内容，重定向到replacement，结尾是flag标记。</li>
-</ul>
 <ul>
+<li>和apache等web服务软件一样，rewrite的组要功能是实现RUL地址的重定向。Nginx的rewrite功能需要PCRE软件的支持，即通过perl兼容正则表达式语句进行规则匹配的。默认参数编译nginx就会支持rewrite的模块，但是也必须要PCRE的支持</li>
+<li><p>rewrite是实现URL重写的关键指令，根据regex（正则表达式）部分内容，重定向到replacement，结尾是flag标记。</p>
+</li>
 <li><p>rewrite语法格式及参数语法说明如下:</p>
-<p>  rewrite|<regex>|<replacement>|[flag]|<br>  —|:—:|:—:|:—:|<br>  |关键字|正则|替代内容|flag标记</replacement></regex></p>
+<p>  rewrite</p>
+<p>  关键字：其中关键字error_log不能改变</p>
+<p>  正则：perl兼容正则表达式语句进行规则匹配</p>
+<p>  替代内容：将正则匹配的内容替换成replacement</p>
+<p>  flag标记：rewrite支持的flag标记</p>
 </li>
 </ul>
-<pre><code>关键字：其中关键字error_log不能改变
-
-正则：perl兼容正则表达式语句进行规则匹配
-
-替代内容：将正则匹配的内容替换成replacement
-
-flag标记：rewrite支持的flag标记
-</code></pre><p>flag标记说明：</p>
+<p>flag标记说明：</p>
 <p>last  #本条规则匹配完成后，继续向下匹配新的location URI规则</p>
 <p>break  #本条规则匹配完成即终止，不再匹配后面的任何规则</p>
 <p>redirect  #返回302临时重定向，浏览器地址会显示跳转后的URL地址</p>
