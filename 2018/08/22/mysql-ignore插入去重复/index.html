@@ -4,16 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>nginx设置禁止通过ip访问 | 黄溜溜@PHP</title>
+    <title>mysql ignore插入去重复 | 黄溜溜@PHP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Tangchunxin">
     
-    <meta name="description" content="为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。
-最关键的一点是，在server的设置里面添加这么一行：  
-Listen 80 default;  
-后面的default参数表示这个是默认的虚拟主机。  
-例如：别">
+    <meta name="description" content="Mysql 唯一索引 防止重复插入数据一般的批量插的 sql语句数据违反唯一性约束时，出现重复数据将会直接报错并停止执行
+insert into tb_name (field1,field2) values(f11,f12),(f21,f22)…
+这种语句将会报错并停止执行   Warning: (">
     
     
     
@@ -69,14 +67,14 @@ Listen 80 default;
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" title="nginx设置禁止通过ip访问" itemprop="url">nginx设置禁止通过ip访问</a>
+      <a href="/2018/08/22/mysql-ignore插入去重复/" title="mysql ignore插入去重复" itemprop="url">mysql ignore插入去重复</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-04-28T13:35:28.000Z" itemprop="datePublished">2018-04-28</time>
+    <time datetime="2018-08-22T14:44:07.000Z" itemprop="datePublished">2018-08-22</time>
     更新日期:<time datetime="2018-08-24T04:22:26.961Z" itemprop="dateModified">2018-08-24</time>
     
   </p>
@@ -86,19 +84,15 @@ Listen 80 default;
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。"><span class="toc-number">1.</span> <span class="toc-text">为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-唯一索引-防止重复插入数据"><span class="toc-number">1.</span> <span class="toc-text">Mysql 唯一索引 防止重复插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法："><span class="toc-number">2.</span> <span class="toc-text">解决方法：</span></a></li></ol>
 		</div>
 		
-		<h4 id="为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。"><a href="#为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。" class="headerlink" title="为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。"></a>为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。</h4><ul>
-<li>最关键的一点是，在server的设置里面添加这么一行：  </li>
-<li>Listen 80 default;  </li>
-<li>后面的default参数表示这个是默认的虚拟主机。  </li>
-<li><p>例如：别人如果通过ip或者未知域名访问你的网站的时候，你希望禁止显示任何有效内容，可以给他返回404。具体如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">       listen 80 default;</span><br><span class="line">       listen [::]:80 default;</span><br><span class="line">       server_name _;  </span><br><span class="line">       return 404;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当然，按照上述设置，的确不能让别人通过ip访问服务器了，但是还应该开放一个或多个真实的希望被访问的域名配置，设置如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//增加一个server段</span><br><span class="line">server &#123;  </span><br><span class="line">       listen 80 default;</span><br><span class="line">       listen [::]:80 default;</span><br><span class="line">       server_name _;  </span><br><span class="line">       return 404;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//将原有的 修改为只允许某几个域名访问</span><br><span class="line">server &#123;  </span><br><span class="line">        linten 80; </span><br><span class="line">        listen [::]:80;</span><br><span class="line">        server_name www.941db.com www.aaa.com； （以世海夺宝网为例）  </span><br><span class="line">………..  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+		<h4 id="Mysql-唯一索引-防止重复插入数据"><a href="#Mysql-唯一索引-防止重复插入数据" class="headerlink" title="Mysql 唯一索引 防止重复插入数据"></a>Mysql 唯一索引 防止重复插入数据</h4><p>一般的批量插的 sql语句数据违反唯一性约束时，出现重复数据将会直接报错并停止执行</p>
+<p>insert into tb_name (field1,field2) values(f11,f12),(f21,f22)…</p>
+<p>这种语句将会报错并停止执行   Warning: (1062, “Duplicate entry ‘  ‘ for key ‘索引’”)</p>
+<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><p>在语句中添加 ignore 关键字</p>
+<p>insert ignore into tb_name (field1,field2) values(f11,f12),(f21,f22)…</p>
+<p>这个语句数据违反唯一性约束时，出现重复数据则会将会直接跳过</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -108,7 +102,7 @@ Listen 80 default;
 
 <div class="article-share" id="share">
 
-  <div data-url="http://tangchunxin.com/2018/04/28/linux-nginx设置禁止通过ip访问服务器/" data-title="nginx设置禁止通过ip访问 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  <div data-url="http://tangchunxin.com/2018/08/22/mysql-ignore插入去重复/" data-title="mysql ignore插入去重复 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -118,18 +112,18 @@ Listen 80 default;
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2018/04/28/linux-Nginx-URL重写（rewrite）介绍/" title="Nginx URL（rewrite）介绍">
+ <a href="/2018/08/24/discuz-删除用户信息/" title="discuz 删除用户信息">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Nginx URL（rewrite）介绍</span>
+  discuz 删除用户信息</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2018/04/28/php-header/"  title="php  header">
+<a href="/2018/08/20/Hexo-LF-错误/"  title="Hexo LF 错误">
  <strong>NEXT:</strong><br/> 
- <span>php  header
+ <span>Hexo LF 错误
 </span>
 </a>
 </div>
@@ -142,7 +136,7 @@ Listen 80 default;
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。"><span class="toc-number">1.</span> <span class="toc-text">为了避免别人把未备案的域名解析到自己的服务器ip而导致服务器被断网，需要在nginx上设置禁止通过ip访问服务器，只能通过域名访问。</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-唯一索引-防止重复插入数据"><span class="toc-number">1.</span> <span class="toc-text">Mysql 唯一索引 防止重复插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法："><span class="toc-number">2.</span> <span class="toc-text">解决方法：</span></a></li></ol>
   </div>
 
 <div id="asidepart">
