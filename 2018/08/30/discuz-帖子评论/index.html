@@ -1,0 +1,290 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>discuz 帖子评论 | 黄溜溜@PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tangchunxin">
+    
+    <meta name="description" content="discuz帖子评论 整个流程涉及到discuz后台的控制,各种条件判断比较多,暂时先梳理一下涉及到的流程1.我是在ajax_littleprocedure.php项目中直接引用的h5页面,否则逻辑太多,很难弄清楚流程,这此文件中,初始化discuz一些参数,否则无法引用forum_post.php">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="黄溜溜@PHP" title="黄溜溜@PHP"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
+				<h2 class="blog-motto">一个小小的PHP</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:tangchunxin.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/08/30/discuz-帖子评论/" title="discuz 帖子评论" itemprop="url">discuz 帖子评论</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2018-08-30T02:24:05.000Z" itemprop="datePublished">2018-08-30</time>
+    更新日期:<time datetime="2018-08-30T02:24:36.646Z" itemprop="dateModified">2018-08-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#discuz帖子评论-整个流程涉及到discuz后台的控制-各种条件判断比较多-暂时先梳理一下涉及到的流程"><span class="toc-number">1.</span> <span class="toc-text">discuz帖子评论 整个流程涉及到discuz后台的控制,各种条件判断比较多,暂时先梳理一下涉及到的流程</span></a></li></ol>
+		</div>
+		
+		<h4 id="discuz帖子评论-整个流程涉及到discuz后台的控制-各种条件判断比较多-暂时先梳理一下涉及到的流程"><a href="#discuz帖子评论-整个流程涉及到discuz后台的控制-各种条件判断比较多-暂时先梳理一下涉及到的流程" class="headerlink" title="discuz帖子评论 整个流程涉及到discuz后台的控制,各种条件判断比较多,暂时先梳理一下涉及到的流程"></a>discuz帖子评论 整个流程涉及到discuz后台的控制,各种条件判断比较多,暂时先梳理一下涉及到的流程</h4><p>1.我是在ajax_littleprocedure.php项目中直接引用的h5页面,否则逻辑太多,很难弄清楚流程,这此文件中,初始化discuz一些参数,否则无法引用forum_post.php,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">require_once &apos;./source/class/class_core.php&apos;;</span><br><span class="line">require_once &apos;./source/function/function_forum.php&apos;;</span><br><span class="line">global $_G;</span><br><span class="line">C::app()-&gt;cachelist = $cachelist;</span><br><span class="line">C::app()-&gt;init();</span><br><span class="line">$_G[&apos;uid&apos;] = C::app()-&gt;var[&apos;member&apos;][&apos;uid&apos;] = intval($_POST[&apos;uid&apos;]);</span><br><span class="line">$_G[&apos;username&apos;] = C::app()-&gt;var[&apos;member&apos;][&apos;username&apos;] = trim($_POST[&apos;username&apos;]);</span><br><span class="line"></span><br><span class="line">loadforum();</span><br><span class="line">set_rssauth();</span><br><span class="line">$_GET[&apos;action&apos;] = &apos;reply&apos;;</span><br><span class="line">$_G[&apos;group&apos;][&apos;allowreply&apos;] = $access[&apos;allowreply&apos;];</span><br><span class="line"></span><br><span class="line">$_G[&apos;check_version&apos;] = true;</span><br><span class="line"></span><br><span class="line">$_G[&apos;setting&apos;][&apos;threadhidethreshold&apos;] = 1;</span><br><span class="line">//帖子评论 刷新缓存</span><br><span class="line">$_G[&apos;form_wechat_cache&apos;]=1;</span><br><span class="line">require_once &apos;./source/module/forum/forum_post.php&apos;;</span><br></pre></td></tr></table></figure>
+<p>2.discuz底层的forum_post.php这里面主要是调用 post_newreply.php进行写表操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">source\module\forum\forum_post.php</span><br><span class="line">if($_GET[&apos;action&apos;] == &apos;reply&apos;) &#123;</span><br><span class="line"></span><br><span class="line">    ...............</span><br><span class="line">    </span><br><span class="line">  require_once libfile(&apos;post/newreply&apos;, &apos;include&apos;);  </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.post_newreply.php这里的写表操作之前,要对是否允许发帖做了验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source\include\post\post_newreply.php</span><br></pre></td></tr></table></figure></p>
+<p>调用newreplay方法进行写表,而这个方法在source\class\model\model_forum_post.php中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$return = $modpost-&gt;newreply($params);</span><br></pre></td></tr></table></figure></p>
+<p>4.在调用newreplay方法 其中还涉及对invisible字段进行验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if(strpos($this-&gt;member[&apos;extgroupids&apos;],&quot;42&quot;)===false)&#123;</span><br><span class="line">$res = TyLib_Antispam_Text::main($data);</span><br><span class="line">if($res[&apos;code&apos;]!=200)&#123;</span><br><span class="line">    $yundun=$res[&apos;msg&apos;];</span><br><span class="line">    list(, $this-&gt;param[&apos;modnewreplies&apos;]) =array(&quot;&quot;,1);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    $yundun=&quot;&quot;;</span><br><span class="line">    list(, $this-&gt;param[&apos;modnewreplies&apos;]) = threadmodstatus($this-&gt;param[&apos;subject&apos;].&quot;\t&quot;.$this-&gt;param[&apos;message&apos;].$this-&gt;param[&apos;extramessage&apos;]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">$yundun=&quot;&quot;;</span><br><span class="line">list(, $this-&gt;param[&apos;modnewreplies&apos;]) = threadmodstatus($this-&gt;param[&apos;subject&apos;].&quot;\t&quot;.$this-&gt;param[&apos;message&apos;].$this-&gt;param[&apos;extramessage&apos;]);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Discuz pre_forum_post invisible字段</span><br><span class="line">invisible ：0 正常</span><br><span class="line">invisible ：-3  已忽略</span><br><span class="line">invisible ：-2  待审核</span><br><span class="line">invisible ：-5  回收站</span><br><span class="line">invisible : -1 主题帖在回收站中</span><br></pre></td></tr></table></figure>
+<p>5.这个invisible字段的验证,还涉及到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source\class\discuz\discuz_model.php</span><br><span class="line"></span><br><span class="line">source\function\function_forum.php</span><br></pre></td></tr></table></figure>
+<p>中的方法,比如$_G[‘group’][‘allowdirectpost’]是否允许直接发帖,这个是在discuz后台中设置的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function threadmodstatus($string) &#123;</span><br><span class="line">	global $_G;</span><br><span class="line">	$postmodperiods = periodscheck(&apos;postmodperiods&apos;, 0);</span><br><span class="line">	if($postmodperiods) &#123;</span><br><span class="line">		$modnewthreads = $modnewreplies = 1;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		$censormod = censormod($string);</span><br><span class="line">		$modnewthreads = (!$_G[&apos;group&apos;][&apos;allowdirectpost&apos;] || $_G[&apos;group&apos;][&apos;allowdirectpost&apos;] == 1) &amp;&amp; $_G[&apos;forum&apos;][&apos;modnewposts&apos;] || $censormod ? 1 : 0;</span><br><span class="line">		$modnewreplies = (!$_G[&apos;group&apos;][&apos;allowdirectpost&apos;] || $_G[&apos;group&apos;][&apos;allowdirectpost&apos;] == 2) &amp;&amp; $_G[&apos;forum&apos;][&apos;modnewposts&apos;] == 2 || $censormod ? 1 : 0;</span><br><span class="line"></span><br><span class="line">		if($_G[&apos;forum&apos;][&apos;status&apos;] == 3) &#123;</span><br><span class="line">			$modnewthreads = !$_G[&apos;group&apos;][&apos;allowgroupdirectpost&apos;] || $_G[&apos;group&apos;][&apos;allowgroupdirectpost&apos;] == 1 || $censormod ? 1 : 0;</span><br><span class="line">			$modnewreplies = !$_G[&apos;group&apos;][&apos;allowgroupdirectpost&apos;] || $_G[&apos;group&apos;][&apos;allowgroupdirectpost&apos;] == 2 || $censormod ? 1 : 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$_G[&apos;group&apos;][&apos;allowposturl&apos;] = $_G[&apos;forum&apos;][&apos;status&apos;] != 3 ? $_G[&apos;group&apos;][&apos;allowposturl&apos;] : $_G[&apos;group&apos;][&apos;allowgroupposturl&apos;];</span><br><span class="line">	if($_G[&apos;group&apos;][&apos;allowposturl&apos;] == 1) &#123;</span><br><span class="line">		if(!$postmodperiods) &#123;</span><br><span class="line">			$censormod = censormod($string);</span><br><span class="line">		&#125;</span><br><span class="line">		if($censormod) &#123;</span><br><span class="line">			$modnewthreads = $modnewreplies = 1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return array($modnewthreads, $modnewreplies);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://tangchunxin.com/2018/08/30/discuz-帖子评论/" data-title="discuz 帖子评论 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/08/24/discuz-删除用户信息/"  title="discuz 删除用户信息">
+ <strong>NEXT:</strong><br/> 
+ <span>discuz 删除用户信息
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#discuz帖子评论-整个流程涉及到discuz后台的控制-各种条件判断比较多-暂时先梳理一下涉及到的流程"><span class="toc-number">1.</span> <span class="toc-text">discuz帖子评论 整个流程涉及到discuz后台的控制,各种条件判断比较多,暂时先梳理一下涉及到的流程</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://tangchunxin.com" target="_blank" title="Tangchunxin">Tangchunxin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://qr.liantu.com/api.php?text=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
