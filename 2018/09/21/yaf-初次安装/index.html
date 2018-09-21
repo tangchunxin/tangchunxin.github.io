@@ -1,0 +1,321 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>yaf 初次安装 | 黄溜溜@PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tangchunxin">
+    
+    <meta name="description" content="1 .https://blog.csdn.net/aozeahj/article/details/62445959
+
+yaf扩展安装http://www.zixuephp.net/article-383.html
+下载yaf项目：在github上
+搜索yaf
+复制zip链接
+https://gith">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="黄溜溜@PHP" title="黄溜溜@PHP"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
+				<h2 class="blog-motto">一个小小的PHP</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:tangchunxin.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/21/yaf-初次安装/" title="yaf 初次安装" itemprop="url">yaf 初次安装</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2018-09-21T09:49:01.000Z" itemprop="datePublished">2018-09-21</time>
+    更新日期:<time datetime="2018-09-21T09:49:27.325Z" itemprop="dateModified">2018-09-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#yaf扩展安装"><span class="toc-number">1.</span> <span class="toc-text">yaf扩展安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载yaf项目："><span class="toc-number">2.</span> <span class="toc-text">下载yaf项目：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由"><span class="toc-number">3.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改路由配置"><span class="toc-number">4.</span> <span class="toc-text">修改路由配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rewrite"><span class="toc-number">5.</span> <span class="toc-text">rewrite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问方式"><span class="toc-number">6.</span> <span class="toc-text">访问方式</span></a></li></ol>
+		</div>
+		
+		<blockquote>
+<p>1 .<a href="https://blog.csdn.net/aozeahj/article/details/62445959" target="_blank" rel="noopener">https://blog.csdn.net/aozeahj/article/details/62445959</a></p>
+</blockquote>
+<h2 id="yaf扩展安装"><a href="#yaf扩展安装" class="headerlink" title="yaf扩展安装"></a>yaf扩展安装</h2><p><a href="http://www.zixuephp.net/article-383.html" target="_blank" rel="noopener">http://www.zixuephp.net/article-383.html</a></p>
+<h2 id="下载yaf项目："><a href="#下载yaf项目：" class="headerlink" title="下载yaf项目："></a>下载yaf项目：</h2><p>在github上</p>
+<p>搜索yaf</p>
+<p>复制zip链接</p>
+<p><a href="https://github.com/laruence/yaf/archive/master.zip" target="_blank" rel="noopener">https://github.com/laruence/yaf/archive/master.zip</a></p>
+<p>进入自己目录</p>
+<p>mkdir tmp   //新建一个临时目录</p>
+<p>cd tmp/</p>
+<p>ls</p>
+<p>wget <a href="https://github.com/laruence/yaf/archive/master.zip" target="_blank" rel="noopener">https://github.com/laruence/yaf/archive/master.zip</a></p>
+<p>unzip master.zip //解压<br>会出现一个yaf-master目录<br>cd yaf-master</p>
+<p>cd tools/</p>
+<p>cd cg/</p>
+<p>在这个目录执行</p>
+<p>：./yaf_cg   //会生产yaf最简单代码</p>
+<p>：./yaf_cg itbull 取个名字</p>
+<p>注意：//这里会出现三个命令没打开，是因为要在php.ini  disable_functions把这几个删掉</p>
+<p>vim /usr/local/php/etc/php.ini</p>
+<p>cd output/</p>
+<p>ls</p>
+<p>itbull这里面就是刚刚生产的代码</p>
+<p>cd /home/work/itbull/我们项目目录</p>
+<p>cp -rf tmp/yaf-master/tools/cg/output/itbull/* ./复制那些代码</p>
+<p>进入项目目录，就可以了！</p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p><a href="https://blog.csdn.net/Cpath/article/details/69218478" target="_blank" rel="noopener">https://blog.csdn.net/Cpath/article/details/69218478</a></p>
+<h2 id="修改路由配置"><a href="#修改路由配置" class="headerlink" title="修改路由配置"></a>修改路由配置</h2><p>\application\Bootstrap.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public function _initRoute(Yaf_Dispatcher $dispatcher) &#123;</span><br><span class="line">		//在这里注册自己的路由协议,默认使用简单路由</span><br><span class="line">        $router = $dispatcher-&gt;getRouter();</span><br><span class="line">        $router-&gt;addConfig(Yaf_Registry::get(&quot;config&quot;)-&gt;routes);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>\conf\application.ini<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[common]</span><br><span class="line">application.directory = APPLICATION_PATH  &quot;/application&quot;</span><br><span class="line">application.dispatcher.catchException = TRUE</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;添加一个名为simple的路由协议</span><br><span class="line">routes.simple.type=&quot;simple&quot;</span><br><span class="line">routes.simple.controller=c</span><br><span class="line">routes.simple.module=m</span><br><span class="line">routes.simple.action=a</span><br><span class="line">;添加一个名为supervar的路由协议</span><br><span class="line">routes.supervar.type=&quot;supervar&quot;</span><br><span class="line">routes.supervar.varname=r</span><br><span class="line">[product : common]</span><br></pre></td></tr></table></figure></p>
+<h2 id="rewrite"><a href="#rewrite" class="headerlink" title="rewrite"></a>rewrite</h2><p>rewrite ^([^.]*)/(.+)/(.+)$  $1/index.php?r=/$2/$3 last;</p>
+<h2 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h2><p><a href="http://www.xxx.com/index/test1?get=参数" target="_blank" rel="noopener">www.xxx.com/index/test1?get=参数</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://tangchunxin.com/2018/09/21/yaf-初次安装/" data-title="yaf 初次安装 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/09/21/抢购秒杀业务/"  title="抢购秒杀业务">
+ <strong>NEXT:</strong><br/> 
+ <span>抢购秒杀业务
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#yaf扩展安装"><span class="toc-number">1.</span> <span class="toc-text">yaf扩展安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载yaf项目："><span class="toc-number">2.</span> <span class="toc-text">下载yaf项目：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由"><span class="toc-number">3.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改路由配置"><span class="toc-number">4.</span> <span class="toc-text">修改路由配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rewrite"><span class="toc-number">5.</span> <span class="toc-text">rewrite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问方式"><span class="toc-number">6.</span> <span class="toc-text">访问方式</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/u/5908174541/home" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/tangchunxin" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://tangchunxin.com" target="_blank" title="Tangchunxin">Tangchunxin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://qr.liantu.com/api.php?text=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
