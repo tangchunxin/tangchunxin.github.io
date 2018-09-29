@@ -1,0 +1,495 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PC帖子详情变量 | 黄溜溜@PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tangchunxin">
+    
+    <meta name="description" content="涉及的id
+$_G uid 用户id
+$_G fid 当前帖子属于的板块id
+$_G tid 帖子主题id
+$_G pid 帖子id
+发帖按钮下拉菜单$_G group 会员用户组权限表
+allowpost 允许发帖
+
+allowposttrade 允许发表交易
+allowpostpoll 允许发表">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="黄溜溜@PHP" title="黄溜溜@PHP"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
+				<h2 class="blog-motto">一个小小的PHP</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:tangchunxin.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/29/PC帖子详情变量/" title="PC帖子详情变量" itemprop="url">PC帖子详情变量</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2018-09-29T09:34:25.000Z" itemprop="datePublished">2018-09-29</time>
+    更新日期:<time datetime="2018-09-29T09:43:08.798Z" itemprop="dateModified">2018-09-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#涉及的id"><span class="toc-number">1.</span> <span class="toc-text">涉及的id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发帖按钮下拉菜单"><span class="toc-number">2.</span> <span class="toc-text">发帖按钮下拉菜单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#G-group-会员用户组权限表"><span class="toc-number">2.0.1.</span> <span class="toc-text">$_G group 会员用户组权限表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帖子及评论部分"><span class="toc-number">3.</span> <span class="toc-text">帖子及评论部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#post-文章及评论列表"><span class="toc-number">3.0.1.</span> <span class="toc-text">post 文章及评论列表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G-setting-设置"><span class="toc-number">4.</span> <span class="toc-text">$_G setting 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文章标题"><span class="toc-number">5.</span> <span class="toc-text">文章标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G-forum-板块表"><span class="toc-number">6.</span> <span class="toc-text">$_G forum 板块表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#threadtypes-主题分类"><span class="toc-number">6.0.1.</span> <span class="toc-text">threadtypes 主题分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊类型帖子"><span class="toc-number">7.</span> <span class="toc-text">特殊类型帖子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#辩论帖子"><span class="toc-number">7.0.1.</span> <span class="toc-text">辩论帖子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#辩论帖子表-debate-post"><span class="toc-number">7.0.2.</span> <span class="toc-text">辩论帖子表 debate $post</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#投票帖子"><span class="toc-number">7.0.3.</span> <span class="toc-text">投票帖子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#楼中楼的楼层循环："><span class="toc-number">7.0.4.</span> <span class="toc-text">楼中楼的楼层循环：</span></a></li></ol></li></ol></li></ol>
+		</div>
+		
+		<h2 id="涉及的id"><a href="#涉及的id" class="headerlink" title="涉及的id"></a>涉及的id</h2><ul>
+<li>$_G uid 用户id</li>
+<li>$_G fid 当前帖子属于的板块id</li>
+<li>$_G tid 帖子主题id</li>
+<li><p>$_G pid 帖子id</p>
+<h2 id="发帖按钮下拉菜单"><a href="#发帖按钮下拉菜单" class="headerlink" title="发帖按钮下拉菜单"></a>发帖按钮下拉菜单</h2><h4 id="G-group-会员用户组权限表"><a href="#G-group-会员用户组权限表" class="headerlink" title="$_G group 会员用户组权限表"></a>$_G group 会员用户组权限表</h4></li>
+<li><p>allowpost 允许发帖</p>
+</li>
+<li>allowposttrade 允许发表交易</li>
+<li>allowpostpoll 允许发表投票</li>
+<li>allowpostreward 允许发表悬赏</li>
+<li>allowpostactivity 允许发表活动</li>
+<li>allowpostdebate 允许发表辩论</li>
+<li>allowvote 允许投票</li>
+<li>allowvotepolled 已投过</li>
+<li>allowvotethread 该投票已经关闭或者过期，不能投票</li>
+<li>allwvoteusergroup 如果等于 0 所在的用户组没有投票权限</li>
+<li>allowrecommend 允许推荐</li>
+<li>allowgetattach 允许下载附件</li>
+<li>allowgetimage 允许查看图片</li>
+<li>raterange 当前用户组是否允许参与评分，及各设置</li>
+<li>allowthreadplugin 允许发布扩展特殊主题</li>
+</ul>
+<h2 id="帖子及评论部分"><a href="#帖子及评论部分" class="headerlink" title="帖子及评论部分"></a>帖子及评论部分</h2><h4 id="post-文章及评论列表"><a href="#post-文章及评论列表" class="headerlink" title="post 文章及评论列表"></a>post 文章及评论列表</h4><ul>
+<li>$postlist_first[groupicon]：楼主用户组图标</li>
+<li>$postlist_first[‘medals’]：楼主勋章</li>
+<li>$_G[‘medal_list’]：楼主勋章弹窗信息列表 勋章名称 介绍</li>
+<li>$numbercard：楼主的积分、天眼币、主题、回帖</li>
+<li>$near_threads：楼主最新帖子</li>
+<li>$is_sign：是否签到 1签了 0没有签</li>
+<li>$showtime：当前日期（7.11）</li>
+<li>$showdata： 星期几</li>
+<li>$month_sign_num：累计签到天数</li>
+<li>$solrThread：相关帖子</li>
+<li>$latest_threads：最新帖子</li>
+<li>$solrArticle：相关文章</li>
+<li>$solrWd：相关问答</li>
+<li>$domain_body：平台关键字</li>
+<li>$platform_name：平台名称</li>
+<li>authorid 作者id</li>
+<li>username 当前登录用户用户名</li>
+<li>anonymous 是否匿名 默认0</li>
+<li>usesig 是否为移动端 1 为 PC</li>
+<li>author 层主/楼主昵称</li>
+<li>avatar 层主/楼主头像</li>
+<li>authortitle 评论用户组文字</li>
+<li>first 帖子</li>
+<li>warned 受到警告</li>
+<li>isstick 置顶评论</li>
+<li>rewardfloor 奖励楼层</li>
+<li>groupid 用户组id</li>
+<li>$needhiddenreply 是否需要隐藏回复</li>
+<li>memberstatus 判断用户是否被删除</li>
+<li>status 帖子状态</li>
+<li>deleted 帖子(评论)被删除</li>
+<li>number 楼层号</li>
+<li>postreview 回帖投票</li>
+<li>verifyicon 用户认证设置的信息</li>
+<li>allowcomment 允许评论</li>
+<li>invisible 0 正常 -3 已忽略 -2 待审核 -5 回收站 -1 主题帖在回收站中</li>
+<li>signature 签名信息</li>
+<li>adminid 管理组ID</li>
+<li>tags 帖子TAG列表</li>
+<li>imagelist 图片附件数组</li>
+<li>imagelistcount 图片附件数量</li>
+<li>ratelog 缓存的评分</li>
+</ul>
+<h2 id="G-setting-设置"><a href="#G-setting-设置" class="headerlink" title="$_G setting 设置"></a>$_G setting 设置</h2><ul>
+<li>close_leftinfo_userctrl 是否显示 收起左侧用户信息栏按钮</li>
+<li>close_leftinfo 当前开启还是关闭 关闭 1 打开 0</li>
+<li>guesttipsinthread 游客在浏览主题时 在主题的顶部显示提示问题</li>
+<li>bannedmessages 隐藏敏感帖子内容:1帖子内容2用户头像4用户签名</li>
+<li>recommendthread 主题评价相关设置内容</li>
+<li>repliesrank 启用回帖投票，1是0否</li>
+<li>filterednovote 水帖不能参与回帖投票，1是0否</li>
+<li>imagelistthumb 帖内图片列表中图片横排显示条件，0或空为关闭横排显示</li>
+<li>commentnumber 开启帖子点评后，帖子中显示点评的条目数</li>
+<li>visitedforums 版块列表和帖子浏览中最近访问过的版块</li>
+</ul>
+<h2 id="文章标题"><a href="#文章标题" class="headerlink" title="文章标题"></a>文章标题</h2><ul>
+<li>$_G forum_threadstamp 图章</li>
+<li>$vid 认证序号对应的id</li>
+<li>$pluginhooks 插件</li>
+<li>threadmaxpages 帖子最大页数</li>
+<li>$_G forum_thread 主题表</li>
+<li>typeid 主题分类id</li>
+<li>sortid 分类信息id</li>
+<li>subject 标题</li>
+<li>displayorder 显示顺序</li>
+<li>authorid 作者id</li>
+<li>recommendlevel 推荐等级</li>
+<li>heatlevel 热度等级</li>
+<li>closed 是否关闭</li>
+<li>hidden 是否显示隐藏标签</li>
+<li>threadhidethreshold 设置是否允许帖子中使用 [hide] 隐藏标签</li>
+<li>replycredit 回帖获得积分记录</li>
+<li>replycredit_rule 回帖获得积分规则</li>
+<li>views 浏览量</li>
+<li>allreplies 评论量</li>
+<li>remaintime 剩余时间</li>
+<li>special 特殊主题,1:投票;2:商品;3:悬赏;4:活动;5:辩论贴;127:插件相关</li>
+<li>replies 回复次数</li>
+<li>archiveid 主题分区id</li>
+<li>is_archived 是否存在 主题分区id true false</li>
+</ul>
+<h2 id="G-forum-板块表"><a href="#G-forum-板块表" class="headerlink" title="$_G forum 板块表"></a>$_G forum 板块表</h2><h4 id="threadtypes-主题分类"><a href="#threadtypes-主题分类" class="headerlink" title="threadtypes 主题分类"></a>threadtypes 主题分类</h4><ul>
+<li>threadsorts 分类信息 板块不同下拉菜单不通</li>
+<li>status 显示状态 (0:隐藏 1:正常 3:群组)</li>
+<li>ismoderator 当前登录用户是否为版主</li>
+<li>disablecollect 是否禁用淘帖 1 禁用 0 不禁用</li>
+<li>picstyle 帖子所属版块 是否开启图片列表 1 开启 0 未开启(生效在旧版帖子列表页面 )</li>
+<li>alloweditpost 板块是否允许编辑帖子</li>
+</ul>
+<h2 id="特殊类型帖子"><a href="#特殊类型帖子" class="headerlink" title="特殊类型帖子"></a>特殊类型帖子</h2><h4 id="辩论帖子"><a href="#辩论帖子" class="headerlink" title="辩论帖子"></a>辩论帖子</h4><ul>
+<li><p>$debate</p>
+</li>
+<li><p>endtime 结束时间 等于0 代表没填写</p>
+</li>
+<li>umpire 裁判</li>
+<li>username 当前登录的用户名</li>
+<li>dbendtime 辩论结束时间</li>
+<li>umpirepoint 裁判观点</li>
+<li>affirmvotes 正方支持人数</li>
+<li>affirmpoint 正方观点</li>
+<li>affirmvoteswidth 正方支持百分比</li>
+<li>affirmdebaters 正方辩手数量</li>
+<li>affirmavatars 正方辩手头像信息</li>
+<li>negavotes 反方支持人数</li>
+<li>negapoint 反方观点</li>
+<li>negavoteswidth 反方支持百分比</li>
+<li>negadebaters 反方辩手数量</li>
+<li>negaavatars 反向辩手头像信息</li>
+<li>winner 获胜方 (0:平局 1:为正方 2:为反方) 裁判评判结果</li>
+<li>bestdebater 最佳辩手用户名</li>
+</ul>
+<h4 id="辩论帖子表-debate-post"><a href="#辩论帖子表-debate-post" class="headerlink" title="辩论帖子表 debate $post"></a>辩论帖子表 debate $post</h4><ul>
+<li>stand 立场 (0:中立 1:正方 2:为反方)</li>
+<li>uid 发起人id</li>
+<li>pid 帖子id</li>
+<li>tid 主题id</li>
+<li>dateline 发表的时间</li>
+<li>voters 投票人数</li>
+<li>voterids 投票人的 id 集合</li>
+<li>releatcollectionmore 收入该淘帖主题的专辑列表</li>
+<li>sourcecollection 访问来源：您是从淘专辑xxx访问到本帖的</li>
+</ul>
+<h4 id="投票帖子"><a href="#投票帖子" class="headerlink" title="投票帖子"></a>投票帖子</h4><p>单独变量</p>
+<ul>
+<li>$expiration 过期时间</li>
+<li>$multiple 非0 为多选</li>
+<li>$maxchoices 最多可选</li>
+<li>$visiblepoll 投票是否可见</li>
+<li>$overt 是否公开参与人 0 不公开 1 公开</li>
+<li>$isimagepoll 是否为图片投票</li>
+<li>aid 图片附件id</li>
+<li>poid 选项id</li>
+<li>filename 原文件名</li>
+<li>filesize 文件大小</li>
+<li>attachment 附件,0无附件 1普通附件 2有图片附件</li>
+<li>width 附件宽度</li>
+<li>dateline 上传时间</li>
+<li>percent 投票分布百分比</li>
+<li>votes 当前投票</li>
+<li>$optiontype checkbox 时为多选</li>
+<li>$hiddenreplies 回帖是否仅楼主可见</li>
+<li><p>$rushreply 是否为抢楼帖子<br>单独变量</p>
+</li>
+<li><p>$userRewardList 打赏用户列表</p>
+</li>
+<li>$allowpostreply 允许回复</li>
+<li>$multipage 分页</li>
+<li>$postshowavatars 是否显示头像</li>
+<li>$showavatars 是否显示作者头像，1是0否，后台设置</li>
+<li>$threadplughtml 其他特殊帖子的输出</li>
+<li>$showsignatures 是否显示作者签名，1是0否</li>
+<li>$alloweditpost_status 当前帖子类型是否允许用户随时编辑 1是0否</li>
+<li>$_G[‘inajax’] 当前ajax请求的值【无-0 有-1】</li>
+<li>$_G[‘adminid’] 当前登录ID管理组ID</li>
+<li>$_G[‘member’] Array 当前登录用户个人信息</li>
+<li>$_G[‘cookie’] 客户端cookie</li>
+<li>$_GET[‘highlight’] 搜索词</li>
+</ul>
+<p>####楼中楼</p>
+<ul>
+<li>楼中楼模板： source/plugin/dxksst_floor/template/list_newvesion.htm</li>
+<li>楼中楼回复： source/plugin/dxksst_floor/template/ajax.htm</li>
+<li><p>楼中楼翻页： source/plugin/dxksst_floor/template/page.htm</p>
+</li>
+<li><p>have == 1 : 没有回复 , $have == 2 有回复</p>
+</li>
+<li>$upid 楼中楼所在楼层的 id</li>
+</ul>
+<h4 id="楼中楼的楼层循环："><a href="#楼中楼的楼层循环：" class="headerlink" title="楼中楼的楼层循环："></a>楼中楼的楼层循环：</h4><ul>
+<li>$v[message] 回复内容</li>
+<li>$v[dateline] 回复时间</li>
+<li>$v[‘pid’] 楼层用户ID</li>
+<li>$v[username] 楼层用户名</li>
+<li>$del==1</li>
+<li>$v[self]</li>
+<li>$smiley 楼中楼表情</li>
+<li>$sk 表情组</li>
+<li>$sv 表情图片名<br>2.快速回复</li>
+</ul>
+<p>快速回复所在模板 template/131120/forum/viewthread_newversion_article.htm<br>快速回复DZ后台开关 界面 –&gt; 界面设置 –&gt; 帖子内容页 –&gt; 开启帖子快捷回复<br>附件QQ登录微信登录<br>模板：source/plugin/qqconnect/template/module.htm<br>相关模板及引用<br>帖子部分(帖子、评论)<br>|——/template/131120/forum/viewthread_newversion_index.htm<br>　　　|——template/131120/forum/viewthread_newversion_article.htm<br>　　　　|——/template/131120/forum/viewthread_newversion_discuss_art.htm 帖子内容<br>　　　　　|——template/131120/forum/viewthread_newversion_nodebody.htm 特殊帖子<br>　　　　　　|——template/131120/forum/viewthread_newversion_poll.htm 投票<br>　　　　　　|——template/131120/forum/viewthread_newversion_debate.htm pk帖子<br>　　　　|——/template/131120/forum/viewthread_newversion_discuss.htm 评论内容<br>　　　　　|——template/131120/forum/viewthread_newversion_nodebody.htm 特殊帖子<br>　　　　|——/template/131120/forum/viewthread_newversion_fastpost.htm 底部回复<br>　　　|——/template/131120/forum/viewthread_newversion_related.htm 相关文章 相关问答<br>　　　|——/template/131120/forum/viewthread_newversion_floorhost.htm 楼主信息 签到奖励<br>　　　|——/template/131120/forum/viewthread_newversion_sidelist.htm 相关帖子 最新帖子</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://tangchunxin.com/2018/09/29/PC帖子详情变量/" data-title="PC帖子详情变量 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/09/25/yum安装mysql/"  title="yum安装mysql">
+ <strong>NEXT:</strong><br/> 
+ <span>yum安装mysql
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#涉及的id"><span class="toc-number">1.</span> <span class="toc-text">涉及的id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发帖按钮下拉菜单"><span class="toc-number">2.</span> <span class="toc-text">发帖按钮下拉菜单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#G-group-会员用户组权限表"><span class="toc-number">2.0.1.</span> <span class="toc-text">$_G group 会员用户组权限表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#帖子及评论部分"><span class="toc-number">3.</span> <span class="toc-text">帖子及评论部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#post-文章及评论列表"><span class="toc-number">3.0.1.</span> <span class="toc-text">post 文章及评论列表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G-setting-设置"><span class="toc-number">4.</span> <span class="toc-text">$_G setting 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文章标题"><span class="toc-number">5.</span> <span class="toc-text">文章标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G-forum-板块表"><span class="toc-number">6.</span> <span class="toc-text">$_G forum 板块表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#threadtypes-主题分类"><span class="toc-number">6.0.1.</span> <span class="toc-text">threadtypes 主题分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊类型帖子"><span class="toc-number">7.</span> <span class="toc-text">特殊类型帖子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#辩论帖子"><span class="toc-number">7.0.1.</span> <span class="toc-text">辩论帖子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#辩论帖子表-debate-post"><span class="toc-number">7.0.2.</span> <span class="toc-text">辩论帖子表 debate $post</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#投票帖子"><span class="toc-number">7.0.3.</span> <span class="toc-text">投票帖子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#楼中楼的楼层循环："><span class="toc-number">7.0.4.</span> <span class="toc-text">楼中楼的楼层循环：</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/u/5908174541/home" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/tangchunxin" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://tangchunxin.com" target="_blank" title="Tangchunxin">Tangchunxin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://qr.liantu.com/api.php?text=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
