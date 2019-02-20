@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>PHP中跳转js | 黄溜溜@PHP</title>
+    <title>mysql允许外部访问 | 黄溜溜@PHP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Tangchunxin">
     
-    <meta name="description" content="PHP中跳转  js1234echo &amp;apos;&amp;lt;script language=&amp;quot;javascript&amp;quot;&amp;gt;alert(&amp;quot;添加完成，同步成功&amp;quot;);window.location.href=&amp;quot;http://ymis.p2peye.com/">
+    <meta name="description" content="linux mysql 数据库开启外部访问设置指南Linux下设置MySQL和允许外部机器访问，具体目录是具体情况而定，有的人是安装了在个人目录下，则找到对应的目录则可以Linux下设置MySQL和允许外部机器访问sudo vi /etc/my.cnf具体目录是具体情况而定，有的人是安装了在个人目录">
     
     
     
@@ -65,15 +65,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/05/09/PHP中跳转js/" title="PHP中跳转js" itemprop="url">PHP中跳转js</a>
+      <a href="/2019/02/20/mysql允许外部访问/" title="mysql允许外部访问" itemprop="url">mysql允许外部访问</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-05-09T13:59:10.000Z" itemprop="datePublished">2018-05-09</time>
-    更新日期:<time datetime="2018-08-17T01:56:53.624Z" itemprop="dateModified">2018-08-17</time>
+    <time datetime="2019-02-20T01:36:19.000Z" itemprop="datePublished">2019-02-20</time>
+    更新日期:<time datetime="2019-02-20T01:37:07.210Z" itemprop="dateModified">2019-02-20</time>
     
   </p>
 </header>
@@ -82,10 +82,17 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP中跳转-js"><span class="toc-number">1.</span> <span class="toc-text">PHP中跳转  js</span></a></li></ol>
+		
 		</div>
 		
-		<h2 id="PHP中跳转-js"><a href="#PHP中跳转-js" class="headerlink" title="PHP中跳转  js"></a>PHP中跳转  js</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;&lt;script language=&quot;javascript&quot;&gt;</span><br><span class="line">alert(&quot;添加完成，同步成功&quot;);</span><br><span class="line">window.location.href=&quot;http://ymis.p2peye.com/platform/index&quot;;</span><br><span class="line"> &lt;/script&gt;&apos;;</span><br></pre></td></tr></table></figure>  
+		<p>linux mysql 数据库开启外部访问设置指南<br>Linux下设置MySQL和允许外部机器访问，具体目录是具体情况而定，有的人是安装了在个人目录下，则找到对应的目录则可以<br>Linux下设置MySQL和允许外部机器访问sudo vi /etc/my.cnf<br>具体目录是具体情况而定，有的人是安装了在个人目录下，则找到对应的目录则可以。 </p>
+<p>一、配置文件的修改<br>1.#sudo vim /etc/my.conf<br>找到 bind-address = 127.0.0.1<br>注释掉这句话<br>重启 service mysqld restart</p>
+<p>二、Mysql数据库的修改<br>1) [root@etc etc]# mysql -u root -p<br>Enter password:<br>2)grant all privileges on database.* to <a href="mailto:admin@192.168.1.1" target="_blank" rel="noopener">admin@192.168.1.1</a> identified by ‘password’<br>注意：<br>（1）192.168.1.1是欲连接到此Mysql数据库的客户端的IP地址，而不是Mysql数据库所在数据库服务器的IP地址，切记<br>（2）password就是Mysql数据库root用户的password,根据实际情况需要修改 </p>
+<p>如何访问Linux系统中的MySQL数据库？<br>前不久在Linux系统中安装了MySQL数据库，但Linux系统是一个虚拟机,而真正的主机是Win7，我就试着在Win7下面用MySQL数据库工具去访问Linux系统下的MySQL数据库。但在连接的过程中就出现了问题：<br>Host ‘192.168.0.101’ is not allowed to connect to this MySQL server<br>然后我百度了一下这个问题，找到了以下的几种解决办法。 </p>
+<p>方法一：(修改表)<br>进入Linux系统下的mysql数据库中，打开user表，找到“host”字段值为“localhost”的记录，将值“localhost”更新为“%”。<br>命令如下： </p>
+<p>#mysql -u root -p<br>Enter password：<br>mysql&gt;use mysql;<br>mysql&gt;update user set host=’%’ where user=’root’ and host=’localhost’;<br>mysql&gt;select host,user from user; </p>
+<p>方法二：(授权)<br>例1<br> mysql&gt;grant all privileges on <em>.</em> to ‘tcx‘@’124.200.177.46’ identified by ‘yxj199019’;<br> mysql&gt;flush privileges;</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -94,7 +101,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://tangchunxin.com/2018/05/09/PHP中跳转js/" data-title="PHP中跳转js | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  <div data-url="http://tangchunxin.com/2019/02/20/mysql允许外部访问/" data-title="mysql允许外部访问 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -103,19 +110,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/05/09/hostory-go-1/" title="hostory.go(-1)">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  hostory.go(-1)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/05/09/正则获取主域名/"  title="正则获取主域名">
+<a href="/2018/10/18/PHP-grpc扩展安装/"  title="PHP-grpc扩展安装">
  <strong>NEXT:</strong><br/> 
- <span>正则获取主域名
+ <span>PHP-grpc扩展安装
 </span>
 </a>
 </div>
@@ -128,7 +127,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP中跳转-js"><span class="toc-number">1.</span> <span class="toc-text">PHP中跳转  js</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
