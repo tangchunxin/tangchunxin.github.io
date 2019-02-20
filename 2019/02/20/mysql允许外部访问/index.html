@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2019-02-20T01:36:19.000Z" itemprop="datePublished">2019-02-20</time>
-    更新日期:<time datetime="2019-02-20T01:37:07.210Z" itemprop="dateModified">2019-02-20</time>
+    更新日期:<time datetime="2019-02-20T02:20:14.511Z" itemprop="dateModified">2019-02-20</time>
     
   </p>
 </header>
@@ -91,7 +91,7 @@
 <p>如何访问Linux系统中的MySQL数据库？<br>前不久在Linux系统中安装了MySQL数据库，但Linux系统是一个虚拟机,而真正的主机是Win7，我就试着在Win7下面用MySQL数据库工具去访问Linux系统下的MySQL数据库。但在连接的过程中就出现了问题：<br>Host ‘192.168.0.101’ is not allowed to connect to this MySQL server<br>然后我百度了一下这个问题，找到了以下的几种解决办法。 </p>
 <p>方法一：(修改表)<br>进入Linux系统下的mysql数据库中，打开user表，找到“host”字段值为“localhost”的记录，将值“localhost”更新为“%”。<br>命令如下： </p>
 <p>#mysql -u root -p<br>Enter password：<br>mysql&gt;use mysql;<br>mysql&gt;update user set host=’%’ where user=’root’ and host=’localhost’;<br>mysql&gt;select host,user from user; </p>
-<p>方法二：(授权)<br>例1<br> mysql&gt;grant all privileges on <em>.</em> to ‘tcx‘@’124.200.177.46’ identified by ‘yxj199019’;<br> mysql&gt;flush privileges;</p>
+<p>方法二：(授权)<br>例1<br> mysql&gt;grant all privileges on <em>.</em> to ‘tcx‘@’124.200.177.46’ identified by ‘password’;<br> mysql&gt;flush privileges;</p>
   
 	</div>
 		<footer class="article-footer clearfix">
