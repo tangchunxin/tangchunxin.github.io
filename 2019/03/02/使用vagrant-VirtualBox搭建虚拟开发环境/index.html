@@ -1,0 +1,463 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>使用vagrant+VirtualBox搭建虚拟开发环境 | 黄溜溜@PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tangchunxin">
+    
+    <meta name="description" content="Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。1. 安装VirtualBox去官网http">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="黄溜溜@PHP" title="黄溜溜@PHP"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
+				<h2 class="blog-motto">一个小小的PHP</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:tangchunxin.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/03/02/使用vagrant-VirtualBox搭建虚拟开发环境/" title="使用vagrant+VirtualBox搭建虚拟开发环境" itemprop="url">使用vagrant+VirtualBox搭建虚拟开发环境</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2019-03-02T10:58:43.000Z" itemprop="datePublished">2019-03-02</time>
+    更新日期:<time datetime="2019-03-02T11:02:50.571Z" itemprop="dateModified">2019-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。"><span class="toc-number">1.</span> <span class="toc-text">Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装VirtualBox"><span class="toc-number"></span> <span class="toc-text">1. 安装VirtualBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装Vagrant"><span class="toc-number"></span> <span class="toc-text">2. 安装Vagrant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vagrant命令详解"><span class="toc-number"></span> <span class="toc-text">3. Vagrant命令详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用Vagrant安装配置虚拟机"><span class="toc-number"></span> <span class="toc-text">4. 使用Vagrant安装配置虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-box是什么？"><span class="toc-number">0.1.</span> <span class="toc-text">4.1 box是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-如何安装一个box？"><span class="toc-number">0.2.</span> <span class="toc-text">4.2 如何安装一个box？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-设置共享目录-virtualbox中设置-共享文件夹"><span class="toc-number">0.3.</span> <span class="toc-text">4.3 设置共享目录   virtualbox中设置-共享文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-设置虚拟机网络-virtualbox中设置-网络"><span class="toc-number">0.4.</span> <span class="toc-text">4.4 设置虚拟机网络  virtualbox中设置-网络</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。"><span class="toc-number"></span> <span class="toc-text">Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#报错信息"><span class="toc-number">0.1.</span> <span class="toc-text">报错信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。-1"><span class="toc-number">1.</span> <span class="toc-text">Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装VirtualBox-1"><span class="toc-number"></span> <span class="toc-text">1. 安装VirtualBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装Vagrant-1"><span class="toc-number"></span> <span class="toc-text">2. 安装Vagrant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vagrant命令详解-1"><span class="toc-number"></span> <span class="toc-text">3. Vagrant命令详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用Vagrant安装配置虚拟机-1"><span class="toc-number"></span> <span class="toc-text">4. 使用Vagrant安装配置虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-box是什么？-1"><span class="toc-number">0.1.</span> <span class="toc-text">4.1 box是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-如何安装一个box？-1"><span class="toc-number">0.2.</span> <span class="toc-text">4.2 如何安装一个box？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-设置共享目录-virtualbox中设置-共享文件夹-1"><span class="toc-number">0.3.</span> <span class="toc-text">4.3 设置共享目录   virtualbox中设置-共享文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-设置虚拟机网络-virtualbox中设置-网络-1"><span class="toc-number">0.4.</span> <span class="toc-text">4.4 设置虚拟机网络  virtualbox中设置-网络</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。-1"><span class="toc-number"></span> <span class="toc-text">Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#报错信息-1"><span class="toc-number">0.1.</span> <span class="toc-text">报错信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#报错原因："><span class="toc-number">0.2.</span> <span class="toc-text">报错原因：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案："><span class="toc-number">0.3.</span> <span class="toc-text">解决方案：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用php-cgi-sock"><span class="toc-number"></span> <span class="toc-text">如何使用php-cgi.sock</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相关链接"><span class="toc-number">0.1.</span> <span class="toc-text">相关链接　　</span></a></li></ol></li></ol>
+		</div>
+		
+		<h3 id="Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。"><a href="#Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。" class="headerlink" title="Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。"></a>Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。</h3><h2 id="1-安装VirtualBox"><a href="#1-安装VirtualBox" class="headerlink" title="1. 安装VirtualBox"></a>1. 安装VirtualBox</h2><p>去官网<a href="https://www.virtualbox.org/wiki/Downloads下载最新版的Virtualbox，然后双击安装，一直点击确认完成。" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads下载最新版的Virtualbox，然后双击安装，一直点击确认完成。</a> </p>
+<h2 id="2-安装Vagrant"><a href="#2-安装Vagrant" class="headerlink" title="2. 安装Vagrant"></a>2. 安装Vagrant</h2><p>去官网 <a href="https://www.vagrantup.com/downloads.html下载最新版的Vagrant，然后双击安装，一直点击确认完成。在windows下安装vagrant，为了写入相应配置到环境变量，系统可能会要求重新启动。在命令行中，输入vagrant，查看程序是不是已经运行了。如果不行，请检查一下$PATH里面是否包含vagrant所在的路径" target="_blank" rel="noopener">https://www.vagrantup.com/downloads.html下载最新版的Vagrant，然后双击安装，一直点击确认完成。在windows下安装vagrant，为了写入相应配置到环境变量，系统可能会要求重新启动。在命令行中，输入vagrant，查看程序是不是已经运行了。如果不行，请检查一下$PATH里面是否包含vagrant所在的路径</a> </p>
+<h2 id="3-Vagrant命令详解"><a href="#3-Vagrant命令详解" class="headerlink" title="3. Vagrant命令详解"></a>3. Vagrant命令详解</h2><p>命令|作用|详解|<br>|:–:|:–:|:–:|<br>|vagrant |box add|    添加box的操作<br>|vagrant |init    |初始化box的操作，会生成vagrant的配置文件Vagrantfile<br>|vagrant |up    |启动本地环境<br>|vagrant |ssh    |通过ssh登录本地环境所在虚拟机<br>|vagrant |halt    |关闭本地环境<br>|vagrant |suspend    |暂停本地环境<br>|vagrant |resume    |恢复本地环境<br>|vagrant |reload    |修改了Vagrantfile后，使之生效（相当于先 halt，再 up）<br>|vagrant |destroy    |彻底移除本地环境<br>|vagrant |box list    |显示当前已经添加的box列表<br>|vagrant |box remove    |删除相应的box<br>|vagrant |package    |打包命令，可以把当前的运行的虚拟机环境进行打包<br>|vagrant |plugin    |用于安装卸载插件<br>|vagrant |status    |获取当前虚拟机的状态<br>|vagrant |global-status    |显示当前用户Vagrant的所有环境状态</p>
+<h2 id="4-使用Vagrant安装配置虚拟机"><a href="#4-使用Vagrant安装配置虚拟机" class="headerlink" title="4. 使用Vagrant安装配置虚拟机"></a>4. 使用Vagrant安装配置虚拟机</h2><h4 id="4-1-box是什么？"><a href="#4-1-box是什么？" class="headerlink" title="4.1 box是什么？"></a>4.1 box是什么？</h4><p>接下来，我们需要选择使用何种操作系统，这里以centos7.2为例。以前基于虚拟机的工作流，我们需要下载ISO镜像，安装系统，设置系统等操作。而Vagrant开源社区提供了许多已经打包好的操作系统，我们称之为box。你可以从box下载地址（下文列出），找到你想要的box，当然你也可以自己制作一个。</p>
+<p>官方镜像：<a href="https://vagrantcloud.com/boxes/search" target="_blank" rel="noopener">https://vagrantcloud.com/boxes/search</a></p>
+<p>第三方仓库：<a href="http://www.vagrantbox.es/" target="_blank" rel="noopener">http://www.vagrantbox.es/</a> </p>
+<h4 id="4-2-如何安装一个box？"><a href="#4-2-如何安装一个box？" class="headerlink" title="4.2 如何安装一个box？"></a>4.2 如何安装一个box？</h4><p>我们需要建立自己的开发环境目录：</p>
+<p>添加devenv.box<br>vagrant box add base devenv.box</p>
+<p>初始化<br>vagrant init</p>
+<p>开启<br>vagrant up</p>
+<h4 id="4-3-设置共享目录-virtualbox中设置-共享文件夹"><a href="#4-3-设置共享目录-virtualbox中设置-共享文件夹" class="headerlink" title="4.3 设置共享目录   virtualbox中设置-共享文件夹"></a>4.3 设置共享目录   virtualbox中设置-共享文件夹</h4><p>名称|路径|自动挂载|访问权限<br>|:–:|:–:|:–:|:–:|<br>|home_yx_server_nginx_sites-conf | \?\D:\work\server\sites-conf||完全|<br>|home_yx_server_ssl  |\?\D:\work\server\ssl||完全|<br>|home_yx_sites  |\?\D:\work\sites||完全|<br>|home_yx_sites |\?\D:\work\vagrant||完全|</p>
+<h4 id="4-4-设置虚拟机网络-virtualbox中设置-网络"><a href="#4-4-设置虚拟机网络-virtualbox中设置-网络" class="headerlink" title="4.4 设置虚拟机网络  virtualbox中设置-网络"></a>4.4 设置虚拟机网络  virtualbox中设置-网络</h4><p>网卡|链接方式|界面名称|<br>|:–:|:–:|:–:|<br>|网卡1|网络地址转换(NAT)|<br>|网卡2|仅主机(Host-Only)网络|VirtualBox Host-Only Ethernet Adapter<br>|网卡3|桥接网卡|Intel(R) Centrino(R) Advanced-N 6025</p>
+<h2 id="Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。"><a href="#Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。" class="headerlink" title="Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。"></a>Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。</h2><h4 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">==&gt; default: Clearing any previously set network interfaces...</span><br><span class="line">There was an error while executing `VBoxManage`, a CLI used by Vagrant</span><br><span class="line">for controlling VirtualBox. The command and stderr is shown below.</span><br><span class="line"></span><br><span class="line">Command: [&quot;hostonlyif&quot;, &quot;create&quot;]</span><br><span class="line"></span><br><span class="line">Stderr: 0%...</span><br><span class="line">Progress state: E_FAIL</span><br><span class="line">VBoxManage.exe: error: Failed to create the host-only adapter</span><br><span class="line">VBoxManage.exe: error: Code E_FAIL (0x80004005) - Unspecified error (extended info not available)</span><br><span class="line">VBoxManage.exe: error: Context: &quot;enum RTEXITCODE __cdecl handleCreate(struct HandlerArg *)&quot; at line 70 of file VBoxManageHostonly.cpp</span><br></pre></td></tr></table></figure>
+<h3 id="Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。-1"><a href="#Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。-1" class="headerlink" title="Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。"></a>Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。</h3><h2 id="1-安装VirtualBox-1"><a href="#1-安装VirtualBox-1" class="headerlink" title="1. 安装VirtualBox"></a>1. 安装VirtualBox</h2><p>   去官网<a href="https://www.virtualbox.org/wiki/Downloads下载最新版的Virtualbox，然后双击安装，一直点击确认完成。" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads下载最新版的Virtualbox，然后双击安装，一直点击确认完成。</a> </p>
+<h2 id="2-安装Vagrant-1"><a href="#2-安装Vagrant-1" class="headerlink" title="2. 安装Vagrant"></a>2. 安装Vagrant</h2><p>   去官网 <a href="https://www.vagrantup.com/downloads.html下载最新版的Vagrant，然后双击安装，一直点击确认完成。在windows下安装vagrant，为了写入相应配置到环境变量，系统可能会要求重新启动。在命令行中，输入vagrant，查看程序是不是已经运行了。如果不行，请检查一下$PATH里面是否包含vagrant所在的路径" target="_blank" rel="noopener">https://www.vagrantup.com/downloads.html下载最新版的Vagrant，然后双击安装，一直点击确认完成。在windows下安装vagrant，为了写入相应配置到环境变量，系统可能会要求重新启动。在命令行中，输入vagrant，查看程序是不是已经运行了。如果不行，请检查一下$PATH里面是否包含vagrant所在的路径</a> </p>
+<h2 id="3-Vagrant命令详解-1"><a href="#3-Vagrant命令详解-1" class="headerlink" title="3. Vagrant命令详解"></a>3. Vagrant命令详解</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">详解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">box add</td>
+<td style="text-align:center">添加box的操作</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">init</td>
+<td style="text-align:center">初始化box的操作，会生成vagrant的配置文件Vagrantfile</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">up</td>
+<td style="text-align:center">启动本地环境</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">ssh</td>
+<td style="text-align:center">通过ssh登录本地环境所在虚拟机</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">halt</td>
+<td style="text-align:center">关闭本地环境</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">suspend</td>
+<td style="text-align:center">暂停本地环境</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">resume</td>
+<td style="text-align:center">恢复本地环境</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">reload</td>
+<td style="text-align:center">修改了Vagrantfile后，使之生效（相当于先 halt，再 up）</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">destroy</td>
+<td style="text-align:center">彻底移除本地环境</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">box list</td>
+<td style="text-align:center">显示当前已经添加的box列表</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">box remove</td>
+<td style="text-align:center">删除相应的box</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">package</td>
+<td style="text-align:center">打包命令，可以把当前的运行的虚拟机环境进行打包</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">plugin</td>
+<td style="text-align:center">用于安装卸载插件</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">status</td>
+<td style="text-align:center">获取当前虚拟机的状态</td>
+</tr>
+<tr>
+<td style="text-align:center">vagrant</td>
+<td style="text-align:center">global-status</td>
+<td style="text-align:center">显示当前用户Vagrant的所有环境状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-使用Vagrant安装配置虚拟机-1"><a href="#4-使用Vagrant安装配置虚拟机-1" class="headerlink" title="4. 使用Vagrant安装配置虚拟机"></a>4. 使用Vagrant安装配置虚拟机</h2><h4 id="4-1-box是什么？-1"><a href="#4-1-box是什么？-1" class="headerlink" title="4.1 box是什么？"></a>4.1 box是什么？</h4><p>   接下来，我们需要选择使用何种操作系统，这里以centos7.2为例。以前基于虚拟机的工作流，我们需要下载ISO镜像，安装系统，设置系统等操作。而Vagrant开源社区提供了许多已经打包好的操作系统，我们称之为box。你可以从box下载地址（下文列出），找到你想要的box，当然你也可以自己制作一个。</p>
+<p>   官方镜像：<a href="https://vagrantcloud.com/boxes/search" target="_blank" rel="noopener">https://vagrantcloud.com/boxes/search</a></p>
+<p>   第三方仓库：<a href="http://www.vagrantbox.es/" target="_blank" rel="noopener">http://www.vagrantbox.es/</a> </p>
+<h4 id="4-2-如何安装一个box？-1"><a href="#4-2-如何安装一个box？-1" class="headerlink" title="4.2 如何安装一个box？"></a>4.2 如何安装一个box？</h4><p>   我们需要建立自己的开发环境目录：</p>
+<p>   添加devenv.box<br>   vagrant box add base devenv.box</p>
+<p>   初始化<br>   vagrant init</p>
+<p>   开启<br>   vagrant up</p>
+<h4 id="4-3-设置共享目录-virtualbox中设置-共享文件夹-1"><a href="#4-3-设置共享目录-virtualbox中设置-共享文件夹-1" class="headerlink" title="4.3 设置共享目录   virtualbox中设置-共享文件夹"></a>4.3 设置共享目录   virtualbox中设置-共享文件夹</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">路径</th>
+<th style="text-align:center">自动挂载</th>
+<th style="text-align:center">访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">home_yx_server_nginx_sites-conf</td>
+<td style="text-align:center">\?\D:\work\server\sites-conf</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">完全</td>
+</tr>
+<tr>
+<td style="text-align:center">home_yx_server_ssl</td>
+<td style="text-align:center">\?\D:\work\server\ssl</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">完全</td>
+</tr>
+<tr>
+<td style="text-align:center">home_yx_sites</td>
+<td style="text-align:center">\?\D:\work\sites</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">完全</td>
+</tr>
+<tr>
+<td style="text-align:center">home_yx_sites</td>
+<td style="text-align:center">\?\D:\work\vagrant</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">完全</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-4-设置虚拟机网络-virtualbox中设置-网络-1"><a href="#4-4-设置虚拟机网络-virtualbox中设置-网络-1" class="headerlink" title="4.4 设置虚拟机网络  virtualbox中设置-网络"></a>4.4 设置虚拟机网络  virtualbox中设置-网络</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">网卡</th>
+<th style="text-align:center">链接方式</th>
+<th style="text-align:center">界面名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">网卡1</td>
+<td style="text-align:center">网络地址转换(NAT)</td>
+</tr>
+<tr>
+<td style="text-align:center">网卡2</td>
+<td style="text-align:center">仅主机(Host-Only)网络</td>
+<td style="text-align:center">VirtualBox Host-Only Ethernet Adapter </td>
+</tr>
+<tr>
+<td style="text-align:center">网卡3</td>
+<td style="text-align:center">桥接网卡</td>
+<td style="text-align:center">Intel(R) Centrino(R) Advanced-N 6025</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。-1"><a href="#Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。-1" class="headerlink" title="Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。"></a>Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。</h2><h4 id="报错信息-1"><a href="#报错信息-1" class="headerlink" title="报错信息"></a>报错信息</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">==&gt; default: Clearing any previously set network interfaces...</span><br><span class="line">There was an error while executing `VBoxManage`, a CLI used by Vagrant</span><br><span class="line">for controlling VirtualBox. The command and stderr is shown below.</span><br><span class="line"></span><br><span class="line">Command: [&quot;hostonlyif&quot;, &quot;create&quot;]</span><br><span class="line"></span><br><span class="line">Stderr: 0%...</span><br><span class="line">Progress state: E_FAIL</span><br><span class="line">VBoxManage.exe: error: Failed to create the host-only adapter</span><br><span class="line">VBoxManage.exe: error: Code E_FAIL (0x80004005) - Unspecified error (extended info not available)</span><br><span class="line">VBoxManage.exe: error: Context: &quot;enum RTEXITCODE __cdecl handleCreate(struct HandlerArg *)&quot; at line 70 of file VBoxManageHostonly.cpp</span><br></pre></td></tr></table></figure>
+<h4 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h4><p>   　　在Windows10中，网络策略的变化，VirtualBox没有相应权限</p>
+<h4 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h4><p>   　　①打开Orcle VM VirtualBox图形界面。管理–&gt;全局设定–&gt;网络–&gt;仅主机（Host-Only）网络，修改IPv4地址为192.168.33.100。保存退出</p>
+<p>   　　②更改Windows网络配置，修改VirtualBox Host-Only Ethernet Adapter手动设定ip地址为192.168.33.100。</p>
+<p>   　　③修改vagrant的配置文件VagrantFile，在private-network中修改对应网络设置为：config.vm.network “private_network”, ip: “192.168.33.100”, name: “VirtualBox Host-Only Ethernet Adapter” 这段配置的表示使用现有的网络配置，不再自动创建对应的网卡信息。</p>
+<p>   　　再次启动即可进入虚拟机了<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">   　　</span><br><span class="line">   ##  如何使用php-cgi.sock</span><br><span class="line">   </span><br><span class="line">   　　修改php.ini 即可</span><br><span class="line">   　　listen = 127.0.0.1:9000</span><br><span class="line">   　　改成</span><br><span class="line">   　　listen = /dev/shm/php-cgi.sock</span><br><span class="line">   　　</span><br><span class="line">   </span><br><span class="line">   #### 相关链接　　</span><br><span class="line">   http://www.vagrantbox.es/</span><br><span class="line">   </span><br><span class="line">   https://blog.csdn.net/bluehawksky/article/details/80417845</span><br><span class="line">   </span><br><span class="line">   https://www.cnblogs.com/jixingke/p/7868820.html</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 报错原因：</span><br><span class="line"></span><br><span class="line">　　在Windows10中，网络策略的变化，VirtualBox没有相应权限</span><br><span class="line"></span><br><span class="line">#### 解决方案：</span><br><span class="line"></span><br><span class="line">　　①打开Orcle VM VirtualBox图形界面。管理--&gt;全局设定--&gt;网络--&gt;仅主机（Host-Only）网络，修改IPv4地址为192.168.33.100。保存退出</span><br><span class="line"></span><br><span class="line">　　②更改Windows网络配置，修改VirtualBox Host-Only Ethernet Adapter手动设定ip地址为192.168.33.100。</span><br><span class="line"></span><br><span class="line">　　③修改vagrant的配置文件VagrantFile，在private-network中修改对应网络设置为：config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.100&quot;, name: &quot;VirtualBox Host-Only Ethernet Adapter&quot; 这段配置的表示使用现有的网络配置，不再自动创建对应的网卡信息。</span><br><span class="line"></span><br><span class="line">　　再次启动即可进入虚拟机了</span><br></pre></td></tr></table></figure></p>
+<p>　　</p>
+<h2 id="如何使用php-cgi-sock"><a href="#如何使用php-cgi-sock" class="headerlink" title="如何使用php-cgi.sock"></a>如何使用php-cgi.sock</h2><p>　　修改php.ini 即可<br>　　listen = 127.0.0.1:9000<br>　　改成<br>　　listen = /dev/shm/php-cgi.sock
+　　</p>
+<h4 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接　　"></a>相关链接　　</h4><p><a href="http://www.vagrantbox.es/" target="_blank" rel="noopener">http://www.vagrantbox.es/</a></p>
+<p><a href="https://blog.csdn.net/bluehawksky/article/details/80417845" target="_blank" rel="noopener">https://blog.csdn.net/bluehawksky/article/details/80417845</a></p>
+<p><a href="https://www.cnblogs.com/jixingke/p/7868820.html" target="_blank" rel="noopener">https://www.cnblogs.com/jixingke/p/7868820.html</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://tangchunxin.com/2019/03/02/使用vagrant-VirtualBox搭建虚拟开发环境/" data-title="使用vagrant+VirtualBox搭建虚拟开发环境 | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/02/20/mysql允许外部访问/"  title="mysql允许外部访问">
+ <strong>NEXT:</strong><br/> 
+ <span>mysql允许外部访问
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。"><span class="toc-number">1.</span> <span class="toc-text">Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装VirtualBox"><span class="toc-number"></span> <span class="toc-text">1. 安装VirtualBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装Vagrant"><span class="toc-number"></span> <span class="toc-text">2. 安装Vagrant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vagrant命令详解"><span class="toc-number"></span> <span class="toc-text">3. Vagrant命令详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用Vagrant安装配置虚拟机"><span class="toc-number"></span> <span class="toc-text">4. 使用Vagrant安装配置虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-box是什么？"><span class="toc-number">0.1.</span> <span class="toc-text">4.1 box是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-如何安装一个box？"><span class="toc-number">0.2.</span> <span class="toc-text">4.2 如何安装一个box？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-设置共享目录-virtualbox中设置-共享文件夹"><span class="toc-number">0.3.</span> <span class="toc-text">4.3 设置共享目录   virtualbox中设置-共享文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-设置虚拟机网络-virtualbox中设置-网络"><span class="toc-number">0.4.</span> <span class="toc-text">4.4 设置虚拟机网络  virtualbox中设置-网络</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。"><span class="toc-number"></span> <span class="toc-text">Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#报错信息"><span class="toc-number">0.1.</span> <span class="toc-text">报错信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php-python-ruby-java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。-1"><span class="toc-number">1.</span> <span class="toc-text">Vagrant是一款用来构建虚拟开发环境的外挂工具，可以简化虚拟机配置和管理。它底层支持VirtualBox、VMware、AWS等，非常适合使用php/python/ruby/java语言开发web应用，“代码在我机子上运行没有问题”这种说辞将成为历史。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装VirtualBox-1"><span class="toc-number"></span> <span class="toc-text">1. 安装VirtualBox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装Vagrant-1"><span class="toc-number"></span> <span class="toc-text">2. 安装Vagrant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vagrant命令详解-1"><span class="toc-number"></span> <span class="toc-text">3. Vagrant命令详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用Vagrant安装配置虚拟机-1"><span class="toc-number"></span> <span class="toc-text">4. 使用Vagrant安装配置虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-box是什么？-1"><span class="toc-number">0.1.</span> <span class="toc-text">4.1 box是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-如何安装一个box？-1"><span class="toc-number">0.2.</span> <span class="toc-text">4.2 如何安装一个box？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-设置共享目录-virtualbox中设置-共享文件夹-1"><span class="toc-number">0.3.</span> <span class="toc-text">4.3 设置共享目录   virtualbox中设置-共享文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-设置虚拟机网络-virtualbox中设置-网络-1"><span class="toc-number">0.4.</span> <span class="toc-text">4.4 设置虚拟机网络  virtualbox中设置-网络</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows10环境vagrant-VirtualBox虚拟机无法创建私有网络的解决方案。-1"><span class="toc-number"></span> <span class="toc-text">Windows10环境vagrant+VirtualBox虚拟机无法创建私有网络的解决方案。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#报错信息-1"><span class="toc-number">0.1.</span> <span class="toc-text">报错信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#报错原因："><span class="toc-number">0.2.</span> <span class="toc-text">报错原因：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案："><span class="toc-number">0.3.</span> <span class="toc-text">解决方案：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用php-cgi-sock"><span class="toc-number"></span> <span class="toc-text">如何使用php-cgi.sock</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相关链接"><span class="toc-number">0.1.</span> <span class="toc-text">相关链接　　</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/u/5908174541/home" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/tangchunxin" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2019 
+		
+		<a href="http://tangchunxin.com" target="_blank" title="Tangchunxin">Tangchunxin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://qr.liantu.com/api.php?text=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
