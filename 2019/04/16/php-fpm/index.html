@@ -1,0 +1,294 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>php-fpm | 黄溜溜@PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Tangchunxin">
+    
+    <meta name="description" content="最近项目中本地测试环境遇到了windows环境下的nginx使用file_get_contents/curl访问php文件导致的阻塞问题，一直在找解决的方案，这个问题研究了三天终于找到了解决方案，特别因为这个我也对php的运行原理产生了兴趣，所以这里对此进行一定程度的记录，可能会有错漏的地方，欢迎指">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="黄溜溜@PHP" title="黄溜溜@PHP"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="黄溜溜@PHP">黄溜溜@PHP</a></h1>
+				<h2 class="blog-motto">一个小小的PHP</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:tangchunxin.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/04/16/php-fpm/" title="php-fpm" itemprop="url">php-fpm</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://tangchunxin.com" title="Tangchunxin">Tangchunxin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2019-04-16T09:36:18.000Z" itemprop="datePublished">2019-04-16</time>
+    更新日期:<time datetime="2019-04-16T09:37:08.996Z" itemprop="dateModified">2019-04-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CGI："><span class="toc-number">1.</span> <span class="toc-text">CGI：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fast-cgi："><span class="toc-number">2.</span> <span class="toc-text">fast-cgi：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-cgi："><span class="toc-number">3.</span> <span class="toc-text">php-cgi：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-fpm"><span class="toc-number">4.</span> <span class="toc-text">php-fpm:</span></a></li></ol>
+		</div>
+		
+		<p>最近项目中本地测试环境遇到了windows环境下的nginx使用file_get_contents/curl访问php文件导致的阻塞问题，一直在找解决的方案，这个问题研究了三天终于找到了解决方案，特别因为这个我也对php的运行原理产生了兴趣，所以这里对此进行一定程度的记录，可能会有错漏的地方，欢迎指正。</p>
+<p>要了解php的运行原理，首先要了解下面几个概念：</p>
+<h2 id="CGI："><a href="#CGI：" class="headerlink" title="CGI："></a>CGI：</h2><p>CGI的英文是（COMMON GATEWAY INTERFACE）公共网关接口，它的作用就是帮助服务器与语言通信，这里就是nginx和php进行通信，因为nginx和php的语言不通，因此需要一个沟通转换的过程，而CGI就是这个沟通的协议。</p>
+<p>nginx服务器在接受到浏览器传递过来的数据后，如果请求的是静态的页面或者图片等无需动态处理的则会直接根据请求的url找到其位置然后返回给浏览器，这里无需php参与，但是如果是一个动态的页面请求，这个时候nginx就必须与php通信，这个时候就会需要用到cgi协议，将请求数据转换成php能理解的信息，然后php根据这些信息返回的信息也要通过cgi协议转换成nginx可以理解的信息，最后nginx接到这些信息再返回给浏览器。</p>
+<h2 id="fast-cgi："><a href="#fast-cgi：" class="headerlink" title="fast-cgi："></a>fast-cgi：</h2><p>传统的cgi协议在每次连接请求时，会开启一个进程进行处理，处理完毕会关闭该进程，因此下次连接，又要再次开启一个进程进行处理，因此有多少个连接就有多少个cgi进程，这也就是为什么传统的cgi会显得缓慢的原因，因此过多的进程会消耗资源和内存。</p>
+<p>而fast-cgi则是一个进程可以处理多个请求，和上面的cgi协议完全不一样，cgi是一个进程只能处理一个请求，这样就会导致大量的cgi程序，因此会给服务器带来负担。</p>
+<h2 id="php-cgi："><a href="#php-cgi：" class="headerlink" title="php-cgi："></a>php-cgi：</h2><p>php-cgi是php提供给web serve也就是http前端服务器的cgi协议接口程序，当每次接到http前端服务器的请求都会开启一个php-cgi进程进行处理，而且开启的php-cgi的过程中会先要重载配置，数据结构以及初始化运行环境，如果更新了php配置，那么就需要重启php-cgi才能生效，例如phpstudy就是这种情况。</p>
+<h2 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm:"></a>php-fpm:</h2><p>php-fpm是php提供给web serve也就是http前端服务器的fastcgi协议接口程序，它不会像php-cgi一样每次连接都会重新开启一个进程，处理完请求又关闭这个进程，而是允许一个进程对多个连接进行处理，而不会立即关闭这个进程，而是会接着处理下一个连接。它可以说是php-cgi的一个管理程序，是对php-cgi的改进。</p>
+<p>php-fpm会开启多个php-cgi程序，并且php-fpm常驻内存，每次web serve服务器发送连接过来的时候，php-fpm将连接信息分配给下面其中的一个子程序php-cgi进行处理，处理完毕这个php-cgi并不会关闭，而是继续等待下一个连接，这也是fast-cgi加速的原理，但是由于php-fpm是多进程的，而一个php-cgi基本消耗7-25M内存，因此如果连接过多就会导致内存消耗过大，引发一些问题，例如nginx里的502错误。</p>
+<p>同时php-fpm还附带一些其他的功能：</p>
+<p>例如平滑过渡配置更改，普通的php-cgi在每次更改配置后，需要重新启动才能初始化新的配置，而php-fpm是不需要，php-fpm分将新的连接发送给新的子程序php-cgi，这个时候加载的是新的配置，而原先正在运行的php-cgi还是使用的原先的配置，等到这个连接后下一次连接的时候会使用新的配置初始化，这就是平滑过渡。</p>
+<p>可能上面文字叙述很难理解，下面用图形来简要的说明浏览器请求web服务器的过程、cgi以及fastcgi，以及php-cgi和php-fpm之间的区别和联系：</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://tangchunxin.com/2019/04/16/php-fpm/" data-title="php-fpm | 黄溜溜@PHP" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/04/16/kafka/"  title="kafka">
+ <strong>NEXT:</strong><br/> 
+ <span>kafka
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CGI："><span class="toc-number">1.</span> <span class="toc-text">CGI：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fast-cgi："><span class="toc-number">2.</span> <span class="toc-text">fast-cgi：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-cgi："><span class="toc-number">3.</span> <span class="toc-text">php-cgi：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-fpm"><span class="toc-number">4.</span> <span class="toc-text">php-fpm:</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/u/5908174541/home" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/tangchunxin" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2019 
+		
+		<a href="http://tangchunxin.com" target="_blank" title="Tangchunxin">Tangchunxin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://qr.liantu.com/api.php?text=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
